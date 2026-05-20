@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l \"/Users/marinavargas/Downloads/Travel \\(1\\).zip\")",
+      "Bash(ls -la /developer/braziloffscript/ 2>/dev/null || echo \"Pasta não encontrada\")",
+      "Bash(npm --version)",
+      "Bash(vercel --version)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

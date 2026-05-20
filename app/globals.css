@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    background: #ede4d3;
+    color: #19281e;
+  }
+  body {
+    font-family: var(--font-sans), "Quicksand", "Avenir Next", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .font-serif {
+    font-family: var(--font-serif), Georgia, serif;
+  }
+  ::selection {
+    background: #e07a4e30;
+    color: #19281e;
+  }
+  *:focus-visible {
+    outline: 2px solid #1f4a2f;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer utilities {
+  /* Cormorant Garamond has descenders that visually overflow with very tight leading.
+     Bump any leading-[1.0x] heading to a safer minimum so wrapped lines don't overlap. */
+  .font-serif[class*="leading-[1.02]"] { line-height: 1.08 !important; }
+  .font-serif[class*="leading-[1.04]"] { line-height: 1.1  !important; }
+  .font-serif[class*="leading-[1.05]"] { line-height: 1.1  !important; }
+}
