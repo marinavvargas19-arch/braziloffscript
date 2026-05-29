@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Star, Shield, Leaf } from "lucide-react";
 import { Container, SectionHead } from "@/components/ui/section";
@@ -13,19 +12,36 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative">
+      <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <Image src={IMG.rioSugar} alt="" fill className="object-cover" priority sizes="100vw"/>
-          <div className="absolute inset-0 bg-gradient-to-b from-leaf-d/30 via-leaf-d/15 to-leaf-d/65"></div>
+          <video
+            src="/hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={IMG.rioSugar}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Darker base wash for overall legibility */}
+          <div className="absolute inset-0" style={{background: "linear-gradient(to bottom, rgba(10,25,15,.45), rgba(10,25,15,.25) 35%, rgba(10,25,15,.75))"}}></div>
+          {/* Left-side vignette where the text sits */}
+          <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(10,25,15,.65), rgba(10,25,15,.35) 40%, rgba(10,25,15,0) 70%)"}}></div>
         </div>
         <div className="relative">
           <Container className="pt-28 pb-32 md:pt-36 md:pb-44">
-            <div className="max-w-3xl text-cream-50">
-              <Badge variant="light" className="mb-6"><span className="w-1.5 h-1.5 rounded-full bg-terra"></span> Tailor-made Brazil, planned by locals</Badge>
-              <h1 className="font-serif font-medium leading-[1.02] tracking-tight text-[clamp(40px,6.4vw,86px)]">
-                Brazil is more <br/>than a destination <br/>— it&apos;s a <em className="not-italic text-gold">feeling.</em>
+            <div className="max-w-3xl text-cream-50" style={{textShadow: "0 2px 18px rgba(0,0,0,.45)"}}>
+              <Badge variant="light" className="mb-6 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
+                <span className="w-1.5 h-1.5 rounded-full bg-terra"></span> Real Brazil, curated for you
+              </Badge>
+              <h1
+                className="font-serif font-medium tracking-tight text-[clamp(40px,6.4vw,86px)]"
+                style={{lineHeight: 1.08, textShadow: "0 3px 24px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35)"}}
+              >
+                Brazil is more <br/>than a destination <br/>— it&apos;s a <em className="not-italic text-terra-l">feeling.</em>
               </h1>
-              <p className="mt-7 max-w-xl text-[17.5px] leading-relaxed text-cream-50/90">
+              <p className="mt-7 max-w-xl text-[17.5px] leading-relaxed text-cream-50">
                 The warmth of the people, the spontaneity, the joy, the music, the flavors, the breathtaking natural beauty, the lifestyle, the emotional connection that make Brazil truly unique. <br/><span className="font-semibold">This is Brazil, off script.</span>
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
@@ -33,7 +49,6 @@ export default function HomePage() {
                 <Button variant="ghostLight" size="lg" href="/journeys">Explore our journeys</Button>
               </div>
               <div className="mt-12 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
-                <div className="flex items-center gap-2"><div className="flex">{[0,0,0,0,0].map((_,i)=><Star key={i} size={14} className="text-gold fill-gold"/>)}</div> <span>4.96 · 320+ guests</span></div>
                 <div className="hidden sm:flex items-center gap-2"><Shield size={14}/> Financially protected</div>
                 <div className="hidden md:flex items-center gap-2"><Leaf size={14}/> Sustainable stays</div>
               </div>
@@ -42,7 +57,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust strip */}
+      {/* Trust strip — hidden for now, keep for future social-proof section
       <section className="bg-paper border-b border-line">
         <Container className="py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
@@ -58,9 +73,10 @@ export default function HomePage() {
           ))}
         </Container>
       </section>
+      */}
 
       {/* Method */}
-      <section className="py-24 md:py-32">
+      <section id="about" className="py-24 md:py-32">
         <Container>
           <div className="grid md:grid-cols-12 gap-10 items-end mb-14">
             <div className="md:col-span-7">
@@ -75,7 +91,6 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-
           <div className="grid md:grid-cols-3 gap-5">
             {[
               {n:"01", t:"Feel Brazil, not just visit", c:"terra", d:"We design experiences that leave you feeling Brazil — not just photographing it." },
@@ -98,21 +113,23 @@ export default function HomePage() {
       </section>
 
       {/* Three collections */}
-      <section className="bg-paper py-24">
+      <section id="journeys" className="bg-paper py-24">
         <Container>
           <SectionHead eyebrow="Our Journeys" title="Three ways to experience Brazil" sub="Signature collections, thoughtfully curated to reveal different sides of the country." center/>
           <div className="grid md:grid-cols-3 gap-5 mt-12">
-            {CATEGORIES.map((c, i)=>{
-              const heroImg = i===0?IMG.rioSugar : i===1?IMG.amazon : IMG.noronha;
-              const overlay = c.color==="terra" ? "from-terra/90" : c.color==="leaf" ? "from-leaf/90" : "from-azul/90";
+            {CATEGORIES.map((c, i) => {
+              const heroImg = i === 0 ? IMG.rioSugar : i === 1 ? "/the-explorer.jpg" : "/paradise-found.jpg";
+              const tint = c.color === "terra" ? "224,122,78" : c.color === "leaf" ? "31,74,47" : "45,90,138";
               return (
-                <Link key={c.slug} href={`/journeys/${c.slug}`} className="group relative rounded-2xl overflow-hidden aspect-[3/4] block">
-                  <Image src={heroImg} alt="" fill className="object-cover transition duration-700 group-hover:scale-[1.06]" sizes="(min-width: 768px) 33vw, 100vw"/>
-                  <div className={`absolute inset-0 bg-gradient-to-t ${overlay} via-black/20 to-transparent`}></div>
-                  <div className="absolute inset-0 p-7 flex flex-col justify-end text-cream-50">
-                    <div className="text-[11px] tracking-[.22em] uppercase opacity-90 mb-2">Collection 0{i+1}</div>
+                <Link key={c.slug} href={`/journeys/${c.slug}`} className="group relative rounded-2xl overflow-hidden block" style={{aspectRatio: "3/4"}}>
+                  <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-[1.06]"/>
+                  {/* Soft brand-color tint, stronger near the bottom but never hiding the image */}
+                  <div className="absolute inset-0" style={{background: `linear-gradient(to top, rgba(${tint},.5) 0%, rgba(${tint},.22) 55%, rgba(${tint},.08) 100%)`}}></div>
+                  {/* Dark scrim concentrated at the bottom for text legibility */}
+                  <div className="absolute inset-0" style={{background: "linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.42) 28%, rgba(0,0,0,.08) 55%, transparent 75%)"}}></div>
+                  <div className="absolute inset-0 p-7 flex flex-col justify-end text-cream-50" style={{textShadow: "0 2px 14px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.55)"}}>
                     <div className="font-serif text-[32px] leading-tight">{c.name}</div>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-cream-50/90 max-w-xs">{c.tagline}</p>
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-cream-50 max-w-xs">{c.tagline}</p>
                     <div className="mt-5 inline-flex items-center gap-2 text-[13.5px] font-semibold">Discover <ArrowRight size={16} className="transition group-hover:translate-x-1"/></div>
                   </div>
                 </Link>
@@ -123,7 +140,7 @@ export default function HomePage() {
       </section>
 
       {/* Quiz CTA */}
-      <section className="bg-leaf-d text-cream-50 overflow-hidden">
+      <section id="quiz" className="bg-leaf-d text-cream-50 overflow-hidden">
         <Container>
           <div className="grid md:grid-cols-12 gap-10 items-center py-24">
             <div className="md:col-span-6">
@@ -138,20 +155,20 @@ export default function HomePage() {
               </div>
             </div>
             <div className="md:col-span-6 grid grid-cols-3 gap-3 md:gap-4">
-              <img src={IMG.rioChrist} className="rounded-xl col-span-1 row-span-2 h-full object-cover" alt=""/>
-              <img src={IMG.beach} className="rounded-xl object-cover aspect-square" alt=""/>
-              <img src={IMG.amazon} className="rounded-xl row-span-2 h-full object-cover" alt=""/>
-              <img src={IMG.salvador} className="rounded-xl object-cover aspect-square" alt=""/>
-              <img src={IMG.market} className="rounded-xl col-span-1 object-cover aspect-square" alt=""/>
-              <img src={IMG.lencois} className="rounded-xl col-span-1 object-cover aspect-square" alt=""/>
-              <img src={IMG.pantanal} className="rounded-xl col-span-1 object-cover aspect-square" alt=""/>
+              <img src="/iguazu.jpg"        className="rounded-xl col-span-1 row-span-2 h-full w-full object-cover" alt="Iguaçu Falls"/>
+              <img src="/start-beach.jpg"   className="rounded-xl object-cover w-full aspect-square" alt="Northeast Brazil beach"/>
+              <img src="/the-explorer.jpg"  className="rounded-xl row-span-2 h-full w-full object-cover" alt="Amazon"/>
+              <img src="/bahia.jpg"         className="rounded-xl object-cover w-full aspect-square" alt="Salvador, Bahia"/>
+              <img src="/noronha.jpg"       className="rounded-xl object-cover w-full aspect-square" alt="Fernando de Noronha"/>
+              <img src="/pantanal.jpg"      className="rounded-xl object-cover w-full aspect-square" alt="Pantanal wildlife"/>
+              <img src="/paradise-found.jpg" className="rounded-xl object-cover w-full aspect-square" alt="Brazilian coast"/>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Featured tours */}
-      <section className="py-24">
+      <section id="tours" className="py-24">
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
             <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Each itinerary is fully tailor-made — these are just a place to begin."/>
@@ -181,10 +198,10 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Experts */}
+      {/* ===== ARCHIVED FOR FUTURE USE — "Your local experts" section. Uncomment to restore. =====
       <section className="bg-paper py-24">
         <Container>
-          <SectionHead eyebrow="Your local experts" title="Real people, in Brazil, designing your trip." sub="Not a call center. Each of our destination experts is a Brazilian who has spent their life knowing — and loving — a specific region."/>
+          <SectionHead eyebrow="Your local experts" title="Real people, in Brazil, designing your trip." sub="Not a call center. Each of our destination experts is a Brazilian who has spent their life knowing — and loving — a specific region." center/>
           <div className="grid md:grid-cols-4 gap-5 mt-12">
             {EXPERTS.map(e=>(
               <div key={e.name} className="bg-cream-50 border border-line rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)]">
@@ -203,8 +220,9 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+      ===== END ARCHIVED ===== */}
 
-      {/* Testimonials */}
+      {/* ===== ARCHIVED FOR FUTURE USE — "What guests say" testimonials. Uncomment to restore. =====
       <section className="py-24">
         <Container>
           <SectionHead eyebrow="What guests say" title="The trips that stay with you." center/>
@@ -232,9 +250,10 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+      ===== END ARCHIVED ===== */}
 
       {/* Stories */}
-      <section className="bg-paper py-24">
+      <section id="blog" className="bg-paper py-24">
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
             <SectionHead eyebrow="Travel stories" title="From our journal."/>
