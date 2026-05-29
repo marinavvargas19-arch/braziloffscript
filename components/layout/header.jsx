@@ -35,7 +35,7 @@ export function Header() {
     <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
       <Container className="flex items-center gap-6 py-3.5">
         <Link href="/" className="flex items-center gap-2.5 leading-none -my-2">
-          <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} priority style={{ height: 64, width: "auto" }} />
+          <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority style={{ height: 76, width: "auto" }} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 ml-2">
