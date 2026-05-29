@@ -35,7 +35,7 @@ export function Header() {
     <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
       <Container className="flex items-center gap-6 py-3.5">
         <Link href="/" className="flex items-center gap-2.5 leading-none">
-          <Image src="/logo.png" alt="Brazil Off Script" width={140} height={42} priority style={{ height: 42, width: "auto" }} />
+          <Image src="/logo.png" alt="Brazil Off Script" width={160} height={48} priority style={{ height: 48, width: "auto" }} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 ml-2">
@@ -72,7 +72,7 @@ export function Header() {
         <div className="lg:hidden fixed inset-0 z-50 bg-cream">
           <Container className="flex items-center justify-between py-3.5">
             <Link href="/" className="flex items-center gap-2.5 leading-none">
-              <Image src="/logo.png" alt="Brazil Off Script" width={140} height={42} style={{ height: 42, width: "auto" }} />
+              <Image src="/logo.png" alt="Brazil Off Script" width={160} height={48} style={{ height: 48, width: "auto" }} />
             </Link>
             <button onClick={() => setOpen(false)} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
               <X size={20} />
