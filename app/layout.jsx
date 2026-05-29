@@ -1,9 +1,5 @@
 import { Cormorant_Garamond, Quicksand } from "next/font/google";
 import "./globals.css";
-import { TopBar } from "@/components/layout/topbar";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { WhatsAppFab } from "@/components/layout/wa-fab";
 import { SITE } from "@/lib/data";
 
 const serif = Cormorant_Garamond({
@@ -37,15 +33,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body>
-        <div className="min-h-screen flex flex-col">
-          <TopBar />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <WhatsAppFab />
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

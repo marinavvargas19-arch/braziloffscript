@@ -45,7 +45,7 @@ export default function HomePage() {
                 The warmth of the people, the spontaneity, the joy, the music, the flavors, the breathtaking natural beauty, the lifestyle, the emotional connection that make Brazil truly unique. <br/><span className="font-semibold">This is Brazil, off script.</span>
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Button href="/quiz" size="lg">Design your journey <ArrowRight size={16}/></Button>
+                <Button href="/start" size="lg">Design your journey <ArrowRight size={16}/></Button>
                 <Button variant="ghostLight" size="lg" href="/journeys">Explore our journeys</Button>
               </div>
               <div className="mt-12 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
