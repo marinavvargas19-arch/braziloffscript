@@ -80,7 +80,7 @@ export default function StartPage() {
 
               {/* Option B — Guide me */}
               <Link
-                href="/quiz"
+                href="/quiz-discovery"
                 className="group block rounded-2xl border border-terra/40 bg-terra/[.06] p-7 md:p-8 transition hover:border-terra hover:-translate-y-0.5 hover:shadow-[0_18px_42px_-22px_rgba(224,122,78,.45)]"
               >
                 <div className="flex items-start gap-5">

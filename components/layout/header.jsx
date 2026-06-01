@@ -54,10 +54,10 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link href="/quiz" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
+          <Link href="/start" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
             <Compass size={16} /> Find my journey
           </Link>
-          <Button href="/quiz" className="!px-5 !py-2.5 text-[13.5px]">Start your journey</Button>
+          <Button href="/start" className="!px-5 !py-2.5 text-[13.5px]">Start your journey</Button>
           <button
             onClick={() => setOpen(true)}
             aria-label="Menu"
@@ -87,7 +87,7 @@ export function Header() {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3">
-              <Button href="/quiz" className="w-full justify-center">Find my journey <ArrowRight size={16} /></Button>
+              <Button href="/start" className="w-full justify-center">Find my journey <ArrowRight size={16} /></Button>
               <Button variant="ghost" href="/contact" className="w-full justify-center">Contact us</Button>
             </div>
           </Container>
