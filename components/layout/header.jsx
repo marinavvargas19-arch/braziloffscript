@@ -12,7 +12,7 @@ const NAV = [
   { href: "/journeys", label: "Signature Journeys", key: "journeys" },
   { href: "/tours", label: "Explore All Journeys", key: "tours" },
   { href: "/about", label: "About Us", key: "about" },
-  { href: "/blog", label: "Blog", key: "blog" },
+  { href: "/blog", label: "Journal", key: "blog" },
 ];
 
 export function Header() {
