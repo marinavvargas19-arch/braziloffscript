@@ -7,11 +7,12 @@ export function Badge({ children, variant = "default", className = "" }) {
     gold:       "bg-[#e8b53d]/20 text-[#8a6918]",
     azul:       "bg-[#2d5a8a]/14 text-azul",
     light:      "bg-cream-50/90 text-ink",
-    // Solid variants for use over images
-    terraSolid: "bg-terra text-cream-50 shadow-sm",
-    leafSolid:  "bg-leaf-d text-cream-50 shadow-sm",
-    azulSolid:  "bg-azul text-cream-50 shadow-sm",
-    goldSolid:  "bg-[#b8860b] text-cream-50 shadow-sm",
+    // Solid variants for use over images (strong shadow for legibility)
+    lightSolid: "bg-cream-50 text-ink shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
+    terraSolid: "bg-terra text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
+    leafSolid:  "bg-leaf-d text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
+    azulSolid:  "bg-azul text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
+    goldSolid:  "bg-[#b8860b] text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
   };
   return (
     <span className={cn(

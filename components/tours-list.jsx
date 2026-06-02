@@ -233,7 +233,7 @@ export default function ToursList() {
                             className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.04]"
                           />
                           <div className="absolute top-4 left-4 flex gap-2">
-                            <Badge variant="light">{t.days} days</Badge>
+                            <Badge variant="lightSolid">{t.days} days</Badge>
                             {c && (
                               <Badge variant={catBadgeVariant(c.color)}>{c.name}</Badge>
                             )}
