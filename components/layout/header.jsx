@@ -10,7 +10,7 @@ import { Container } from "@/components/ui/section";
 const NAV = [
   { href: "/", label: "Home", key: "home" },
   { href: "/journeys", label: "Signature Journeys", key: "journeys" },
-  { href: "/tours", label: "Explore All Journeys", key: "tours" },
+  { href: "/tours", label: "Explore Destinations", key: "tours" },
   { href: "/about", label: "About Us", key: "about" },
   { href: "/blog", label: "Journal", key: "blog" },
 ];
