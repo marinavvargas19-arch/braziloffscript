@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { NewsletterBand } from "@/components/layout/newsletter";
-import { IMG, CATEGORIES, TOURS, EXPERTS, REVIEWS, BLOG_POSTS } from "@/lib/data";
+import { IMG, CATEGORIES, TOURS, REVIEWS, BLOG_POSTS } from "@/lib/data";
 
 export default function HomePage() {
   return (
@@ -198,29 +198,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ===== ARCHIVED FOR FUTURE USE — "Your local experts" section. Uncomment to restore. =====
-      <section className="bg-paper py-24">
-        <Container>
-          <SectionHead eyebrow="Your local experts" title="Real people, in Brazil, designing your trip." sub="Not a call center. Each of our destination experts is a Brazilian who has spent their life knowing — and loving — a specific region." center/>
-          <div className="grid md:grid-cols-4 gap-5 mt-12">
-            {EXPERTS.map(e=>(
-              <div key={e.name} className="bg-cream-50 border border-line rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)]">
-                <div className="flex items-center gap-3">
-                  <Avatar src={e.img} size={56} alt={e.name}/>
-                  <div>
-                    <div className="font-semibold text-ink">{e.name}</div>
-                    <div className="text-[12.5px] text-muted">Based in {e.base}</div>
-                  </div>
-                </div>
-                <div className="mt-4 text-[12px] tracking-[.14em] uppercase text-terra font-semibold">Specialty</div>
-                <div className="text-[14px] text-ink-soft">{e.specialty}</div>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink-soft border-t border-line pt-3">{e.bio}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-      ===== END ARCHIVED ===== */}
 
       {/* ===== ARCHIVED FOR FUTURE USE — "What guests say" testimonials. Uncomment to restore. =====
       <section className="py-24">

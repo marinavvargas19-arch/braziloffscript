@@ -1,6 +1,6 @@
 import { Container, SectionHead } from "@/components/ui/section";
 import { NewsletterBand } from "@/components/layout/newsletter";
-import { IMG, EXPERTS } from "@/lib/data";
+import { IMG } from "@/lib/data";
 
 export const metadata = { title: "About us" };
 
@@ -65,24 +65,6 @@ export default function AboutPage() {
                 <div className="font-serif text-[48px] leading-none text-gold">{it.n}</div>
                 <div className="font-semibold mt-3 text-cream-50 text-[16.5px]">{it.t}</div>
                 <p className="mt-2 text-cream-50/80 text-[14.5px] leading-relaxed">{it.d}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-24">
-        <Container>
-          <SectionHead eyebrow="The team" title="Local experts. Brazilian by life, not by job description."/>
-          <div className="grid md:grid-cols-4 gap-5 mt-12">
-            {EXPERTS.map(e=>(
-              <div key={e.name} className="bg-paper border border-line rounded-2xl overflow-hidden">
-                <div className="aspect-[4/5] overflow-hidden"><img src={e.img} className="w-full h-full object-cover" alt=""/></div>
-                <div className="p-5">
-                  <div className="font-semibold text-ink">{e.name}</div>
-                  <div className="text-[12.5px] text-muted">Based in {e.base}</div>
-                  <p className="mt-3 text-[14px] text-ink-soft leading-relaxed">{e.bio}</p>
-                </div>
               </div>
             ))}
           </div>
