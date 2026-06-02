@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Compass, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 
@@ -52,9 +52,6 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link href="/start" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
-            <Compass size={16} /> Find my journey
-          </Link>
           <Button href="/start" className="!px-5 !py-2.5 text-[13.5px]">Start your journey</Button>
           <button
             onClick={() => setOpen(true)}
