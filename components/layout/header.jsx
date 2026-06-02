@@ -11,7 +11,7 @@ const NAV = [
   { href: "/", label: "Home", key: "home" },
   { href: "/journeys", label: "Our Journeys", key: "journeys" },
   { href: "/tours", label: "Explore All Journeys", key: "tours" },
-  { href: "/about", label: "About", key: "about" },
+  { href: "/about", label: "About Us", key: "about" },
   { href: "/blog", label: "Blog", key: "blog" },
 ];
 
