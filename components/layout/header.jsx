@@ -12,7 +12,6 @@ const NAV = [
   { href: "/journeys", label: "Our Journeys", key: "journeys" },
   { href: "/tours", label: "All Tours", key: "tours" },
   { href: "/about", label: "About", key: "about" },
-  { href: "/how-it-works", label: "How it works", key: "how" },
   { href: "/blog", label: "Blog", key: "blog" },
 ];
 
@@ -24,7 +23,6 @@ export function Header() {
     if (pathname.startsWith("/journeys") || pathname.startsWith("/destinations")) return "journeys";
     if (pathname.startsWith("/tours")) return "tours";
     if (pathname.startsWith("/about")) return "about";
-    if (pathname.startsWith("/how-it-works") || pathname.startsWith("/faq")) return "how";
     if (pathname.startsWith("/blog")) return "blog";
     return "";
   })();
