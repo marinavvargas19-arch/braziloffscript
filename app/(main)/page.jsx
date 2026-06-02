@@ -150,7 +150,7 @@ export default function HomePage() {
                 Discover the side of Brazil that matches your travel style. Answer a few quick questions and we&apos;ll curate the journeys, destinations, and experiences that fit you best.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Button href="/start" size="lg">Find my journey <Sparkles size={16}/></Button>
+                <Button href="/quiz-discovery" size="lg">Take the Travel Quiz <Sparkles size={16}/></Button>
                 <Button href="/journeys" variant="ghostLight" size="lg">Browse first</Button>
               </div>
             </div>
