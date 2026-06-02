@@ -9,6 +9,7 @@ export function Badge({ children, variant = "default", className = "" }) {
     light:      "bg-cream-50/90 text-ink",
     // Solid variants for use over images (strong shadow for legibility)
     lightSolid: "bg-cream-50 text-ink shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
+    inkSolid:   "bg-ink/85 text-cream-50 backdrop-blur-sm shadow-[0_6px_16px_-6px_rgba(0,0,0,.6)]",
     terraSolid: "bg-terra text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
     leafSolid:  "bg-leaf-d text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",
     azulSolid:  "bg-azul text-cream-50 shadow-[0_6px_16px_-6px_rgba(0,0,0,.5)]",

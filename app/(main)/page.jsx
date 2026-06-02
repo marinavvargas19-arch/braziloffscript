@@ -176,17 +176,17 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {TOURS.slice(0,3).map(t=>(
-              <Link key={t.slug} href={`/tours/${t.slug}`} className="group">
-                <Card>
+              <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
+                <Card className="h-full flex flex-col">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img src={t.img} alt="" className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.05]"/>
-                    <div className="absolute top-4 left-4"><Badge variant="light">{t.days} days</Badge></div>
+                    <div className="absolute top-4 left-4"><Badge variant="inkSolid">{t.days} days</Badge></div>
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1">
                     <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{CATEGORIES.find(c=>c.slug===t.category).name}</div>
                     <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{t.title}</h3>
                     <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{t.blurb}</p>
-                    <div className="mt-5 flex items-center justify-between">
+                    <div className="mt-auto pt-5 flex items-center justify-between">
                       <div className="text-[13px] text-muted">From <span className="text-ink font-semibold">US$ {t.price.toLocaleString()}</span></div>
                       <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">Discover <ArrowRight size={16}/></span>
                     </div>
