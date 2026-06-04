@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/section";
-import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, buildLightItin } from "@/lib/data";
+import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, buildLightItin } from "@/lib/data";
 import TourPageContent from "@/components/tour-page-content";
 
 // Resolve a slug → unified tour object from TOURS or DESTINATIONS
@@ -83,6 +83,7 @@ export default function TourPage({ params }) {
   // Pre-compute the base day plan (for non-variant or fallback)
   const dayPlanBase =
     tour.slug === "best-of-brazil-10-days" ? FULL_ITIN :
+    tour.slug === "rio"                    ? RIO_ITIN :
     tour.slug === "bahia"                  ? BAHIA_ITIN :
     buildLightItin(tour);
 
