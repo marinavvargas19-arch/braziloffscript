@@ -16,11 +16,11 @@ export default function BookingPanel({ tour }) {
     <div>
       <div className="rounded-t-2xl bg-gradient-to-br from-leaf-d to-leaf p-6 flex items-center gap-4 text-cream-50 relative overflow-hidden">
         <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-gold/20 blur-2xl"></div>
-        <Avatar src={IMG.helena} size={64} alt="Helena" className="border-[3px] border-cream-50/25 relative"/>
+        <Avatar src={IMG.helena} size={64} alt="Marina" className="border-[3px] border-cream-50/25 relative"/>
         <div className="relative">
           <div className="text-[13px] opacity-90">Plan with your local expert</div>
-          <div className="font-serif text-[26px] leading-none mt-1">Helena</div>
-          <div className="text-[12px] opacity-80 mt-1">São Paulo · 12+ years</div>
+          <div className="font-serif text-[26px] leading-none mt-1">Marina</div>
+          <div className="text-[12px] opacity-80 mt-1">Espírito Santo · 12+ years</div>
         </div>
       </div>
 
@@ -33,7 +33,7 @@ export default function BookingPanel({ tour }) {
           <div className="py-6">
             <div className="w-12 h-12 rounded-full bg-leaf text-cream-50 flex items-center justify-center mb-4"><Check size={20}/></div>
             <h4 className="font-serif text-[22px] text-ink leading-tight">Request received.</h4>
-            <p className="mt-2 text-[14.5px] text-ink-soft">Helena will be in touch within 48 hours with a personalized proposal.</p>
+            <p className="mt-2 text-[14.5px] text-ink-soft">Marina will be in touch within 48 hours with a personalized proposal.</p>
             <Button variant="ghost" href="/journeys" className="mt-5 w-full justify-center">Keep exploring</Button>
           </div>
         ) : (

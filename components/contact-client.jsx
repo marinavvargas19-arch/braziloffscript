@@ -124,8 +124,8 @@ export default function ContactClient() {
               <div className="flex items-center gap-3">
                 <Avatar src={IMG.helena} size={52}/>
                 <div>
-                  <div className="font-semibold text-ink">Helena Cardoso</div>
-                  <div className="text-[12.5px] text-muted">Lead destination expert · São Paulo</div>
+                  <div className="font-semibold text-ink">Marina Vargas</div>
+                  <div className="text-[12.5px] text-muted">Lead destination expert · Espírito Santo</div>
                 </div>
               </div>
               <p className="mt-4 text-[14px] text-ink-soft leading-relaxed">&quot;Drop me a note — even if it&apos;s vague. The best trips usually start with &apos;I don&apos;t know yet, but...&apos;&quot;</p>
