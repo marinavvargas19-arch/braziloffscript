@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CATEGORIES, DESTINATIONS } from "@/lib/data";
+import { CATEGORIES, DESTINATIONS, DEST_TRIP } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
@@ -112,7 +112,12 @@ export default function JourneysList({ initialCategory }) {
                         alt={d.name}
                         className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.05]"
                       />
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute top-4 left-4 flex gap-2">
+                        <Badge variant="inkSolid">
+                          {d.slug === "bahia"
+                            ? "10–15 days"
+                            : `${DEST_TRIP[d.slug]?.days ?? "—"} days`}
+                        </Badge>
                         <Badge variant={catBadgeVariant(c.color)}>{c.name}</Badge>
                       </div>
                     </div>
