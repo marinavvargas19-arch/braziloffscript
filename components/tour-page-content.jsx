@@ -65,7 +65,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
                       )}>{v.sub}</span>
                     </div>
                     <div className={cn("mt-2 text-[13px]", vIdx === i ? "text-cream-50/85" : "text-muted")}>
-                      From US$ {v.price.toLocaleString()} · {v.note}
+                      {v.note}
                     </div>
                   </button>
                 ))}

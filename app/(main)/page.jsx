@@ -186,8 +186,7 @@ export default function HomePage() {
                     <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{CATEGORIES.find(c=>c.slug===t.category).name}</div>
                     <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{t.title}</h3>
                     <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{t.blurb}</p>
-                    <div className="mt-auto pt-5 flex items-center justify-between">
-                      <div className="text-[13px] text-muted">From <span className="text-ink font-semibold">US$ {t.price.toLocaleString()}</span></div>
+                    <div className="mt-auto pt-5 flex items-center justify-end">
                       <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">Discover <ArrowRight size={16}/></span>
                     </div>
                   </div>

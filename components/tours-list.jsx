@@ -172,19 +172,6 @@ export default function ToursList() {
                   </div>
                 </div>
 
-                <div>
-                  <div className="text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Max price / person</div>
-                  <input
-                    type="range" min="2000" max="8000" step="100"
-                    value={price}
-                    onChange={e => setPrice(+e.target.value)}
-                    className="w-full accent-leaf"
-                  />
-                  <div className="flex justify-between text-[12.5px] text-muted mt-1">
-                    <span>US$ 2,000</span>
-                    <span className="font-semibold text-ink">US$ {price.toLocaleString()}</span>
-                  </div>
-                </div>
               </div>
             </div>
           </aside>
@@ -202,8 +189,6 @@ export default function ToursList() {
                   className="appearance-none bg-paper border border-line rounded-full pl-4 pr-9 py-2 text-[13.5px] font-semibold text-ink cursor-pointer"
                 >
                   <option value="featured">Featured</option>
-                  <option value="price-asc">Price (low → high)</option>
-                  <option value="price-desc">Price (high → low)</option>
                   <option value="duration-asc">Duration (short → long)</option>
                   <option value="duration-desc">Duration (long → short)</option>
                 </select>
@@ -252,10 +237,7 @@ export default function ToursList() {
                               ))}
                             </div>
                           )}
-                          <div className="mt-auto pt-5 border-t border-line flex items-center justify-between">
-                            <div className="text-[13px] text-muted">
-                              From <span className="text-ink font-semibold">US$ {t.price.toLocaleString()}</span>
-                            </div>
+                          <div className="mt-auto pt-5 border-t border-line flex items-center justify-end">
                             <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">
                               Discover <ArrowRight size={16}/>
                             </span>
