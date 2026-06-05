@@ -41,7 +41,7 @@ export default function ItineraryAccordion({ days }) {
               <div className="overflow-hidden">
                 <div className="pb-8 md:pl-[110px]">
                   <div className="rounded-xl overflow-hidden aspect-[21/9] mb-6 shadow-[0_12px_30px_-18px_rgba(25,40,30,.4)]">
-                    <img src={d.img} className="w-full h-full object-cover" alt=""/>
+                    <img src={d.img} className="w-full h-full object-cover" style={d.imgPosition ? {objectPosition: d.imgPosition} : undefined} alt=""/>
                   </div>
                   {d.blocks.map((b, j) => (
                     <div key={j} className="mt-5 first:mt-0 border-l-2 border-line pl-5">
