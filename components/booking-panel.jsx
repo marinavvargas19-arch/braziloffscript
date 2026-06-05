@@ -59,10 +59,6 @@ export default function BookingPanel({ tour }) {
               ))}
             </div>
 
-            <div className="mt-4 bg-[#fbf5e6] border border-[#ecdfbc] text-[#6b572a] rounded-xl p-3 text-[12.5px] leading-relaxed flex gap-2">
-              <span>⚠</span><span>Trips to Brazil should be planned at least 2 weeks before departure — accommodation and experiences book up quickly.</span>
-            </div>
-
             <Button type="submit" className="w-full justify-center mt-5">Request this trip <ArrowRight size={16}/></Button>
 
             <a href={`https://wa.me/${SITE.whatsapp}?text=Hi,%20I%20want%20to%20plan%20a%20Brazil%20trip`} target="_blank" rel="noreferrer"
