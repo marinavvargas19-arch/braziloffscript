@@ -172,7 +172,7 @@ export default function HomePage() {
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
             <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Each itinerary is fully tailor-made — these are just a place to begin."/>
-            <Button variant="ghost" href="/tours">See all 10 tours <ArrowRight size={16}/></Button>
+            <Button variant="ghost" href="/tours">Explore Destinations <ArrowRight size={16}/></Button>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {TOURS.slice(0,3).map(t=>(
