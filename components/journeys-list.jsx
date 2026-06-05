@@ -67,7 +67,19 @@ export default function JourneysList({ initialCategory }) {
           </div>
 
           {/* Collection description banner */}
-          {tab !== "all" && (() => {
+          {tab === "all" ? (
+            <div className="mb-10 rounded-2xl bg-leaf/[.06] border border-leaf/20 p-7 md:p-9">
+              <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-leaf-d mb-2">Collection</div>
+              <h2 className="font-serif text-[clamp(28px,3.4vw,40px)] leading-tight text-ink">All Journeys</h2>
+              <p className="mt-4 text-ink-soft max-w-3xl text-[16px] leading-relaxed">
+                There is no single way to experience Brazil.<br className="hidden md:block"/>
+                Explore our signature collections and discover different sides of the country — iconic destinations beyond the obvious, untouched natural wonders, and places that remain beautifully off the beaten path.
+              </p>
+              <p className="mt-3 text-ink-soft max-w-3xl text-[16px] leading-relaxed font-serif italic">
+                Each collection offers inspiration. Every journey is crafted around you.
+              </p>
+            </div>
+          ) : (() => {
             const c = CATEGORIES.find(x => x.slug === tab);
             return (
               <div className={cn(
