@@ -70,7 +70,11 @@ export default function BookingPanel({ tour }) {
         ) : (
           <>
             {/* Month picker */}
-            <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+            <label ref={monthRef}
+  className={cn(
+    "block text-[11px] tracking-[.14em] uppercase font-bold mt-4 mb-2",
+    errors.month ? "text-red-600" : "text-muted"
+  )}>
               Ideal month
             </label>
             <div className="grid grid-cols-4 gap-1.5 mb-2">
