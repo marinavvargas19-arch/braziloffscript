@@ -15,6 +15,7 @@ export default function BookingPanel({ tour }) {
   const [month, setMonth]       = useState(null);   // 0–11 or null
   const [flexible, setFlexible] = useState(false);
   const [travelers, setTravelers] = useState("2");
+  const [tripLength, setTripLength] = useState("10-14");
   const [comfort, setComfort]   = useState("comfort");
 
   function selectMonth(i) {
@@ -100,6 +101,35 @@ export default function BookingPanel({ tour }) {
                 <option value="5">5+ Travelers</option>
               </select>
             </Field>
+            
+            {/* Duration */}
+<label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+  Trip length
+</label>
+
+<div className="grid grid-cols-2 gap-2">
+  {[
+    { v: "7-10", l: "7–10 days" },
+    { v: "10-14", l: "10–14 days" },
+    { v: "14-18", l: "14–18 days" },
+    { v: "18+", l: "18+ days" },
+    { v: "not-sure", l: "Not sure yet" },
+  ].map(o => (
+    <button
+      type="button"
+      key={o.v}
+      onClick={() => setTripLength(o.v)}
+      className={cn(
+        "py-2 rounded-lg text-[13px] font-semibold border transition",
+        tripLength === o.v
+          ? "bg-leaf border-leaf text-cream-50"
+          : "border-line text-ink-soft hover:border-leaf"
+      )}
+    >
+      {o.l}
+    </button>
+  ))}
+</div>
 
             {/* Comfort level */}
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">Comfort level</label>
