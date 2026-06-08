@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Users, ArrowRight, Check } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,9 @@ export default function BookingPanel({ tour }) {
   const [travelers, setTravelers] = useState("2");
   const [tripLength, setTripLength] = useState("10-14");
   const [comfort, setComfort]   = useState("comfort");
+
+  const [errors, setErrors] = useState({});
+  const monthRef = useRef(null);
 
   function selectMonth(i) {
     setMonth(i === month ? null : i);
