@@ -17,18 +17,22 @@ export default function BookingPanel({ tour }) {
   const [travelers, setTravelers] = useState("2");
   const [tripLength, setTripLength] = useState("10-14");
   const [comfort, setComfort]   = useState("comfort");
+  
 
   const [errors, setErrors] = useState({});
   const monthRef = useRef(null);
 
-  function selectMonth(i) {
-    setMonth(i === month ? null : i);
-    setFlexible(false);
-  }
-  function toggleFlexible() {
-    setFlexible(f => !f);
-    setMonth(null);
-  }
+function selectMonth(i) {
+  setMonth(i === month ? null : i);
+  setFlexible(false);
+  setErrors({});
+}
+
+function toggleFlexible() {
+  setFlexible(f => !f);
+  setMonth(null);
+  setErrors({});
+}
 
   return (
     <div>
@@ -87,7 +91,9 @@ export default function BookingPanel({ tour }) {
                     "py-2 rounded-lg text-[13px] font-semibold border transition",
                     month === i
                       ? "bg-leaf border-leaf text-cream-50"
-                      : "border-line text-ink-soft hover:border-leaf"
+                      : errors.month
+  ? "border-red-500 text-ink-soft hover:border-red-600"
+  : "border-line text-ink-soft hover:border-leaf"
                   )}
                 >
                   {m}
@@ -106,6 +112,10 @@ export default function BookingPanel({ tour }) {
             >
               {flexible ? "✓ I'm flexible — no fixed date yet" : "I don't have a date yet"}
             </button>
+            {errors.month && (
+  <p className="mt-2 text-[12px] text-red-600">
+    {errors.month}
+  </p>
 
             {/* Travelers */}
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">Travelers</label>
