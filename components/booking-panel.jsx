@@ -44,7 +44,14 @@ export default function BookingPanel({ tour }) {
 
       <form
         onSubmit={e => { e.preventDefault(); if (month === null && !flexible) {
-    alert("Please select an ideal month or choose 'I'm flexible'.");
+  setErrors({
+    month: "Please select an ideal month or choose flexible."
+  });
+
+  monthRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });;
     return;
   } setSent(true); }}
         className="bg-paper border border-line border-t-0 rounded-b-2xl p-6 shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)]"
