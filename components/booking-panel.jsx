@@ -19,8 +19,8 @@ export default function BookingPanel({ tour }) {
         <Avatar src={IMG.helena} size={64} alt="Marina" className="border-[3px] border-cream-50/25 relative"/>
         <div className="relative">
           <div className="text-[13px] opacity-90">Plan with your local expert</div>
-          <div className="font-serif text-[26px] leading-none mt-1">Marina</div>
-          <div className="text-[12px] opacity-80 mt-1">Espírito Santo · 12+ years</div>
+          <div className="font-serif text-[26px] leading-none mt-1">Marina Vargas</div>
+          <div className="text-[12px] opacity-80 mt-1">Espírito Santo</div>
         </div>
       </div>
 
