@@ -35,7 +35,7 @@ export default function BookingPanel({ tour }) {
         <div className="relative">
           <div className="text-[13px] opacity-90">Plan with your local expert</div>
           <div className="font-serif text-[26px] leading-none mt-1">Marina Vargas</div>
-          <div className="text-[12px] opacity-80 mt-1">Espírito Santo</div>
+          <div className="text-[12px] opacity-80 mt-1">Local Expert & Trip Designer</div>
         </div>
       </div>
 
@@ -134,7 +134,7 @@ export default function BookingPanel({ tour }) {
             {/* Comfort level */}
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">Comfort level</label>
             <div className="grid grid-cols-2 gap-2">
-              {[{v:"comfort",l:"Comfort"},{v:"premium",l:"Premium"},{v:"luxury",l:"Luxury"},{v:"mix",l:"Mix it up"}].map(o => (
+              {[{v:"comfort",l:"Comfort"},{v:"premium",l:"Premium"},{v:"luxury",l:"Luxury"},{v:"mix",l:"A mix of both"}].map(o => (
                 <button
                   type="button"
                   key={o.v}
