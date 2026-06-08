@@ -43,7 +43,7 @@ export default function BookingPanel({ tour }) {
         className="bg-paper border border-line border-t-0 rounded-b-2xl p-6 shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)]"
       >
         <div className="font-serif text-[24px] text-ink pb-4 border-b border-line">
-          Request a personalized quote
+          Start Planning Your Journey
         </div>
 
         {sent ? (
