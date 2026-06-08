@@ -40,7 +40,10 @@ export default function BookingPanel({ tour }) {
       </div>
 
       <form
-        onSubmit={e => { e.preventDefault(); setSent(true); }}
+        onSubmit={e => { e.preventDefault(); if (month === null && !flexible) {
+    alert("Please select an ideal month or choose 'I'm flexible'.");
+    return;
+  } setSent(true); }}
         className="bg-paper border border-line border-t-0 rounded-b-2xl p-6 shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)]"
       >
         <div className="font-serif text-[24px] text-ink pb-4 border-b border-line">
