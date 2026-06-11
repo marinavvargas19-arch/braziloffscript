@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/section";
-import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, buildLightItin } from "@/lib/data";
+import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, buildLightItin } from "@/lib/data";
 import TourPageContent from "@/components/tour-page-content";
 
 // Resolve a slug → unified tour object from TOURS or DESTINATIONS
