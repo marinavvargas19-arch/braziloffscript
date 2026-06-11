@@ -88,7 +88,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
           {[
             { k: `${view.days}d`,                               v: "duration" },
             { k: "Balanced",                                    v: "pace" },
-            { k: `${Math.max(2, view.regions.length - 1)}`,    v: "hotel changes" },
+            { k: view.hotelChanges ?? `${Math.max(2, view.regions.length - 1)}`, v: "hotel changes" },
             { k: "May–Oct",                                     v: "best season" },
           ].map((s, i) => (
             <div key={i} className={[
