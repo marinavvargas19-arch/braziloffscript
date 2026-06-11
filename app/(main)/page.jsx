@@ -24,10 +24,11 @@ export default function HomePage() {
             poster={IMG.rioSugar}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Darker base wash for overall legibility */}
-          <div className="absolute inset-0" style={{background: "linear-gradient(to bottom, rgba(10,25,15,.45), rgba(10,25,15,.25) 35%, rgba(10,25,15,.75))"}}></div>
+          {/* Light base wash keeps the landscape visible away from the copy. */}
+          <div className="absolute inset-0" style={{background: "linear-gradient(to bottom, rgba(10,25,15,.28), rgba(10,25,15,.08) 42%, rgba(10,25,15,.18) 72%, rgba(10,25,15,.38))"}}></div>
           {/* Left-side vignette where the text sits */}
-          <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(10,25,15,.65), rgba(10,25,15,.35) 40%, rgba(10,25,15,0) 70%)"}}></div>
+          <div className="absolute inset-0" style={{background: "linear-gradient(105deg, rgba(10,25,15,.72), rgba(10,25,15,.56) 32%, rgba(10,25,15,.18) 54%, rgba(10,25,15,0) 76%)"}}></div>
+          <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(255,248,232,0) 48%, rgba(255,248,232,.08) 70%, rgba(255,248,232,.16))"}}></div>
         </div>
         <div className="relative">
           <Container className="pt-28 pb-32 md:pt-36 md:pb-44">
