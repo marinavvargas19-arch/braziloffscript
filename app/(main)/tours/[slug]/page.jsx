@@ -85,6 +85,7 @@ export default function TourPage({ params }) {
     tour.slug === "best-of-brazil-10-days" ? FULL_ITIN :
     tour.slug === "rio"                    ? RIO_ITIN :
     tour.slug === "bahia"                  ? BAHIA_ITIN :
+    tour.slug === "amazon" ? AMAZON_ITIN :
     buildLightItin(tour);
 
   return (
