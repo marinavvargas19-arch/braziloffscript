@@ -19,6 +19,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
 
   // Day plan: variant overrides, then slug-specific, then generated
   const dayPlan = variant?.dayPlan ?? dayPlanBase;
+  const staysLabel = view.regions.join(" · ");
 
   return (
     <Container className="grid lg:grid-cols-12 gap-10 pt-4 pb-24">
@@ -88,7 +89,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
           {[
             { k: view.days,                                     v: "days" },
             { k: "Balanced",                                    v: "pace" },
-            { k: view.regions.length,                           v: "stays" },
+            { k: staysLabel,                                    v: "stays", compact: true },
             { k: "May–Oct",                                     v: "best season" },
           ].map((s, i) => (
             <div key={i} className={[
@@ -97,7 +98,10 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
               i % 2 === 0 ? "border-r md:border-r" : "",
               i < 2 ? "border-b md:border-b-0" : "",
             ].join(" ")}>
-              <div className="font-serif text-[26px] leading-tight text-leaf-d">{s.k}</div>
+              <div className={cn(
+                "font-serif leading-tight text-leaf-d break-words",
+                s.compact ? "text-[18px] md:text-[20px]" : "text-[26px]"
+              )}>{s.k}</div>
               <div className="text-[11.5px] tracking-[.14em] uppercase text-muted mt-1">{s.v}</div>
             </div>
           ))}
