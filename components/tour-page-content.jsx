@@ -127,7 +127,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
                 "Hand-picked boutique or eco-luxury accommodation",
                 "Private local guides for every excursion",
                 "24/7 in-country support during your trip",
-                "All listed meals and tasting experiences",
+                "Daily breakfast",
                 "Curated experiences booked in advance",
               ].map(x => (
                 <li key={x} className="flex gap-3">
