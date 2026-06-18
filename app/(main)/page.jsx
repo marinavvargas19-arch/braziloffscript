@@ -141,28 +141,64 @@ export default function HomePage() {
       </section>
 
       {/* Quiz CTA */}
-      <section id="quiz" className="bg-leaf-d text-cream-50 overflow-hidden">
-        <Container>
-          <div className="grid md:grid-cols-12 gap-10 items-center py-24">
-            <div className="md:col-span-6">
-              <Badge variant="light" className="!bg-cream-50/15 !text-cream-50">Quiz · 60 seconds</Badge>
-              <h2 className="font-serif text-[clamp(32px,4vw,52px)] leading-tight mt-5">Start your <em className="not-italic text-gold">journey match.</em></h2>
-              <p className="mt-5 text-cream-50/85 text-[17px] leading-relaxed max-w-lg">
-                Discover the side of Brazil that matches your travel style. Answer a few quick questions and we&apos;ll curate the journeys, destinations, and experiences that fit you best.
+      <section id="quiz" className="relative scroll-mt-20 bg-leaf-d text-cream-50 overflow-hidden">
+        <div className="absolute inset-0 opacity-[.08]" style={{backgroundImage: "radial-gradient(circle at 1px 1px, #f8f1df 1px, transparent 0)", backgroundSize: "26px 26px"}}></div>
+        <div className="absolute inset-x-0 top-0 h-px bg-cream-50/15"></div>
+        <Container className="relative">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center py-20 md:py-28">
+            <div className="lg:col-span-5">
+              <Badge variant="light" className="!bg-cream-50/15 !text-cream-50 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold"></span> Quiz · 60 seconds
+              </Badge>
+              <h2 className="font-serif text-[clamp(38px,5vw,66px)] leading-[1.05] mt-6 text-balance">
+                Find the Brazil that <em className="not-italic text-gold">feels like you.</em>
+              </h2>
+              <p className="mt-6 text-cream-50/84 text-[17px] md:text-[18px] leading-relaxed max-w-xl">
+                A quick, intuitive quiz that turns your travel style into a curated starting point: where to go, what pace to choose, and which experiences are worth building the trip around.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+
+              <div className="mt-7 grid grid-cols-3 gap-3 max-w-xl">
+                {[
+                  ["01", "Choose your mood"],
+                  ["02", "Reveal your match"],
+                  ["03", "Start planning"],
+                ].map(([n, t]) => (
+                  <div key={n} className="border border-cream-50/15 bg-cream-50/[.06] rounded-xl px-4 py-3">
+                    <div className="font-serif text-[26px] leading-none text-gold">{n}</div>
+                    <div className="mt-1 text-[12.5px] leading-snug text-cream-50/82">{t}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/quiz-discovery" size="lg">Take the Travel Quiz <Sparkles size={16}/></Button>
                 <Button href="/journeys" variant="ghostLight" size="lg">Browse first</Button>
               </div>
             </div>
-            <div className="md:col-span-6 grid grid-cols-3 gap-3 md:gap-4">
-              <img src="/iguazu.jpg"        className="rounded-xl col-span-1 row-span-2 h-full w-full object-cover" alt="Iguaçu Falls"/>
-              <img src="/start-beach.jpg"   className="rounded-xl object-cover w-full aspect-square" alt="Northeast Brazil beach"/>
-              <img src="/the-explorer.jpg"  className="rounded-xl row-span-2 h-full w-full object-cover" alt="Amazon"/>
-              <img src="/bahia.jpg"         className="rounded-xl object-cover w-full aspect-square" alt="Salvador, Bahia"/>
-              <img src="/noronha.jpg"       className="rounded-xl object-cover w-full aspect-square" alt="Fernando de Noronha"/>
-              <img src="/pantanal.jpg"      className="rounded-xl object-cover w-full aspect-square" alt="Pantanal wildlife"/>
-              <img src="/paradise-found.jpg" className="rounded-xl object-cover w-full aspect-square" alt="Brazilian coast"/>
+
+            <div className="lg:col-span-7">
+              <div className="relative min-h-[520px] md:min-h-[620px]">
+                <img src="/the-explorer.jpg" className="absolute right-0 top-0 h-[64%] w-[44%] rounded-2xl object-cover shadow-[0_26px_60px_-32px_rgba(0,0,0,.8)]" alt="Amazon river landscape"/>
+                <img src="/iguazu.jpg" className="absolute left-[4%] top-[8%] h-[48%] w-[35%] rounded-2xl object-cover shadow-[0_24px_54px_-30px_rgba(0,0,0,.8)]" alt="Iguaçu Falls"/>
+                <img src="/bahia-day-6-trancoso.jpg" className="absolute left-[42%] top-[9%] h-[30%] w-[30%] rounded-2xl object-cover shadow-[0_22px_48px_-30px_rgba(0,0,0,.75)]" alt="Bahia beach"/>
+                <img src="/noronha.jpg" className="absolute left-[9%] bottom-[2%] h-[30%] w-[31%] rounded-2xl object-cover shadow-[0_22px_48px_-30px_rgba(0,0,0,.75)]" alt="Fernando de Noronha"/>
+                <img src="/pantanal.jpg" className="absolute right-[3%] bottom-[4%] h-[28%] w-[34%] rounded-2xl object-cover shadow-[0_22px_48px_-30px_rgba(0,0,0,.75)]" alt="Brazilian wildlife"/>
+
+                <div className="absolute left-[37%] top-[44%] z-20 w-[38%] rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_28px_70px_-34px_rgba(0,0,0,.75)]" style={{background: "rgba(248,241,223,.96)"}}>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">Your match</span>
+                    <Star size={15} className="text-gold fill-gold"/>
+                  </div>
+                  <div className="mt-3 font-serif text-[27px] leading-none text-leaf-d">Bahia & the Northeast</div>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">Culture, warm coastlines, and a slower rhythm with local soul.</p>
+                </div>
+
+                <div className="absolute left-[2%] bottom-[34%] z-20 flex flex-wrap gap-2 max-w-[300px]">
+                  {["Beach", "Wildlife", "Culture", "Slow travel"].map((x) => (
+                    <span key={x} className="rounded-full bg-cream-50/92 px-3 py-1.5 text-[12px] font-semibold text-leaf-d shadow-[0_14px_30px_-22px_rgba(0,0,0,.8)]">{x}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </Container>
