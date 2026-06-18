@@ -177,14 +177,29 @@ export default function HomePage() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="relative min-h-[520px] md:min-h-[620px]">
-                <img src="/the-explorer.jpg" className="absolute right-0 top-0 h-[64%] w-[44%] rounded-2xl object-cover shadow-[0_26px_60px_-32px_rgba(0,0,0,.8)]" alt="Amazon river landscape"/>
-                <img src="/iguazu.jpg" className="absolute left-[4%] top-[8%] h-[48%] w-[35%] rounded-2xl object-cover shadow-[0_24px_54px_-30px_rgba(0,0,0,.8)]" alt="Iguaçu Falls"/>
-                <img src="/bahia-day-6-trancoso.jpg" className="absolute left-[42%] top-[9%] h-[30%] w-[30%] rounded-2xl object-cover shadow-[0_22px_48px_-30px_rgba(0,0,0,.75)]" alt="Bahia beach"/>
-                <img src="/noronha.jpg" className="absolute left-[9%] bottom-[2%] h-[30%] w-[31%] rounded-2xl object-cover shadow-[0_22px_48px_-30px_rgba(0,0,0,.75)]" alt="Fernando de Noronha"/>
-                <img src="/pantanal.jpg" className="absolute right-[3%] bottom-[4%] h-[28%] w-[34%] rounded-2xl object-cover shadow-[0_22px_48px_-30px_rgba(0,0,0,.75)]" alt="Brazilian wildlife"/>
+              <div className="relative">
+                <div className="grid grid-cols-2 sm:grid-cols-4 auto-rows-[128px] md:auto-rows-[150px] gap-3 md:gap-4">
+                  {[
+                    { src:"/iguazu.jpg", label:"Iguaçu Falls", alt:"Iguaçu Falls", cls:"sm:col-span-2 sm:row-span-2" },
+                    { src:"/bahia-day-6-trancoso.jpg", label:"Bahia coast", alt:"Bahia beach", cls:"" },
+                    { src:"/the-explorer.jpg", label:"Amazon", alt:"Amazon river landscape", cls:"sm:row-span-2" },
+                    { src:"/noronha.jpg", label:"Noronha", alt:"Fernando de Noronha", cls:"" },
+                    { src:"/rio-green-coast.jpg", label:"Rio & Costa Verde", alt:"Rio and the Green Coast", cls:"" },
+                    { src:"/bonito-river.jpg", label:"Bonito", alt:"Bonito crystal river", cls:"" },
+                    { src:"/jalapao-waterfall.jpg", label:"Jalapão", alt:"Jalapão waterfall", cls:"" },
+                    { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-span-2" },
+                  ].map((img) => (
+                    <div key={img.src} className={`group relative overflow-hidden rounded-2xl shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] ${img.cls}`}>
+                      <img src={img.src} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" alt={img.alt}/>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent"></div>
+                      <div className="absolute bottom-3 left-3 rounded-full bg-cream-50/90 px-3 py-1 text-[11.5px] font-semibold text-leaf-d shadow-[0_12px_24px_-18px_rgba(0,0,0,.7)]">
+                        {img.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                <div className="absolute left-[37%] top-[44%] z-20 w-[38%] rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_28px_70px_-34px_rgba(0,0,0,.75)]" style={{background: "rgba(248,241,223,.96)"}}>
+                <div className="absolute left-1/2 top-1/2 z-20 w-[min(330px,82%)] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_28px_70px_-34px_rgba(0,0,0,.75)]" style={{background: "rgba(248,241,223,.96)"}}>
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">Your match</span>
                     <Star size={15} className="text-gold fill-gold"/>
@@ -193,7 +208,7 @@ export default function HomePage() {
                   <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">Culture, warm coastlines, and a slower rhythm with local soul.</p>
                 </div>
 
-                <div className="absolute left-[2%] bottom-[34%] z-20 flex flex-wrap gap-2 max-w-[300px]">
+                <div className="absolute left-4 top-4 z-20 hidden md:flex flex-wrap gap-2 max-w-[300px]">
                   {["Beach", "Wildlife", "Culture", "Slow travel"].map((x) => (
                     <span key={x} className="rounded-full bg-cream-50/92 px-3 py-1.5 text-[12px] font-semibold text-leaf-d shadow-[0_14px_30px_-22px_rgba(0,0,0,.8)]">{x}</span>
                   ))}
