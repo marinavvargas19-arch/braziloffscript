@@ -172,41 +172,42 @@ export default function HomePage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/quiz-discovery" size="lg">Take the Travel Quiz <Sparkles size={16}/></Button>
-                <Button href="/journeys" variant="ghostLight" size="lg">Browse first</Button>
+                <Button href="/tours" variant="ghostLight" size="lg">Browse first</Button>
               </div>
             </div>
 
             <div className="lg:col-span-7">
               <div className="relative isolate">
-                <div className="grid grid-cols-2 sm:grid-cols-4 auto-rows-[128px] md:auto-rows-[150px] gap-3 md:gap-4">
+                <div className="grid grid-cols-2 grid-flow-dense auto-rows-[118px] gap-3 sm:grid-cols-4 md:auto-rows-[136px] md:gap-4">
                   {[
-                    { src:"/iguazu.jpg", label:"Iguaçu Falls", alt:"Iguaçu Falls", cls:"sm:col-span-2 sm:row-span-2" },
-                    { src:"/bahia-day-6-trancoso.jpg", label:"Bahia coast", alt:"Bahia beach", cls:"" },
-                    { src:"/the-explorer.jpg", label:"Amazon", alt:"Amazon river landscape", cls:"sm:row-span-2" },
-                    { src:"/noronha.jpg", label:"Noronha", alt:"Fernando de Noronha", cls:"" },
-                    { src:"/rio-green-coast.jpg", label:"Rio & Costa Verde", alt:"Rio and the Green Coast", cls:"" },
-                    { src:"/bonito-river.jpg", label:"Bonito", alt:"Bonito crystal river", cls:"" },
-                    { src:"/jalapao-waterfall.jpg", label:"Jalapão", alt:"Jalapão waterfall", cls:"" },
-                    { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-span-2" },
+                    { src:"/iguazu.jpg", label:"Iguaçu Falls", alt:"Iguaçu Falls", cls:"col-span-2 row-span-2 sm:col-start-1 sm:row-start-1" },
+                    { src:"/bahia-day-6-trancoso.jpg", label:"Bahia coast", alt:"Bahia beach", cls:"sm:col-start-3 sm:row-start-1" },
+                    { src:"/the-explorer.jpg", label:"Amazon", alt:"Amazon river landscape", cls:"row-span-2 sm:col-start-4 sm:row-start-1" },
+                    { src:"/noronha.jpg", label:"Noronha", alt:"Fernando de Noronha", cls:"sm:col-start-3 sm:row-start-2" },
+                    { src:"/rio-ipanema-sunset.jpg", label:"Rio de Janeiro", alt:"Rio de Janeiro coastline at sunset", cls:"sm:col-start-1 sm:row-start-3" },
+                    { src:"/bonito-river.jpg", label:"Bonito", alt:"Bonito crystal river", cls:"sm:col-start-2 sm:row-start-3" },
+                    { src:"/jalapao-waterfall.jpg", label:"Jalapão", alt:"Jalapão waterfall", cls:"sm:col-start-3 sm:row-start-3" },
+                    { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-start-4 sm:row-start-3" },
+                    { src:"/toucan.jpg", label:"Atlantic forest", alt:"Toucan in the Atlantic forest", cls:"col-span-2 sm:col-start-1 sm:row-start-4" },
                   ].map((img) => (
                     <div key={img.src} className={`group relative overflow-hidden rounded-2xl shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] ${img.cls}`}>
                       <img src={img.src} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" alt={img.alt}/>
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/82 via-ink/20 to-transparent"></div>
                       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-ink/78 to-transparent"></div>
-                      <div className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] rounded-full bg-ink/78 px-3 py-1.5 text-[11.5px] font-bold leading-none text-cream-50 shadow-[0_12px_26px_-16px_rgba(0,0,0,.9)] ring-1 ring-cream-50/18 backdrop-blur-sm">
+                      <div className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] rounded-full bg-ink/92 px-3 py-1.5 text-[11.5px] font-bold leading-none text-cream-50 shadow-[0_14px_28px_-14px_rgba(0,0,0,.95)] ring-1 ring-cream-50/25 backdrop-blur-md [text-shadow:0_1px_2px_rgba(0,0,0,.85)]">
                         {img.label}
                       </div>
                     </div>
                   ))}
-                </div>
 
-                <div className="absolute bottom-6 right-5 z-20 w-[min(330px,82%)] rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_28px_70px_-34px_rgba(0,0,0,.75)] md:bottom-8 md:right-8" style={{background: "rgba(248,241,223,.97)"}}>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">Your match</span>
-                    <Star size={15} className="text-gold fill-gold"/>
+                  <div className="col-span-2 flex flex-col justify-center rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] sm:col-start-3 sm:row-start-4" style={{background: "rgba(248,241,223,.97)"}}>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">Your match</span>
+                      <Star size={15} className="text-gold fill-gold"/>
+                    </div>
+                    <div className="mt-3 font-serif text-[25px] leading-none text-leaf-d md:text-[27px]">Bahia & the Northeast</div>
+                    <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">Culture, warm coastlines, and a slower rhythm with local soul.</p>
                   </div>
-                  <div className="mt-3 font-serif text-[27px] leading-none text-leaf-d">Bahia & the Northeast</div>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">Culture, warm coastlines, and a slower rhythm with local soul.</p>
                 </div>
 
                 <div className="absolute left-4 top-4 z-20 hidden max-w-[300px] flex-wrap gap-2 md:flex">
