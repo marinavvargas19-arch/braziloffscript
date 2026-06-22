@@ -177,7 +177,7 @@ export default function HomePage() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="relative">
+              <div className="relative isolate">
                 <div className="grid grid-cols-2 sm:grid-cols-4 auto-rows-[128px] md:auto-rows-[150px] gap-3 md:gap-4">
                   {[
                     { src:"/iguazu.jpg", label:"Iguaçu Falls", alt:"Iguaçu Falls", cls:"sm:col-span-2 sm:row-span-2" },
@@ -191,15 +191,16 @@ export default function HomePage() {
                   ].map((img) => (
                     <div key={img.src} className={`group relative overflow-hidden rounded-2xl shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] ${img.cls}`}>
                       <img src={img.src} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" alt={img.alt}/>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent"></div>
-                      <div className="absolute bottom-3 left-3 rounded-full bg-cream-50/90 px-3 py-1 text-[11.5px] font-semibold text-leaf-d shadow-[0_12px_24px_-18px_rgba(0,0,0,.7)]">
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/82 via-ink/20 to-transparent"></div>
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-ink/78 to-transparent"></div>
+                      <div className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] rounded-full bg-ink/78 px-3 py-1.5 text-[11.5px] font-bold leading-none text-cream-50 shadow-[0_12px_26px_-16px_rgba(0,0,0,.9)] ring-1 ring-cream-50/18 backdrop-blur-sm">
                         {img.label}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="absolute left-1/2 top-1/2 z-20 w-[min(330px,82%)] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_28px_70px_-34px_rgba(0,0,0,.75)]" style={{background: "rgba(248,241,223,.96)"}}>
+                <div className="absolute bottom-6 right-5 z-20 w-[min(330px,82%)] rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_28px_70px_-34px_rgba(0,0,0,.75)] md:bottom-8 md:right-8" style={{background: "rgba(248,241,223,.97)"}}>
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">Your match</span>
                     <Star size={15} className="text-gold fill-gold"/>
@@ -208,9 +209,9 @@ export default function HomePage() {
                   <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">Culture, warm coastlines, and a slower rhythm with local soul.</p>
                 </div>
 
-                <div className="absolute left-4 top-4 z-20 hidden md:flex flex-wrap gap-2 max-w-[300px]">
+                <div className="absolute left-4 top-4 z-20 hidden max-w-[300px] flex-wrap gap-2 md:flex">
                   {["Beach", "Wildlife", "Culture", "Slow travel"].map((x) => (
-                    <span key={x} className="rounded-full bg-cream-50/92 px-3 py-1.5 text-[12px] font-semibold text-leaf-d shadow-[0_14px_30px_-22px_rgba(0,0,0,.8)]">{x}</span>
+                    <span key={x} className="rounded-full bg-ink/76 px-3 py-1.5 text-[12px] font-bold text-cream-50 shadow-[0_14px_30px_-22px_rgba(0,0,0,.9)] ring-1 ring-cream-50/15 backdrop-blur-sm">{x}</span>
                   ))}
                 </div>
               </div>

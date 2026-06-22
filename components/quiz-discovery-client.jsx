@@ -5,11 +5,21 @@ import { ArrowLeft, ArrowRight, Check, Sparkles, Mail, MessageCircle, Calendar }
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
 import { DISCO_DESTINATIONS, DISCO_QUESTIONS, TOURS, SITE } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
 const LS_KEY = "disco-quiz-v2";
+
+const DISCOVERY_GALLERY = [
+  { src: "/rio-ipanema-sunset.jpg", label: "Rio sunsets" },
+  { src: "/bahia-caraiva-aerial.jpeg", label: "Bahia slow coast" },
+  { src: "/jaguar.jpg", label: "Pantanal wildlife" },
+  { src: "/amazon-aerial.jpg", label: "Amazon rivers" },
+  { src: "/northeast-buggy.jpg", label: "Dune routes" },
+  { src: "/noronha-beach.jpg", label: "Island water" },
+];
 
 function tallyWinner(answers) {
   const totals = {};
@@ -87,25 +97,12 @@ export default function QuizDiscoveryClient() {
     return (
       <div className="flex flex-col lg:flex-row min-h-screen">
 
-        {/* Left image panel */}
-        <aside className="lg:w-2/5 relative lg:sticky lg:top-0 lg:h-screen overflow-hidden min-h-[280px]">
-          <img src={d.img} alt="" className="absolute inset-0 w-full h-full object-cover"/>
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(20,53,33,.4), rgba(20,53,33,.15) 40%, rgba(20,53,33,.78))" }}/>
-          <div className="relative h-full flex flex-col p-7 md:p-10 text-cream-50">
-            <Link href="/" className="inline-flex items-center gap-2 text-[13px] font-semibold opacity-90 hover:opacity-100 transition-opacity">
-              <ArrowLeft size={16}/> Back to Brazil Off Script
-            </Link>
-            <div className="mt-auto pt-10">
-              <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">Your Brazil match</div>
-              <h2 className="font-serif text-[clamp(30px,3.2vw,46px)] leading-tight max-w-md">
-                {d.emoji} {d.name}
-              </h2>
-              <p className="mt-4 max-w-md text-cream-50/85 text-[15.5px] leading-relaxed italic font-serif">
-                {d.tagline}
-              </p>
-            </div>
-          </div>
-        </aside>
+        <QuizImagePanel
+          image={d.img}
+          eyebrow="Your Brazil match"
+          title={<>{d.emoji} {d.name}</>}
+          body={d.tagline}
+        />
 
         {/* Right content panel */}
         <main className="lg:w-3/5 flex flex-col bg-cream">
@@ -205,6 +202,12 @@ export default function QuizDiscoveryClient() {
                 </div>
               </div>
 
+              <QuizResultGallery
+                title="Keep picturing the route"
+                intro="A few extra scenes from the journeys our specialists most often combine."
+                images={DISCOVERY_GALLERY}
+              />
+
               {/* Bottom CTAs */}
               <div className="mt-10 flex flex-wrap gap-3">
                 <Button href="/quiz">Plan this exact trip</Button>
@@ -228,25 +231,12 @@ export default function QuizDiscoveryClient() {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
 
-      {/* Left image panel */}
-      <aside className="lg:w-2/5 relative lg:sticky lg:top-0 lg:h-screen overflow-hidden min-h-[280px]">
-        <img src={q.image} alt="" className="absolute inset-0 w-full h-full object-cover"/>
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(20,53,33,.35), rgba(20,53,33,.1) 40%, rgba(20,53,33,.7))" }}/>
-        <div className="relative h-full flex flex-col p-7 md:p-10 text-cream-50">
-          <Link href="/" className="inline-flex items-center gap-2 text-[13px] font-semibold opacity-90 hover:opacity-100 transition-opacity">
-            <ArrowLeft size={16}/> Back to Brazil Off Script
-          </Link>
-          <div className="mt-auto pt-10">
-            <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">60-second quiz</div>
-            <h2 className="font-serif text-[clamp(28px,3vw,40px)] leading-[1.12] max-w-md">
-              Which Brazil is calling you?
-            </h2>
-            <p className="mt-5 max-w-md text-cream-50/85 text-[15.5px] leading-relaxed">
-              Answer a few quick questions and we&apos;ll reveal the corner of Brazil you were made for.
-            </p>
-          </div>
-        </div>
-      </aside>
+      <QuizImagePanel
+        image={q.image}
+        eyebrow="60-second quiz"
+        title="Which Brazil is calling you?"
+        body="Answer a few quick questions and we'll reveal the corner of Brazil you were made for."
+      />
 
       {/* Right form panel */}
       <main className="lg:w-3/5 flex flex-col bg-cream">

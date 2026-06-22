@@ -6,9 +6,19 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
+import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
 import { QUIZ_STEPS, TOURS, SITE } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
+
+const JOURNEY_GALLERY = [
+  { src: "/rio-green-coast.jpg", label: "Rio and Costa Verde" },
+  { src: "/bahia-praia-do-espelho.jpg", label: "Bahia beaches" },
+  { src: "/bonito-river.jpg", label: "Bonito rivers" },
+  { src: "/northeast-buggy.jpg", label: "Northeast dunes" },
+  { src: "/amazon-aerial.jpg", label: "Amazon waterways" },
+  { src: "/iguazu-falls.jpg", label: "Iguazu falls" },
+];
 
 export default function QuizClient() {
   const [step, setStep]     = useState(0);
@@ -45,7 +55,7 @@ export default function QuizClient() {
     const regions = answers.region || [];
     const styles  = answers.style  || [];
     const dur     = answers.duration;
-    const regionWords = { rio:"rio", bahia:"bahia", pantanal:"pantanal", foz:"iguaçu iguacu foz", south:"south florianópolis porto", central:"chapada jalapão", amazon:"amazon manaus", noronha:"noronha lençóis" };
+    const regionWords = { rio:"rio", bahia:"bahia", pantanal:"pantanal bonito", foz:"iguaçu iguacu foz", south:"south florianópolis porto", central:"chapada jalapão", amazon:"amazon manaus", noronha:"noronha", lencois:"lençóis lencois maranhenses jericoacoara dunes" };
     const styleWords  = { culture:"culture history", food:"food wine", nature:"wildlife nature", beach:"beach island", adventure:"adventure off-road hiking", slow:"slow", city:"city", family:"family" };
     return TOURS.map(t => {
       let score = 0;
@@ -65,25 +75,12 @@ export default function QuizClient() {
     return (
       <div className="flex flex-col lg:flex-row min-h-screen">
 
-        {/* Left image panel */}
-        <aside className="lg:w-2/5 relative lg:sticky lg:top-0 lg:h-screen overflow-hidden min-h-[280px]">
-          <img src="/quiz-success.jpg" alt="" className="absolute inset-0 w-full h-full object-cover"/>
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(20,53,33,.4), rgba(20,53,33,.15) 40%, rgba(20,53,33,.75))" }}/>
-          <div className="relative h-full flex flex-col p-7 md:p-10 text-cream-50">
-            <Link href="/" className="inline-flex items-center gap-2 text-[13px] font-semibold opacity-90 hover:opacity-100 transition-opacity">
-              <ArrowLeft size={16}/> Back to Brazil Off Script
-            </Link>
-            <div className="mt-auto pt-10">
-              <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">Quiz complete</div>
-              <h2 className="font-serif text-[clamp(28px,3vw,42px)] leading-tight max-w-md">
-                Your journey is taking shape.
-              </h2>
-              <p className="mt-4 max-w-md text-cream-50/85 text-[15.5px] leading-relaxed">
-                We&apos;ve matched your answers to the journeys our travelers love most — and a real expert will take it from here.
-              </p>
-            </div>
-          </div>
-        </aside>
+        <QuizImagePanel
+          image="/quiz-success.jpg"
+          eyebrow="Quiz complete"
+          title="Your journey is taking shape."
+          body="We've matched your answers to the journeys our travelers love most - and a real expert will take it from here."
+        />
 
         {/* Right content panel */}
         <main className="lg:w-3/5 flex flex-col bg-cream">
@@ -141,6 +138,12 @@ export default function QuizClient() {
                 </div>
               </div>
 
+              <QuizResultGallery
+                title="A few places we may weave in"
+                intro="Extra scenes your specialist may stitch into the proposal, depending on your pace and route."
+                images={JOURNEY_GALLERY}
+              />
+
               <div className="mt-12 flex flex-wrap gap-3">
                 <Button href="/journeys">Browse all journeys</Button>
                 <a
@@ -164,23 +167,12 @@ export default function QuizClient() {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
 
-      {/* Left image panel */}
-      <aside className="lg:w-2/5 relative lg:sticky lg:top-0 lg:h-screen overflow-hidden min-h-[280px]">
-        <img src={s.image} alt="" className="absolute inset-0 w-full h-full object-cover"/>
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(20,53,33,.35), rgba(20,53,33,.1) 40%, rgba(20,53,33,.7))" }}/>
-        <div className="relative h-full flex flex-col p-7 md:p-10 text-cream-50">
-          <Link href="/" className="inline-flex items-center gap-2 text-[13px] font-semibold opacity-90 hover:opacity-100 transition-opacity">
-            <ArrowLeft size={16}/> Back to Brazil Off Script
-          </Link>
-          <div className="mt-auto pt-10">
-            <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">60-second quiz</div>
-            <h2 className="font-serif text-[clamp(28px,3vw,42px)] leading-tight max-w-md">Discover your version of Brazil.</h2>
-            <p className="mt-4 max-w-md text-cream-50/85 text-[15.5px] leading-relaxed">
-              A real local expert will reply within 48 hours with a personalized proposal — no obligation.
-            </p>
-          </div>
-        </div>
-      </aside>
+      <QuizImagePanel
+        image={s.image}
+        eyebrow="60-second quiz"
+        title="Discover your version of Brazil."
+        body="A real local expert will reply within 48 hours with a personalized proposal - no obligation."
+      />
 
       {/* Right form panel */}
       <main className="lg:w-3/5 flex flex-col bg-cream">
