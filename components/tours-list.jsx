@@ -13,16 +13,45 @@ function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
 const EXPLORE_TOUR_SLUGS = [
   "best-of-brazil-10-days",
-  "women-who-explore",
+  "lencois-women-trek",
+  "rio-for-women",
+  "amazon-women-exploration",
   "honeymoon-brazil",
 ];
 
 // Journeys highlighted in the "Women Who Explore" filter
 const WOMEN_WHO_EXPLORE = [
-  "women-who-explore",
-  "rio",
-  "bahia",
-  "northeast",
+  "lencois-women-trek",
+  "rio-for-women",
+  "amazon-women-exploration",
+];
+
+const FILTER_GROUPS = [
+  {
+    v: "all",
+    l: "All journeys",
+    slugs: null,
+  },
+  {
+    v: "beyond-the-obvious",
+    l: "Beyond the Obvious",
+    slugs: ["bahia", "rio", "amazon", "best-of-brazil-10-days"],
+  },
+  {
+    v: "the-explorer",
+    l: "The Explorer",
+    slugs: ["jalapao", "pantanal", "foz"],
+  },
+  {
+    v: "paradise-found",
+    l: "Paradise Found",
+    slugs: ["honeymoon-brazil", "noronha", "lencois", "northeast"],
+  },
+  {
+    v: "women-who-explore",
+    l: "Women Who Explore",
+    slugs: WOMEN_WHO_EXPLORE,
+  },
 ];
 
 // Badge variant per collection colour
@@ -64,9 +93,8 @@ export default function ToursList() {
 
   const filtered = useMemo(() => {
     let arr = ALL.filter(t => {
-      if (cat === "women-who-explore") {
-        if (!WOMEN_WHO_EXPLORE.includes(t.slug)) return false;
-      } else if (cat !== "all" && t.category !== cat) return false;
+      const group = FILTER_GROUPS.find(g => g.v === cat);
+      if (group?.slugs && !group.slugs.includes(t.slug)) return false;
       if (t.price > price) return false;
       if (dur === "short" && t.days > 7) return false;
       if (dur === "mid"   && (t.days < 7 || t.days > 10)) return false;
@@ -88,11 +116,7 @@ export default function ToursList() {
     return arr;
   }, [q, cat, dur, price, sort, ALL]);
 
-  const collectionFilters = [
-    { v: "all",               l: "All collections" },
-    ...CATEGORIES.map(c => ({ v: c.slug, l: c.name })),
-    { v: "women-who-explore", l: "Women Who Explore" },
-  ];
+  const collectionFilters = FILTER_GROUPS;
 
   return (
     <>
