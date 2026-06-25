@@ -51,6 +51,9 @@ export default function ToursList() {
       };
     });
     const seen = new Set(TOURS.map(t => t.slug));
+    if (TOURS.some(t => t.slug === "pantanal-wildlife-8-days")) {
+      seen.add("pantanal");
+    }
     return [...TOURS, ...fromDest.filter(d => !seen.has(d.slug))];
   }, []);
 
