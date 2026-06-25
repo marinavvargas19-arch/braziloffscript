@@ -11,12 +11,18 @@ import { TOURS, CATEGORIES, DESTINATIONS, DEST_TRIP } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
+const EXPLORE_TOUR_SLUGS = [
+  "best-of-brazil-10-days",
+  "women-who-explore",
+  "honeymoon-brazil",
+];
+
 // Journeys highlighted in the "Women Who Explore" filter
 const WOMEN_WHO_EXPLORE = [
-  "bahia-deep-dive-9-days",
-  "rio-and-the-green-coast-7-days",
-  "lencois-and-northeast-9-days",
-  "noronha-escape-5-days",
+  "women-who-explore",
+  "rio",
+  "bahia",
+  "northeast",
 ];
 
 // Badge variant per collection colour
@@ -34,7 +40,7 @@ export default function ToursList() {
   const [price, setPrice] = useState(8000);
   const [sort, setSort]   = useState("featured");
 
-  // Merge packaged TOURS + regional DESTINATIONS into one list
+  // Explore destinations highlights Signature Journeys plus selected packaged routes.
   const ALL = useMemo(() => {
     const fromDest = DESTINATIONS.map(d => {
       const a = DEST_TRIP[d.slug] || {};
@@ -50,11 +56,10 @@ export default function ToursList() {
         tags: [],
       };
     });
-    const seen = new Set(TOURS.map(t => t.slug));
-    if (TOURS.some(t => t.slug === "pantanal-wildlife-8-days")) {
-      seen.add("pantanal");
-    }
-    return [...TOURS, ...fromDest.filter(d => !seen.has(d.slug))];
+    const selectedTours = EXPLORE_TOUR_SLUGS
+      .map(slug => TOURS.find(t => t.slug === slug))
+      .filter(Boolean);
+    return [...fromDest, ...selectedTours];
   }, []);
 
   const filtered = useMemo(() => {
