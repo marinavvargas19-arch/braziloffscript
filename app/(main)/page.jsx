@@ -186,7 +186,7 @@ export default function HomePage() {
                     { src:"/noronha.jpg", label:"Noronha", alt:"Fernando de Noronha", cls:"sm:col-start-3 sm:row-start-2" },
                     { src:"/rio-ipanema-sunset.jpg", label:"Rio de Janeiro", alt:"Rio de Janeiro coastline at sunset", cls:"sm:col-start-1 sm:row-start-3" },
                     { src:"/bonito-river.jpg", label:"Bonito", alt:"Bonito crystal river", cls:"sm:col-start-2 sm:row-start-3" },
-                    { src:"/jalapao-topo.jpg", label:"Jalapão", alt:"Jalapão natural spring", cls:"sm:col-start-3 sm:row-start-3" },
+                    { src:"/jalapao-natural-spring.jpeg", label:"Jalapão", alt:"Jalapão natural spring", cls:"sm:col-start-3 sm:row-start-3" },
                     { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-start-4 sm:row-start-3" },
                     { src:"/toucan.jpg", label:"Atlantic forest", alt:"Toucan in the Atlantic forest", cls:"col-span-2 sm:col-start-1 sm:row-start-4" },
                   ].map((img) => (
