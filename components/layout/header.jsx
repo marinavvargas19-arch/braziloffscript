@@ -3,17 +3,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Compass, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 
 const NAV = [
   { href: "/", label: "Home", key: "home" },
-  { href: "/journeys", label: "Our Journeys", key: "journeys" },
-  { href: "/tours", label: "All Tours", key: "tours" },
-  { href: "/about", label: "About", key: "about" },
-  { href: "/how-it-works", label: "How it works", key: "how" },
-  { href: "/blog", label: "Blog", key: "blog" },
+  { href: "/journeys", label: "Signature Journeys", key: "journeys" },
+  { href: "/tours", label: "Explore Destinations", key: "tours" },
+  { href: "/about", label: "About Us", key: "about" },
+  { href: "/blog", label: "Journal", key: "blog" },
 ];
 
 export function Header() {
@@ -24,7 +23,6 @@ export function Header() {
     if (pathname.startsWith("/journeys") || pathname.startsWith("/destinations")) return "journeys";
     if (pathname.startsWith("/tours")) return "tours";
     if (pathname.startsWith("/about")) return "about";
-    if (pathname.startsWith("/how-it-works") || pathname.startsWith("/faq")) return "how";
     if (pathname.startsWith("/blog")) return "blog";
     return "";
   })();
@@ -34,8 +32,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
       <Container className="flex items-center gap-6 py-3.5">
-        <Link href="/" className="flex items-center gap-2.5 leading-none">
-          <Image src="/logo.png" alt="Brazil Off Script" width={140} height={42} priority style={{ height: 42, width: "auto" }} />
+        <Link href="/" className="flex items-center gap-2.5 leading-none -my-2">
+          <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority style={{ height: 76, width: "auto" }} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 ml-2">
@@ -54,10 +52,10 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link href="/quiz" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
-            <Compass size={16} /> Find my journey
+          <Link href="/quiz-discovery" className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
+            <Sparkles size={16}/> Take the Travel Quiz
           </Link>
-          <Button href="/quiz" className="!px-5 !py-2.5 text-[13.5px]">Start your journey</Button>
+          <Button href="/start" className="!px-5 !py-2.5 text-[13.5px]">Start your journey</Button>
           <button
             onClick={() => setOpen(true)}
             aria-label="Menu"
@@ -72,7 +70,7 @@ export function Header() {
         <div className="lg:hidden fixed inset-0 z-50 bg-cream">
           <Container className="flex items-center justify-between py-3.5">
             <Link href="/" className="flex items-center gap-2.5 leading-none">
-              <Image src="/logo.png" alt="Brazil Off Script" width={140} height={42} style={{ height: 42, width: "auto" }} />
+              <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} style={{ height: 64, width: "auto" }} />
             </Link>
             <button onClick={() => setOpen(false)} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
               <X size={20} />
@@ -87,7 +85,7 @@ export function Header() {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3">
-              <Button href="/quiz" className="w-full justify-center">Find my journey <ArrowRight size={16} /></Button>
+              <Button href="/start" className="w-full justify-center">Find my journey <ArrowRight size={16} /></Button>
               <Button variant="ghost" href="/contact" className="w-full justify-center">Contact us</Button>
             </div>
           </Container>

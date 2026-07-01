@@ -31,7 +31,7 @@ export function Footer() {
           <h5 className="font-serif text-cream-50 text-[22px] mb-3">Company</h5>
           <ul className="space-y-2 text-[14.5px]">
             <li><Link href="/about" className="hover:text-cream-50">About us</Link></li>
-            <li><Link href="/how-it-works" className="hover:text-cream-50">How it works</Link></li>
+            <li><Link href="/about#how" className="hover:text-cream-50">How it works</Link></li>
             <li><Link href="/faq" className="hover:text-cream-50">FAQ</Link></li>
             <li><Link href="/contact" className="hover:text-cream-50">Contact</Link></li>
           </ul>

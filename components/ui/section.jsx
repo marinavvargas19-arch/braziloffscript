@@ -6,7 +6,7 @@ export function Container({ children, className }) {
   );
 }
 
-export function SectionHead({ eyebrow, title, sub, center, className, eyebrowColor = "terra" }) {
+export function SectionHead({ eyebrow, title, sub, center, className, titleClassName, eyebrowColor = "terra" }) {
   return (
     <div className={cn(center && "text-center mx-auto max-w-3xl", className)}>
       {eyebrow && (
@@ -20,7 +20,7 @@ export function SectionHead({ eyebrow, title, sub, center, className, eyebrowCol
         </div>
       )}
       {title && (
-        <h2 className="font-serif text-[clamp(30px,3.4vw,46px)] font-medium leading-[1.08] tracking-tight text-ink text-balance">
+        <h2 className={cn("font-serif text-[clamp(30px,3.4vw,46px)] font-medium leading-[1.08] tracking-tight text-ink text-balance", titleClassName)}>
           {title}
         </h2>
       )}
