@@ -188,7 +188,7 @@ export default function HomePage() {
                     { src:"/bonito-river.jpg", label:"Bonito", alt:"Bonito crystal river", cls:"sm:col-start-2 sm:row-start-3" },
                     { src:"/jalapao-natural-spring.jpeg", label:"Jalapão", alt:"Jalapão natural spring", cls:"sm:col-start-3 sm:row-start-3" },
                     { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-start-4 sm:row-start-3" },
-                    { src:"/toucan.jpg", label:"Atlantic forest", alt:"Toucan in the Atlantic forest", cls:"col-span-2 sm:col-start-1 sm:row-start-4" },
+                    { src:"https://upload.wikimedia.org/wikipedia/commons/7/75/Dunas_e_lagoas_dos_Len%C3%A7ois_Maranhenses_%28cropped%29.jpg", label:"Lençóis Maranhenses", alt:"Lençóis Maranhenses dunes and lagoons", cls:"col-span-2 sm:col-start-1 sm:row-start-4" },
                   ].map((img) => (
                     <div key={img.src} className={`group relative overflow-hidden rounded-2xl shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] ${img.cls}`}>
                       <img src={img.src} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" alt={img.alt}/>
