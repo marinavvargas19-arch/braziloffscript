@@ -96,7 +96,7 @@ By default, the contact form POSTs to `/api/contact` and just logs to the server
 3. Get an API key
 4. In Vercel → **Settings → Environment Variables**, add:
    - `RESEND_API_KEY` = your key
-   - `CONTACT_TO_EMAIL` = `ola@braziloffscript.com`
+   - `CONTACT_TO_EMAIL` = `hello@braziloffscript.com`
 5. Redeploy
 
 Logic lives in `app/api/contact/route.js` — edit there to change subject lines or routing.

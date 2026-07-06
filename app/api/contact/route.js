@@ -26,7 +26,7 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
       body: JSON.stringify({
         from: "Brazil Off Script <site@braziloffscript.com>",
-        to: [CONTACT_TO_EMAIL || "ola@braziloffscript.com"],
+        to: [CONTACT_TO_EMAIL || "hello@braziloffscript.com"],
         reply_to: body.email,
         subject: `New trip inquiry — ${body.first} ${body.last}`,
         html,
