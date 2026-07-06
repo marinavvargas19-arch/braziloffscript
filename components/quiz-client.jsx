@@ -11,6 +11,12 @@ import { QUIZ_STEPS, TOURS, SITE } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
+const CONTACT_METHOD_LABELS = {
+  email: "E-mail",
+  whatsapp: "WhatsApp",
+  meet: "Google Meet",
+};
+
 const JOURNEY_GALLERY = [
   { src: "/rio-green-coast.jpg", label: "Rio and Costa Verde" },
   { src: "/bahia-praia-do-espelho.jpg", label: "Bahia beaches" },
@@ -20,11 +26,31 @@ const JOURNEY_GALLERY = [
   { src: "/iguazu-falls.jpg", label: "Iguazu falls" },
 ];
 
+function optionLabels(step, value) {
+  if (!step?.options) return value || "—";
+  const values = Array.isArray(value) ? value : [value];
+  return values
+    .map(v => step.options.find(o => o.value === v)?.label || v)
+    .join(", ");
+}
+
+function buildQuizSummary(answers, extra) {
+  return QUIZ_STEPS
+    .filter(step => step.type !== "contact")
+    .map(step => ({
+      question: step.title,
+      answer: optionLabels(step, answers[step.id]) || "—",
+      note: extra[step.id] || "",
+    }));
+}
+
 export default function QuizClient() {
   const [step, setStep]     = useState(0);
   const [answers, setAnswers] = useState({});
   const [extra, setExtra]   = useState({});
   const [done, setDone]     = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const total = QUIZ_STEPS.length;
   const s = QUIZ_STEPS[step];
   const isLast = step === total - 1;
@@ -49,6 +75,48 @@ export default function QuizClient() {
       }
       return { ...a, [s.id]: value };
     });
+  }
+
+  async function submitQuiz() {
+    if (!canContinue || submitting) return;
+    setSubmitting(true);
+    setSubmitError("");
+
+    const contact = answers.contact || {};
+    const [first = contact.name || "", ...rest] = (contact.name || "").trim().split(/\s+/);
+    const payload = {
+      source: "quiz",
+      first,
+      last: rest.join(" "),
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+      contactMethod: CONTACT_METHOD_LABELS[contact.contactMethod] || contact.contactMethod,
+      note: contact.note,
+      quizAnswers: buildQuizSummary(answers, extra),
+      matchedTours: matched.map(t => ({
+        title: t.title,
+        regions: t.regions,
+        days: t.days,
+        score: t._score,
+      })),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Could not send quiz request");
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || "Could not send quiz request");
+      setDone(true);
+    } catch (err) {
+      setSubmitError("We couldn't send your quiz yet. Please try again or email hello@braziloffscript.com.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const matched = useMemo(() => {
@@ -298,14 +366,14 @@ export default function QuizClient() {
             </button>
             {isLast ? (
               <button
-                onClick={() => canContinue && setDone(true)}
-                disabled={!canContinue}
+                onClick={submitQuiz}
+                disabled={!canContinue || submitting}
                 className={cn(
                   "flex-1 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-semibold text-[14px] transition",
-                  canContinue ? "bg-terra hover:bg-terra-d text-cream-50" : "bg-line text-muted cursor-not-allowed"
+                  canContinue && !submitting ? "bg-terra hover:bg-terra-d text-cream-50" : "bg-line text-muted cursor-not-allowed"
                 )}
               >
-                Get my journey match <Sparkles size={16}/>
+                {submitting ? "Sending..." : "Get my journey match"} <Sparkles size={16}/>
               </button>
             ) : (
               <button
@@ -320,6 +388,11 @@ export default function QuizClient() {
               </button>
             )}
           </div>
+          {submitError && (
+            <div className="max-w-2xl mx-auto px-6 pb-4 -mt-1 text-[13px] text-terra-d">
+              {submitError}
+            </div>
+          )}
         </div>
 
       </main>
