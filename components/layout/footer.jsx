@@ -41,14 +41,14 @@ export function Footer() {
           <ul className="space-y-2 text-[14.5px]">
             <li className="flex items-center gap-2"><Mail size={16}/> {SITE.email}</li>
             <li className="flex items-center gap-2"><Phone size={16}/> {SITE.phone}</li>
-            <li className="flex items-center gap-2"><MapPin size={16}/> São Paulo · Salvador · Manaus · Florianópolis</li>
+            <li className="flex items-center gap-2"><MapPin size={16}/> Espírito Santo - Brasil</li>
           </ul>
           <Button variant="ghostLight" size="sm" href="/contact" className="mt-5">Start a conversation <ArrowRight size={16}/></Button>
         </div>
       </div>
       <div className="max-w-[1240px] mx-auto mt-10 pt-6 border-t border-cream-50/12 flex flex-wrap gap-3 justify-between text-[12.5px] opacity-70">
         <span>© {new Date().getFullYear()} Brazil Off Script — Tailor-made journeys.</span>
-        <span>Made with care in São Paulo · Salvador · Manaus.</span>
+        <span>Made with care in Espírito Santo - Brasil.</span>
       </div>
     </footer>
   );

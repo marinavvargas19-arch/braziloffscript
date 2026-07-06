@@ -135,10 +135,7 @@ export default function ContactClient() {
               <h4 className="font-serif text-[20px] text-ink mb-3">We&apos;re in Brazil</h4>
               <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-leaf/30 to-leaf-d/40 flex items-center justify-center text-leaf-d text-[12px] uppercase tracking-wide"><MapPin size={28}/></div>
               <ul className="mt-4 space-y-1.5 text-[13.5px] text-ink-soft">
-                <li>São Paulo · HQ</li>
-                <li>Salvador · Northeast hub</li>
-                <li>Manaus · Amazon hub</li>
-                <li>Florianópolis · South hub</li>
+                <li>Espírito Santo - Brasil</li>
               </ul>
             </div>
           </aside>
