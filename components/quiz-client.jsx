@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, Check, Sparkles, Users, Mail, Phone } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
-import { QUIZ_STEPS, TOURS, SITE } from "@/lib/data";
+import { DISCO_DESTINATIONS, DISCO_QUESTIONS, QUIZ_STEPS, TOURS, SITE } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
@@ -16,6 +16,8 @@ const CONTACT_METHOD_LABELS = {
   whatsapp: "WhatsApp",
   meet: "Google Meet",
 };
+
+const DISCOVERY_LS_KEY = "disco-quiz-v2";
 
 const JOURNEY_GALLERY = [
   { src: "/rio-green-coast.jpg", label: "Rio and Costa Verde" },
@@ -44,6 +46,35 @@ function buildQuizSummary(answers, extra) {
     }));
 }
 
+function buildDiscoveryProfile(saved) {
+  if (!saved?.answers || !saved.done) return null;
+
+  const totals = {};
+  Object.keys(DISCO_DESTINATIONS).forEach(k => (totals[k] = 0));
+  const answers = DISCO_QUESTIONS.map(q => {
+    const idx = saved.answers[q.id];
+    const option = q.options[idx];
+    if (!option) return null;
+    Object.entries(option.score || {}).forEach(([k, v]) => {
+      totals[k] = (totals[k] || 0) + v;
+    });
+    return { question: q.title, answer: option.label };
+  }).filter(Boolean);
+
+  const ranked = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+  const winnerKey = ranked[0]?.[0];
+  const runnerKey = ranked[1]?.[1] > 0 ? ranked[1][0] : null;
+
+  return {
+    winnerKey,
+    winner: DISCO_DESTINATIONS[winnerKey]?.name || winnerKey,
+    runnerUp: runnerKey ? DISCO_DESTINATIONS[runnerKey]?.name || runnerKey : "",
+    regionWords: DISCO_DESTINATIONS[winnerKey]?.regionWords || "",
+    runnerRegionWords: runnerKey ? DISCO_DESTINATIONS[runnerKey]?.regionWords || "" : "",
+    answers,
+  };
+}
+
 export default function QuizClient() {
   const [step, setStep]     = useState(0);
   const [answers, setAnswers] = useState({});
@@ -51,9 +82,18 @@ export default function QuizClient() {
   const [done, setDone]     = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [discoveryProfile, setDiscoveryProfile] = useState(null);
   const total = QUIZ_STEPS.length;
   const s = QUIZ_STEPS[step];
   const isLast = step === total - 1;
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DISCOVERY_LS_KEY);
+      if (!raw) return;
+      setDiscoveryProfile(buildDiscoveryProfile(JSON.parse(raw)));
+    } catch (e) {}
+  }, []);
 
   const canContinue = useMemo(() => {
     if (s.type === "contact") {
@@ -93,6 +133,7 @@ export default function QuizClient() {
       phone: contact.phone,
       contactMethod: CONTACT_METHOD_LABELS[contact.contactMethod] || contact.contactMethod,
       note: contact.note,
+      discoveryProfile,
       quizAnswers: buildQuizSummary(answers, extra),
       matchedTours: matched.map(t => ({
         title: t.title,
@@ -130,12 +171,14 @@ export default function QuizClient() {
       const text = (t.title + " " + t.regions.join(" ") + " " + t.tags.join(" ") + " " + t.blurb).toLowerCase();
       regions.forEach(r  => { if (regionWords[r]  && regionWords[r].split(" ").some(w  => text.includes(w)))  score += 3; });
       styles.forEach(st  => { if (styleWords[st]  && styleWords[st].split(" ").some(w  => text.includes(w)))  score += 1; });
+      if (discoveryProfile?.regionWords?.split(" ").some(w => w && text.includes(w.toLowerCase()))) score += 2;
+      if (discoveryProfile?.runnerRegionWords?.split(" ").some(w => w && text.includes(w.toLowerCase()))) score += 1;
       if (dur === "short" && t.days <= 7)            score += 1;
       if (dur === "mid"   && t.days >= 7  && t.days <= 12) score += 1;
       if (dur === "long"  && t.days >= 12)           score += 1;
       return { ...t, _score: score };
     }).sort((a, b) => b._score - a._score).slice(0, 3);
-  }, [answers, done]);
+  }, [answers, done, discoveryProfile]);
 
   /* ── SUCCESS SCREEN ─────────────────────────────────────────── */
   if (done) {

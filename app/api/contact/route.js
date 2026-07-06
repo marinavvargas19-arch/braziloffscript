@@ -32,6 +32,8 @@ function contactHtml(body) {
 function quizHtml(body) {
   const answers = Array.isArray(body.quizAnswers) ? body.quizAnswers : [];
   const matches = Array.isArray(body.matchedTours) ? body.matchedTours : [];
+  const profile = body.discoveryProfile;
+  const profileAnswers = Array.isArray(profile?.answers) ? profile.answers : [];
 
   return `
     <h2>New quiz request — Brazil Off Script</h2>
@@ -39,6 +41,18 @@ function quizHtml(body) {
     <p><strong>Preferred contact:</strong> ${escapeHtml(body.contactMethod || "—")}</p>
     <p><strong>Notes:</strong><br/>${lines(body.note || "—")}</p>
     <hr/>
+    ${profile ? `
+      <h3>Profile quiz context</h3>
+      <p><strong>Profile match:</strong> ${escapeHtml(profile.winner || "—")}</p>
+      ${profile.runnerUp ? `<p><strong>Also a strong fit:</strong> ${escapeHtml(profile.runnerUp)}</p>` : ""}
+      ${profileAnswers.map(item => `
+        <p>
+          <strong>${escapeHtml(item.question || "Question")}</strong><br/>
+          ${escapeHtml(item.answer || "—")}
+        </p>
+      `).join("")}
+      <hr/>
+    ` : ""}
     <h3>Quiz answers</h3>
     ${answers.map(item => `
       <p>
