@@ -186,7 +186,7 @@ export default function HomePage() {
                     { src:"/noronha.jpg", label:"Noronha", alt:"Fernando de Noronha", cls:"sm:col-start-3 sm:row-start-2" },
                     { src:"/rio-ipanema-sunset.jpg", label:"Rio de Janeiro", alt:"Rio de Janeiro coastline at sunset", cls:"sm:col-start-1 sm:row-start-3" },
                     { src:"/bonito-river.jpg", label:"Bonito", alt:"Bonito crystal river", cls:"sm:col-start-2 sm:row-start-3" },
-                    { src:"/jalapao-natural-spring.jpeg", label:"Jalapão", alt:"Jalapão natural spring", cls:"sm:col-start-3 sm:row-start-3" },
+                    { src:"https://upload.wikimedia.org/wikipedia/commons/8/8a/Fervedouro_Parque_Jalap%C3%A3o_02.jpg", label:"Jalapão", alt:"Jalapão fervedouro spring", cls:"sm:col-start-3 sm:row-start-3" },
                     { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-start-4 sm:row-start-3" },
                     { src:"https://upload.wikimedia.org/wikipedia/commons/7/75/Dunas_e_lagoas_dos_Len%C3%A7ois_Maranhenses_%28cropped%29.jpg", label:"Lençóis Maranhenses", alt:"Lençóis Maranhenses dunes and lagoons", cls:"col-span-2 sm:col-start-1 sm:row-start-4" },
                   ].map((img) => (
