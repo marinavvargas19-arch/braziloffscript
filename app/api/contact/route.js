@@ -1,5 +1,6 @@
 // API route: POST /api/contact
 // Sends contact forms and quiz submissions through Resend when RESEND_API_KEY is set.
+import { saveLead } from "@/lib/leads";
 
 function escapeHtml(value = "") {
   return String(value)
@@ -86,6 +87,11 @@ export async function POST(req) {
       ? `New quiz request — ${fullName}`
       : `New trip inquiry — ${fullName}`;
     const html = isQuiz ? quizHtml(body) : contactHtml(body);
+    try {
+      await saveLead(body);
+    } catch (leadErr) {
+      console.error("Lead save failed:", leadErr);
+    }
 
     if (!RESEND_API_KEY) {
       console.log("Contact form submission:", body);
