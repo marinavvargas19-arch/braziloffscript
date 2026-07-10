@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/section";
-import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, PANTANAL_ITIN, JALAPAO_ITIN, WOMEN_EXPLORE_ITIN, LENCOIS_WOMEN_TREK_ITIN, RIO_WOMEN_ITIN, AMAZON_WOMEN_ITIN, HONEYMOON_ITIN, FOZ_ITIN, buildLightItin } from "@/lib/data";
+import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, PANTANAL_ITIN, JALAPAO_ITIN, WOMEN_EXPLORE_ITIN, LENCOIS_WOMEN_TREK_ITIN, RIO_WOMEN_ITIN, AMAZON_WOMEN_ITIN, HONEYMOON_ITIN, FOZ_ITIN, NORONHA_ITIN, buildLightItin } from "@/lib/data";
 import TourPageContent from "@/components/tour-page-content";
 
 // Resolve a slug → unified tour object from TOURS or DESTINATIONS
@@ -69,13 +69,15 @@ export function generateStaticParams() {
   return [...tourSlugs, ...destSlugs];
 }
 
-export function generateMetadata({ params }) {
-  const t = resolveTour(params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const t = resolveTour(slug);
   return { title: t ? `${t.title} — Brazil Off Script` : "Journey" };
 }
 
-export default function TourPage({ params }) {
-  const tour = resolveTour(params.slug);
+export default async function TourPage({ params }) {
+  const { slug } = await params;
+  const tour = resolveTour(slug);
   if (!tour) return notFound();
 
   const cat = CATEGORIES.find(c => c.slug === tour.category);
@@ -94,6 +96,7 @@ export default function TourPage({ params }) {
     tour.slug === "amazon-women-exploration" ? AMAZON_WOMEN_ITIN :
     tour.slug === "honeymoon-brazil"       ? HONEYMOON_ITIN :
     (tour.slug === "foz" || tour.slug === "foz-iguacu-extended-5-days") ? FOZ_ITIN :
+    (tour.slug === "noronha" || tour.slug === "fernando-de-noronha-7-days") ? NORONHA_ITIN :
     buildLightItin(tour);
 
   return (
