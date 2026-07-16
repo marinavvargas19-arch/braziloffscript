@@ -88,15 +88,15 @@ export default async function TourPage({ params }) {
     tour.slug === "rio"                    ? RIO_ITIN :
     tour.slug === "bahia"                  ? BAHIA_ITIN :
     tour.slug === "amazon"                 ? AMAZON_ITIN :
-    (tour.slug === "pantanal" || tour.slug === "pantanal-wildlife-8-days") ? PANTANAL_ITIN :
-    (tour.slug === "jalapao" || tour.slug === "jalapao-expedition-7-days") ? JALAPAO_ITIN :
+    tour.slug === "pantanal"                ? PANTANAL_ITIN :
+    tour.slug === "jalapao"                 ? JALAPAO_ITIN :
     tour.slug === "women-who-explore"      ? WOMEN_EXPLORE_ITIN :
     tour.slug === "lencois-women-trek"     ? LENCOIS_WOMEN_TREK_ITIN :
     tour.slug === "rio-for-women"          ? RIO_WOMEN_ITIN :
     tour.slug === "amazon-women-exploration" ? AMAZON_WOMEN_ITIN :
     tour.slug === "honeymoon-brazil"       ? HONEYMOON_ITIN :
-    (tour.slug === "foz" || tour.slug === "foz-iguacu-extended-5-days") ? FOZ_ITIN :
-    (tour.slug === "noronha" || tour.slug === "fernando-de-noronha-7-days") ? NORONHA_ITIN :
+    tour.slug === "foz"                    ? FOZ_ITIN :
+    tour.slug === "noronha"                ? NORONHA_ITIN :
     buildLightItin(tour);
 
   return (
