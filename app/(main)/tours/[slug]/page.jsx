@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/section";
-import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, PANTANAL_ITIN, JALAPAO_ITIN, WOMEN_EXPLORE_ITIN, LENCOIS_WOMEN_TREK_ITIN, RIO_WOMEN_ITIN, AMAZON_WOMEN_ITIN, HONEYMOON_ITIN, FOZ_ITIN, NORONHA_ITIN, buildLightItin } from "@/lib/data";
+import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, PANTANAL_ITIN, JALAPAO_ITIN, WOMEN_EXPLORE_ITIN, LENCOIS_ITIN, LENCOIS_WOMEN_TREK_ITIN, RIO_WOMEN_ITIN, AMAZON_WOMEN_ITIN, HONEYMOON_ITIN, FOZ_ITIN, NORONHA_ITIN, buildLightItin } from "@/lib/data";
 import TourPageContent from "@/components/tour-page-content";
 
 // Resolve a slug → unified tour object from TOURS or DESTINATIONS
@@ -91,6 +91,7 @@ export default async function TourPage({ params }) {
     tour.slug === "pantanal"                ? PANTANAL_ITIN :
     tour.slug === "jalapao"                 ? JALAPAO_ITIN :
     tour.slug === "women-who-explore"      ? WOMEN_EXPLORE_ITIN :
+    tour.slug === "lencois"                ? LENCOIS_ITIN :
     tour.slug === "lencois-women-trek"     ? LENCOIS_WOMEN_TREK_ITIN :
     tour.slug === "rio-for-women"          ? RIO_WOMEN_ITIN :
     tour.slug === "amazon-women-exploration" ? AMAZON_WOMEN_ITIN :
