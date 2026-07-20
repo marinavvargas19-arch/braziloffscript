@@ -164,12 +164,12 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
           <SectionHead eyebrow="You might also love" title="Related journeys."/>
           <div className="grid md:grid-cols-3 gap-5 mt-8">
             {TOURS.filter(x => x.slug !== tour.slug).slice(0, 3).map(t => (
-              <Link key={t.slug} href={`/tours/${t.slug}`} className="group">
-                <Card>
+              <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
+                <Card className="h-full flex flex-col">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={t.img} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt=""/>
                   </div>
-                  <div className="p-5">
+                  <div className="p-5 flex-1">
                     <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{t.days} days</div>
                     <h4 className="font-serif text-[19px] mt-1.5 text-ink">{t.title}</h4>
                   </div>

@@ -122,11 +122,15 @@ export default function JourneysList({ initialCategory }) {
                       </div>
                     </div>
                     <div className="p-6 flex flex-col flex-1">
-                      <div className="text-[12px] tracking-[.12em] uppercase text-muted font-semibold">{d.region}</div>
-                      <h3 className="font-serif text-[26px] text-ink mt-1.5 leading-tight">{d.name}</h3>
-                      <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">{d.blurb}</p>
-                      <div className="mt-auto pt-5 inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all self-start">
-                        Discover <ArrowRight size={16}/>
+                      <h3 className="font-serif text-[24px] text-ink leading-tight">{d.name}</h3>
+                      <div className="text-[12.5px] text-muted mt-1.5">
+                        {(DEST_TRIP[d.slug]?.regions || [d.region]).join(" · ")}
+                      </div>
+                      <p className="mt-3 text-[14.5px] text-ink-soft leading-relaxed">{d.blurb}</p>
+                      <div className="mt-auto pt-5 border-t border-line flex items-center justify-end">
+                        <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">
+                          Discover <ArrowRight size={16}/>
+                        </span>
                       </div>
                     </div>
                   </Card>
