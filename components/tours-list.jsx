@@ -117,6 +117,7 @@ export default function ToursList() {
   }, [q, cat, dur, price, sort, ALL]);
 
   const collectionFilters = FILTER_GROUPS;
+  const activeCollection = collectionFilters.find(group => group.v === cat);
 
   return (
     <>
@@ -240,6 +241,10 @@ export default function ToursList() {
               <div className="grid md:grid-cols-2 gap-5 items-start">
                 {filtered.map(t => {
                   const c = CATEGORIES.find(c => c.slug === t.category);
+                  const showActiveCollection = activeCollection?.v !== "all";
+                  const activeCollectionVariant = c?.slug === activeCollection?.v
+                    ? catBadgeVariant(c.color)
+                    : "goldSolid";
                   return (
                     <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
                       <Card className="h-full flex flex-col">
@@ -249,9 +254,14 @@ export default function ToursList() {
                             alt=""
                             className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.04]"
                           />
-                          <div className="absolute top-4 left-4 flex gap-2">
+                          <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2">
                             <Badge variant="inkSolid">{t.days} days</Badge>
-                            {c && (
+                            {showActiveCollection && (
+                              <Badge variant={activeCollectionVariant}>
+                                {activeCollection.l}
+                              </Badge>
+                            )}
+                            {c && c.slug !== activeCollection?.v && (
                               <Badge variant={catBadgeVariant(c.color)}>{c.name}</Badge>
                             )}
                           </div>
