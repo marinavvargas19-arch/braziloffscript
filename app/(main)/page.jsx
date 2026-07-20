@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative min-h-[calc(100svh-105px)] overflow-hidden">
         <div className="absolute inset-0">
           <video
             src="/hero.mp4"
@@ -30,26 +30,26 @@ export default function HomePage() {
           <div className="absolute inset-0" style={{background: "linear-gradient(105deg, rgba(10,25,15,.72), rgba(10,25,15,.56) 32%, rgba(10,25,15,.18) 54%, rgba(10,25,15,0) 76%)"}}></div>
           <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(255,248,232,0) 48%, rgba(255,248,232,.08) 70%, rgba(255,248,232,.16))"}}></div>
         </div>
-        <div className="relative">
-          <Container className="pt-28 pb-32 md:pt-36 md:pb-44">
-            <div className="max-w-3xl text-cream-50" style={{textShadow: "0 2px 18px rgba(0,0,0,.45)"}}>
-              <Badge variant="light" className="mb-6 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
+        <div className="relative flex min-h-[calc(100svh-105px)] items-center">
+          <Container className="w-full py-12 sm:py-14 lg:py-16">
+            <div className="max-w-[680px] text-cream-50" style={{textShadow: "0 2px 18px rgba(0,0,0,.45)"}}>
+              <Badge variant="light" className="mb-4 sm:mb-5 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
                 <span className="w-1.5 h-1.5 rounded-full bg-terra"></span> Real Brazil, curated for you
               </Badge>
               <h1
-                className="font-serif font-medium tracking-tight text-[clamp(40px,6.4vw,86px)]"
-                style={{lineHeight: 1.08, textShadow: "0 3px 24px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35)"}}
+                className="font-serif font-medium tracking-tight text-[clamp(40px,5.2vw,72px)]"
+                style={{lineHeight: 1.04, textShadow: "0 3px 24px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35)"}}
               >
                 Brazil is more <br/>than a destination <br/>— it&apos;s a <em className="not-italic text-terra-l">feeling.</em>
               </h1>
-              <p className="mt-7 max-w-xl text-[17.5px] leading-relaxed text-cream-50">
+              <p className="mt-5 sm:mt-6 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-cream-50">
                 The warmth of the people, the spontaneity, the joy, the music, the flavors, the breathtaking natural beauty, the lifestyle, the emotional connection that make Brazil truly unique. <br/><span className="font-semibold">This is Brazil, off script.</span>
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-6 sm:mt-7 flex flex-wrap gap-3">
                 <Button href="/start" size="lg">Design your journey <ArrowRight size={16}/></Button>
                 <Button variant="ghostLight" size="lg" href="/journeys">Explore our journeys</Button>
               </div>
-              <div className="mt-12 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
+              <div className="mt-7 sm:mt-8 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
                 <div className="hidden sm:flex items-center gap-2"><Shield size={14}/> Financially protected</div>
                 <div className="hidden md:flex items-center gap-2"><Leaf size={14}/> Sustainable stays</div>
               </div>

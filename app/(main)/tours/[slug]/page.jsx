@@ -1,14 +1,48 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/section";
-import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, PANTANAL_ITIN, JALAPAO_ITIN, WOMEN_EXPLORE_ITIN, LENCOIS_ITIN, LENCOIS_WOMEN_TREK_ITIN, RIO_WOMEN_ITIN, AMAZON_WOMEN_ITIN, HONEYMOON_ITIN, FOZ_ITIN, NORONHA_ITIN, buildLightItin } from "@/lib/data";
+import { TOURS, DESTINATIONS, DEST_TRIP, CATEGORIES, FULL_ITIN, RIO_ITIN, BAHIA_ITIN, BAHIA_EXT_ITIN, AMAZON_ITIN, PANTANAL_ITIN, JALAPAO_ITIN, WOMEN_EXPLORE_ITIN, LENCOIS_ITIN, LENCOIS_WOMEN_TREK_ITIN, RIO_WOMEN_ITIN, AMAZON_WOMEN_ITIN, HONEYMOON_ITIN, HONEYMOON_TRANCOSO_ITIN, FOZ_ITIN, NORONHA_ITIN, ALAGOAS_ITIN, buildLightItin } from "@/lib/data";
 import TourPageContent from "@/components/tour-page-content";
 
 // Resolve a slug → unified tour object from TOURS or DESTINATIONS
 function resolveTour(slug) {
   // Packaged tours
   const t = TOURS.find(x => x.slug === slug);
-  if (t) return t;
+  if (t) {
+    if (slug === "honeymoon-brazil") {
+      return {
+        ...t,
+        selectorLabel: "Choose your honeymoon",
+        variants: [
+          {
+            label: "Trancoso",
+            sub: "12 days",
+            days: 12,
+            price: t.price,
+            regions: ["Trancoso · 11 nights"],
+            note: "One extraordinary place, experienced slowly",
+            img: "/bahia-trancoso.jpg",
+            tagline: "A Honeymoon Designed to Slow Down",
+            intro: "Some destinations invite you to explore. Trancoso invites you to stay. Designed exclusively for couples, this honeymoon trades constant movement for twelve unhurried days of endless beaches, tropical gardens, long lunches by the sea and evenings beneath the glowing lanterns of the Quadrado. With UXUA Casa Hotel & Spa as your home throughout, each day is free to unfold naturally.",
+            dayPlan: HONEYMOON_TRANCOSO_ITIN,
+          },
+          {
+            label: "Fernando de Noronha",
+            sub: "12 days",
+            days: 12,
+            price: t.price,
+            regions: ["Fernando de Noronha · 11 nights"],
+            note: "One protected island, explored in depth",
+            img: "/noronha-beach.jpg",
+            tagline: "A Honeymoon Between Ocean and Sky",
+            intro: "Some destinations invite you to escape. Fernando de Noronha invites you to reconnect. Designed exclusively for couples, this twelve-day honeymoon balances discovery with stillness: crystalline bays, volcanic trails, marine life and golden sunsets, with one boutique pousada as your home throughout. There are no hotel changes or rushed departures — only time for the island to reveal itself gradually.",
+            dayPlan: HONEYMOON_ITIN,
+          },
+        ],
+      };
+    }
+    return t;
+  }
 
   // Regional destinations
   const d = DESTINATIONS.find(x => x.slug === slug);
@@ -98,6 +132,7 @@ export default async function TourPage({ params }) {
     tour.slug === "honeymoon-brazil"       ? HONEYMOON_ITIN :
     tour.slug === "foz"                    ? FOZ_ITIN :
     tour.slug === "noronha"                ? NORONHA_ITIN :
+    tour.slug === "northeast"              ? ALAGOAS_ITIN :
     buildLightItin(tour);
 
   return (

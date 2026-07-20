@@ -34,6 +34,9 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         <div className="mt-10">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">{cat?.name}</div>
           <h1 className="font-serif text-[clamp(34px,4.5vw,56px)] leading-[1.05] text-ink">{tour.title}</h1>
+          {view.tagline && (
+            <p className="mt-2 font-serif italic text-[clamp(21px,2.4vw,28px)] text-leaf">{view.tagline}</p>
+          )}
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-ink-soft">
             <span className="flex items-center gap-2"><Clock size={16}/> {view.days} days</span>
             <span className="flex items-center gap-2"><Users size={16}/> Private trip</span>
@@ -41,11 +44,11 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
             <span className="flex items-center gap-2"><Shield size={16}/> Financially protected</span>
           </div>
 
-          {/* Duration variant selector (Bahia only) */}
+          {/* Journey variant selector */}
           {tour.variants && (
             <div className="mt-7 bg-paper border border-line rounded-2xl p-5">
-              <div className="text-[11px] tracking-[.16em] uppercase text-muted font-bold mb-3">Choose your pace</div>
-              <div className="grid grid-cols-2 gap-2.5">
+              <div className="text-[11px] tracking-[.16em] uppercase text-muted font-bold mb-3">{tour.selectorLabel || "Choose your pace"}</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {tour.variants.map((v, i) => (
                   <button
                     key={i}
