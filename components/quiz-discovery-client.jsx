@@ -5,21 +5,12 @@ import { ArrowLeft, ArrowRight, Check, Sparkles, Mail, MessageCircle, Calendar }
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
-import { DISCO_DESTINATIONS, DISCO_QUESTIONS, TOURS, SITE } from "@/lib/data";
+import { QuizImagePanel } from "@/components/quiz-visuals";
+import { DISCO_DESTINATIONS, DISCO_QUESTIONS, DESTINATIONS, DEST_TRIP, SITE } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
 const LS_KEY = "disco-quiz-v2";
-
-const DISCOVERY_GALLERY = [
-  { src: "/rio-ipanema-sunset.jpg", label: "Rio sunsets" },
-  { src: "/bahia-caraiva-aerial.jpeg", label: "Bahia slow coast" },
-  { src: "/jaguar.jpg", label: "Pantanal wildlife" },
-  { src: "/amazon-aerial.jpg", label: "Amazon rivers" },
-  { src: "/northeast-buggy.jpg", label: "Dune routes" },
-  { src: "/noronha-beach.jpg", label: "Island water" },
-];
 
 function tallyWinner(answers) {
   const totals = {};
@@ -37,13 +28,22 @@ function tallyWinner(answers) {
   };
 }
 
-function matchTours(regionWords) {
+function matchSignatureJourneys(regionWords) {
   const words = (regionWords || "").toLowerCase().split(" ").filter(Boolean);
-  return TOURS
-    .map(t => {
-      const text = (t.title + " " + t.regions.join(" ") + " " + t.tags.join(" ") + " " + t.blurb).toLowerCase();
+  return DESTINATIONS
+    .map(destination => {
+      const trip = DEST_TRIP[destination.slug] || {};
+      const journey = {
+        slug: destination.slug,
+        title: destination.name,
+        days: trip.days || 7,
+        regions: trip.regions || [destination.region],
+        img: trip.heroImg || destination.img,
+        blurb: destination.blurb,
+      };
+      const text = (journey.title + " " + journey.regions.join(" ") + " " + journey.blurb).toLowerCase();
       const score = words.reduce((acc, w) => acc + (text.includes(w) ? 1 : 0), 0);
-      return { ...t, _s: score };
+      return { ...journey, _s: score };
     })
     .sort((a, b) => b._s - a._s)
     .slice(0, 2);
@@ -92,7 +92,7 @@ export default function QuizDiscoveryClient() {
   if (done) {
     const d = DISCO_DESTINATIONS[result.winner];
     const runner = result.runnerUp ? DISCO_DESTINATIONS[result.runnerUp] : null;
-    const tours = matchTours(d.regionWords);
+    const tours = matchSignatureJourneys(d.regionWords);
 
     return (
       <div className="flex flex-col lg:flex-row min-h-screen">
@@ -201,12 +201,6 @@ export default function QuizDiscoveryClient() {
                   </a>
                 </div>
               </div>
-
-              <QuizResultGallery
-                title="Keep picturing the route"
-                intro="A few extra scenes from the journeys our specialists most often combine."
-                images={DISCOVERY_GALLERY}
-              />
 
               {/* Bottom CTAs */}
               <div className="mt-10 flex flex-wrap gap-3">

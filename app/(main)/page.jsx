@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { NewsletterBand } from "@/components/layout/newsletter";
-import { IMG, CATEGORIES, TOURS, REVIEWS, BLOG_POSTS } from "@/lib/data";
+import { IMG, CATEGORIES, TOURS, REVIEWS } from "@/lib/data";
 
 export default function HomePage() {
   return (
@@ -281,28 +281,6 @@ export default function HomePage() {
         </Container>
       </section>
       ===== END ARCHIVED ===== */}
-
-      {/* Stories */}
-      <section id="blog" className="bg-paper py-24">
-        <Container>
-          <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
-            <SectionHead eyebrow="Travel stories" title="From our journal."/>
-            <Button variant="ghost" href="/blog">All stories <ArrowRight size={16}/></Button>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {BLOG_POSTS.slice(0,3).map(p=>(
-              <Link key={p.slug} href={`/blog/${p.slug}`} className="group block">
-                <div className="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-line">
-                  <img src={p.img} alt="" className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.04]"/>
-                </div>
-                <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{p.category} · {p.read}</div>
-                <h3 className="font-serif text-[22px] mt-1.5 text-ink group-hover:text-leaf-d transition">{p.title}</h3>
-                <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{p.excerpt}</p>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
 
       <NewsletterBand/>
     </>

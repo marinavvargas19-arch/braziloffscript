@@ -52,6 +52,11 @@ const FILTER_GROUPS = [
     l: "Women Who Explore",
     slugs: WOMEN_WHO_EXPLORE,
   },
+  {
+    v: "honeymoon",
+    l: "Honeymoon",
+    slugs: ["honeymoon-brazil"],
+  },
 ];
 
 // Badge variant per collection colour

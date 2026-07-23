@@ -24,7 +24,6 @@ export function Footer() {
             <li><Link href="/journeys" className="hover:text-cream-50">Our Journeys</Link></li>
             <li><Link href="/tours" className="hover:text-cream-50">All Tours</Link></li>
             <li><Link href="/quiz" className="hover:text-cream-50">Find my journey</Link></li>
-            <li><Link href="/blog" className="hover:text-cream-50">Stories</Link></li>
           </ul>
         </div>
         <div className="md:col-span-2">

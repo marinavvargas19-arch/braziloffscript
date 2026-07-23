@@ -41,7 +41,6 @@ export default function ContactClient() {
                 <p className="mt-3 text-ink-soft max-w-md mx-auto">We&apos;ll be in touch within 48 hours{data.email?` at ${data.email}`:""}.</p>
                 <div className="mt-6 flex justify-center gap-3 flex-wrap">
                   <Button variant="ghost" href="/journeys">Explore journeys</Button>
-                  <Button variant="ghost" href="/blog">Read stories</Button>
                 </div>
               </div>
             ) : (
