@@ -124,8 +124,8 @@ export default function ContactClient() {
               <div className="flex items-center gap-3">
                 <Avatar src={IMG.helena} size={52}/>
                 <div>
-                  <div className="font-semibold text-ink">Helena Cardoso</div>
-                  <div className="text-[12.5px] text-muted">Lead destination expert · São Paulo</div>
+                  <div className="font-semibold text-ink">Marina Vargas</div>
+                  <div className="text-[12.5px] text-muted">Lead destination expert · Espírito Santo</div>
                 </div>
               </div>
               <p className="mt-4 text-[14px] text-ink-soft leading-relaxed">&quot;Drop me a note — even if it&apos;s vague. The best trips usually start with &apos;I don&apos;t know yet, but...&apos;&quot;</p>
@@ -135,10 +135,7 @@ export default function ContactClient() {
               <h4 className="font-serif text-[20px] text-ink mb-3">We&apos;re in Brazil</h4>
               <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-leaf/30 to-leaf-d/40 flex items-center justify-center text-leaf-d text-[12px] uppercase tracking-wide"><MapPin size={28}/></div>
               <ul className="mt-4 space-y-1.5 text-[13.5px] text-ink-soft">
-                <li>São Paulo · HQ</li>
-                <li>Salvador · Northeast hub</li>
-                <li>Manaus · Amazon hub</li>
-                <li>Florianópolis · South hub</li>
+                <li>Espírito Santo - Brasil</li>
               </ul>
             </div>
           </aside>
