@@ -13,6 +13,7 @@ function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
 const EXPLORE_TOUR_SLUGS = [
   "best-of-brazil-10-days",
+  "women-who-explore",
   "lencois-women-trek",
   "rio-for-women",
   "amazon-women-exploration",
@@ -21,8 +22,7 @@ const EXPLORE_TOUR_SLUGS = [
 
 // Journeys highlighted in the "Women Who Explore" filter
 const WOMEN_WHO_EXPLORE = [
-  "lencois-women-trek",
-  "rio-for-women",
+  "women-who-explore",
   "amazon-women-exploration",
 ];
 
