@@ -78,7 +78,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
           )}
 
           {/* Intro */}
-          <p className="mt-7 text-[18px] leading-[1.7] text-ink-soft max-w-2xl">
+          <p className="mt-7 text-[18px] leading-[1.7] text-ink-soft max-w-2xl whitespace-pre-line">
             {view.intro ? (
               view.intro
             ) : (
