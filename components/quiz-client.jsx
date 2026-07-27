@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
-import { DISCO_DESTINATIONS, DISCO_QUESTIONS, QUIZ_STEPS, TOURS, SITE } from "@/lib/data";
+import { DISCO_DESTINATIONS, DISCO_QUESTIONS, QUIZ_STEPS, TOURS, SITE, DESTINATIONS, DEST_TRIP } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
@@ -27,6 +27,22 @@ const JOURNEY_GALLERY = [
   { src: "/amazon-aerial.jpg", label: "Amazon waterways" },
   { src: "/iguazu-falls.jpg", label: "Iguazu falls" },
 ];
+
+const QUIZ_RESULT_JOURNEYS = [
+  ...DESTINATIONS.map(destination => {
+    const trip = DEST_TRIP[destination.slug] || {};
+    return {
+      slug: destination.slug,
+      title: destination.name,
+      days: trip.days || 7,
+      regions: trip.regions || [destination.region],
+      img: trip.heroImg || destination.img,
+      tags: [destination.category, destination.region],
+      blurb: destination.blurb,
+    };
+  }),
+  TOURS.find(tour => tour.slug === "best-of-brazil-10-days"),
+].filter(Boolean);
 
 function optionLabels(step, value) {
   if (!step?.options) return value || "—";
@@ -166,7 +182,7 @@ export default function QuizClient() {
     const dur     = answers.duration;
     const regionWords = { rio:"rio", bahia:"bahia", pantanal:"pantanal bonito", foz:"iguaçu iguacu foz", south:"south florianópolis porto", central:"chapada jalapão", amazon:"amazon manaus", noronha:"noronha", lencois:"lençóis lencois maranhenses jericoacoara dunes" };
     const styleWords  = { culture:"culture history", food:"food wine", nature:"wildlife nature", beach:"beach island", adventure:"adventure off-road hiking", slow:"slow", city:"city", family:"family" };
-    return TOURS.map(t => {
+    return QUIZ_RESULT_JOURNEYS.map(t => {
       let score = 0;
       const text = (t.title + " " + t.regions.join(" ") + " " + t.tags.join(" ") + " " + t.blurb).toLowerCase();
       regions.forEach(r  => { if (regionWords[r]  && regionWords[r].split(" ").some(w  => text.includes(w)))  score += 3; });

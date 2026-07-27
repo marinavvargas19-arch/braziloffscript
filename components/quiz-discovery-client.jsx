@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { QuizImagePanel } from "@/components/quiz-visuals";
-import { DISCO_DESTINATIONS, DISCO_QUESTIONS, DESTINATIONS, DEST_TRIP, SITE } from "@/lib/data";
+import { DISCO_DESTINATIONS, DISCO_QUESTIONS, DESTINATIONS, DEST_TRIP, SITE, TOURS } from "@/lib/data";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
@@ -28,12 +28,13 @@ function tallyWinner(answers) {
   };
 }
 
-function matchSignatureJourneys(regionWords) {
+function matchSignatureJourneys(winnerSlug, regionWords) {
   const words = (regionWords || "").toLowerCase().split(" ").filter(Boolean);
-  return DESTINATIONS
-    .map(destination => {
+  const bestOfBrazil = TOURS.find(t => t.slug === "best-of-brazil-10-days");
+  const candidates = [
+    ...DESTINATIONS.map(destination => {
       const trip = DEST_TRIP[destination.slug] || {};
-      const journey = {
+      return {
         slug: destination.slug,
         title: destination.name,
         days: trip.days || 7,
@@ -41,8 +42,15 @@ function matchSignatureJourneys(regionWords) {
         img: trip.heroImg || destination.img,
         blurb: destination.blurb,
       };
+    }),
+    bestOfBrazil,
+  ].filter(Boolean);
+
+  return candidates
+    .map(destination => {
+      const journey = destination;
       const text = (journey.title + " " + journey.regions.join(" ") + " " + journey.blurb).toLowerCase();
-      const score = words.reduce((acc, w) => acc + (text.includes(w) ? 1 : 0), 0);
+      const score = (journey.slug === winnerSlug ? 100 : 0) + words.reduce((acc, w) => acc + (text.includes(w) ? 1 : 0), 0);
       return { ...journey, _s: score };
     })
     .sort((a, b) => b._s - a._s)
@@ -92,7 +100,7 @@ export default function QuizDiscoveryClient() {
   if (done) {
     const d = DISCO_DESTINATIONS[result.winner];
     const runner = result.runnerUp ? DISCO_DESTINATIONS[result.runnerUp] : null;
-    const tours = matchSignatureJourneys(d.regionWords);
+    const tours = matchSignatureJourneys(result.winner, d.regionWords);
 
     return (
       <div className="flex flex-col lg:flex-row min-h-screen">
