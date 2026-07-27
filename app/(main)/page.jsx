@@ -225,28 +225,34 @@ export default function HomePage() {
       <section id="tours" className="py-20">
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
-            <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Each itinerary is fully tailor-made — these are just a place to begin."/>
+            <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Iconic Brazil and journeys designed especially for women — each itinerary is fully tailor-made."/>
             <Button variant="ghost" href="/tours">Explore Destinations <ArrowRight size={16}/></Button>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {TOURS.slice(0,3).map(t=>(
-              <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
-                <Card className="h-full flex flex-col">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img src={t.img} alt="" className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.05]"/>
-                    <div className="absolute top-4 left-4"><Badge variant="inkSolid">{t.days} days</Badge></div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{CATEGORIES.find(c=>c.slug===t.category).name}</div>
-                    <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{t.title}</h3>
-                    <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{t.blurb}</p>
-                    <div className="mt-auto pt-5 flex items-center justify-end">
-                      <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">Discover <ArrowRight size={16}/></span>
+            {TOURS.slice(0,3).map(t => {
+              const isWomensJourney = t.tags?.includes("Women-led");
+              return (
+                <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
+                  <Card className="h-full flex flex-col">
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <img src={t.img} alt="" className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.05]"/>
+                      <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                        <Badge variant="inkSolid">{t.days} days</Badge>
+                        {isWomensJourney && <Badge variant="terraSolid">Women&apos;s Journey</Badge>}
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </Link>
-            ))}
+                    <div className="p-6 flex flex-col flex-1">
+                      <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{CATEGORIES.find(c=>c.slug===t.category).name}</div>
+                      <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{t.title}</h3>
+                      <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{t.blurb}</p>
+                      <div className="mt-auto pt-5 flex items-center justify-end">
+                        <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">Discover <ArrowRight size={16}/></span>
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </Container>
       </section>
