@@ -22,7 +22,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
   const staysLabel = view.regions.join(" · ");
 
   return (
-    <Container className="grid lg:grid-cols-12 gap-10 pt-4 pb-24">
+    <Container className="grid lg:grid-cols-12 gap-8 pt-4 pb-20">
       <div className="lg:col-span-8">
 
         {/* Hero image */}
@@ -31,7 +31,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         </div>
 
         {/* Title + meta */}
-        <div className="mt-10">
+        <div className="mt-8">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">{cat?.name}</div>
           <h1 className="font-serif text-[clamp(34px,4.5vw,56px)] leading-[1.05] text-ink">{tour.title}</h1>
           {view.tagline && (
@@ -111,7 +111,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         </div>
 
         {/* Day by day accordion */}
-        <div className="mt-14">
+        <div className="mt-12">
           <SectionHead
             eyebrow="Day by day"
             title="The shape of your days."
@@ -121,7 +121,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         </div>
 
         {/* Included / not included */}
-        <div className="mt-16 grid md:grid-cols-2 gap-5">
+        <div className="mt-12 grid md:grid-cols-2 gap-5">
           <div className="bg-paper border border-line rounded-2xl p-7">
             <h3 className="font-serif text-[22px] text-ink mb-4">Included</h3>
             <ul className="space-y-2.5 text-[14.5px] text-ink-soft">
@@ -160,7 +160,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         </div>
 
         {/* Related journeys */}
-        <div className="mt-16">
+        <div className="mt-12">
           <SectionHead eyebrow="You might also love" title="Related journeys."/>
           <div className="grid md:grid-cols-3 gap-5 mt-8">
             {TOURS.filter(x => x.slug !== tour.slug).slice(0, 3).map(t => (

@@ -10,13 +10,13 @@ export default function FaqPage() {
   return (
     <>
       <section className="bg-paper border-b border-line">
-        <Container className="py-16">
+        <Container className="py-12">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">FAQ</div>
           <h1 className="font-serif text-[clamp(34px,4.5vw,56px)] leading-tight text-ink">Common questions, honest answers.</h1>
         </Container>
       </section>
-      <section className="py-16">
-        <Container className="grid md:grid-cols-12 gap-12">
+      <section className="py-12">
+        <Container className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
             <h3 className="font-serif text-[22px] text-ink">Still have questions?</h3>
             <p className="mt-3 text-ink-soft text-[15px] leading-relaxed">There&apos;s a real human at the other end. We answer everything within one business day — usually the same hour.</p>

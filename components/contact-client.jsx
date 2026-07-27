@@ -24,15 +24,15 @@ export default function ContactClient() {
   return (
     <>
       <section className="bg-paper border-b border-line">
-        <Container className="py-16">
+        <Container className="py-12">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">Get in touch</div>
           <h1 className="font-serif text-[clamp(34px,4.5vw,56px)] leading-tight text-ink max-w-3xl">Tell us what you&apos;re imagining.</h1>
           <p className="mt-4 text-ink-soft text-[17px] max-w-2xl leading-relaxed">A real Brazilian destination expert replies within 48 hours — usually the same business day. No newsletters, no sales calls, no obligation.</p>
         </Container>
       </section>
 
-      <section className="py-16">
-        <Container className="grid md:grid-cols-12 gap-12">
+      <section className="py-12">
+        <Container className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-8">
             {sent ? (
               <div className="bg-paper border border-line rounded-2xl p-10 text-center">

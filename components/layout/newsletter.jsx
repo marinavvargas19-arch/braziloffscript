@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/section";
 export function NewsletterBand() {
   const [done, setDone] = useState(false);
   return (
-    <section className="bg-terra text-cream-50 py-14">
+    <section className="bg-terra text-cream-50 py-12">
       <Container className="grid md:grid-cols-2 gap-8 items-center">
         <div>
           <div className="text-[11px] tracking-[.22em] uppercase font-bold opacity-80">Newsletter</div>

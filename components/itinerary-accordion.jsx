@@ -12,7 +12,7 @@ export default function ItineraryAccordion({ days }) {
       {days.map((d, i) => {
         const isOpen = open === i;
         return (
-          <div key={i} id={`day-${i + 1}`} className="border-b border-line scroll-mt-24">
+          <div key={i} id={`day-${i + 1}`} className="border-b border-line scroll-mt-16">
             <button
               onClick={() => setOpen(isOpen ? -1 : i)}
               aria-expanded={isOpen}

@@ -31,7 +31,7 @@ export default function DestinationPage({ params }) {
           <img src={d.img} className="w-full h-full object-cover" alt=""/>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-leaf-d/65"></div>
         </div>
-        <Container className="relative pt-20 pb-24 md:pt-28 md:pb-32 text-cream-50">
+        <Container className="relative pt-16 pb-20 md:pt-20 md:pb-24 text-cream-50">
           <div className="text-[13px] mb-6 opacity-85">
             <Link href="/" className="underline underline-offset-4">Home</Link>
             <span className="mx-2 opacity-50">/</span>
@@ -65,8 +65,8 @@ export default function DestinationPage({ params }) {
         </Container>
       </section>
 
-      <section className="py-20">
-        <Container className="grid md:grid-cols-12 gap-10">
+      <section className="py-16">
+        <Container className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-5">
             <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">Why here</div>
             <h2 className="font-serif text-[clamp(28px,3.4vw,44px)] leading-tight text-ink">A region that rewards travelers who slow down.</h2>
@@ -88,10 +88,10 @@ export default function DestinationPage({ params }) {
       </section>
 
       {highlights.length>0 && (
-        <section className="bg-paper py-20">
+        <section className="bg-paper py-16">
           <Container>
             <SectionHead eyebrow="Off-script highlights" title="The things we'd build your trip around." />
-            <div className="grid md:grid-cols-2 gap-5 mt-10">
+            <div className="grid md:grid-cols-2 gap-5 mt-8">
               {highlights.map((h, i)=>(
                 <div key={i} className="bg-cream-50 border border-line rounded-2xl p-6 flex gap-5">
                   <div className="flex-none w-10 h-10 rounded-full bg-terra/15 text-terra-d flex items-center justify-center font-serif text-[20px]">{i+1}</div>
@@ -106,9 +106,9 @@ export default function DestinationPage({ params }) {
         </section>
       )}
 
-      <section className="py-20">
+      <section className="py-16">
         <Container>
-          <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
+          <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
             <SectionHead eyebrow="Sample itineraries" title={`Starting points for ${d.name}`} sub="Every trip is custom — these show the shape of what's possible."/>
             <Button variant="ghost" href="/tours">All tours <ArrowRight size={16}/></Button>
           </div>

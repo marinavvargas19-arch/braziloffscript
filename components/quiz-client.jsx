@@ -212,7 +212,7 @@ export default function QuizClient() {
         {/* Right content panel */}
         <main className="lg:w-3/5 flex flex-col bg-cream">
           <div className="flex-1 overflow-auto">
-            <div className="max-w-2xl mx-auto px-6 py-14 md:py-20">
+            <div className="max-w-2xl mx-auto px-6 py-12 md:py-16">
 
               <div className="w-16 h-16 rounded-full bg-leaf text-cream-50 flex items-center justify-center mb-6">
                 <Check size={28}/>
@@ -225,7 +225,7 @@ export default function QuizClient() {
                 One of our destination experts will reach out within 48 hours with a personalized proposal{contact.email ? ` at ${contact.email}` : ""}. No obligation, no sales calls.
               </p>
 
-              <div className="mt-10 grid sm:grid-cols-3 gap-3">
+              <div className="mt-8 grid sm:grid-cols-3 gap-3">
                 {[
                   { n:"01", t:"We review your answers by hand" },
                   { n:"02", t:"We craft a tailored proposal" },
@@ -238,7 +238,7 @@ export default function QuizClient() {
                 ))}
               </div>
 
-              <div className="mt-12 pt-10 border-t border-line">
+              <div className="mt-10 pt-10 border-t border-line">
                 <h3 className="font-serif text-[24px] text-ink leading-tight">Journeys aligned with your answers</h3>
                 <p className="mt-2 text-[14.5px] text-ink-soft">A preview while you wait — your expert may suggest others.</p>
                 <div className="grid sm:grid-cols-2 gap-5 mt-7">
@@ -271,7 +271,7 @@ export default function QuizClient() {
                 images={JOURNEY_GALLERY}
               />
 
-              <div className="mt-12 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 <Button href="/journeys">Browse all journeys</Button>
                 <a
                   href={`https://wa.me/${SITE.whatsapp}`}
@@ -322,11 +322,11 @@ export default function QuizClient() {
 
         {/* Step content */}
         <div className="flex-1 overflow-auto">
-          <div className="max-w-2xl mx-auto px-6 py-12">
+          <div className="max-w-2xl mx-auto px-6 py-10">
             <h1 className="font-serif text-[clamp(28px,3.4vw,42px)] leading-tight text-ink">{s.title}</h1>
             {s.sub && <p className="mt-3 text-ink-soft text-[16.5px]">{s.sub}</p>}
 
-            <div className="mt-10">
+            <div className="mt-8">
               {s.type === "contact" ? (
                 <ContactStep value={answers.contact || {}} onChange={v => setAnswers(a => ({ ...a, contact: v }))}/>
               ) : s.options[0]?.img ? (
@@ -396,7 +396,7 @@ export default function QuizClient() {
               )}
 
               {s.extra && (
-                <div className="mt-10">
+                <div className="mt-8">
                   <div className="font-serif text-[20px] text-ink">{s.extra.label}</div>
                   <textarea
                     value={extra[s.id] || ""}

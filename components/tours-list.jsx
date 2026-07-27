@@ -128,7 +128,7 @@ export default function ToursList() {
     <>
       {/* Header */}
       <section className="bg-paper border-b border-line">
-        <Container className="py-12 md:py-16">
+        <Container className="py-10 md:py-12">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">All Journeys</div>
           <h1 className="font-serif text-[clamp(30px,3.6vw,48px)] leading-[1.08] text-ink max-w-3xl">
             A starting point for inspiration.{" "}
@@ -141,8 +141,8 @@ export default function ToursList() {
       </section>
 
       {/* Filters + Grid */}
-      <section className="py-12">
-        <Container className="grid lg:grid-cols-12 gap-10">
+      <section className="py-10">
+        <Container className="grid lg:grid-cols-12 gap-8">
 
           {/* Sidebar filters */}
           <aside className="lg:col-span-3">

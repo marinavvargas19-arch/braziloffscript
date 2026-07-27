@@ -42,7 +42,7 @@ export default function StartPage() {
       {/* Right — choice panel */}
       <main className="lg:w-3/5 flex flex-col bg-cream">
         <div className="flex-1 flex items-center">
-          <div className="max-w-2xl mx-auto w-full px-6 py-16 md:py-24">
+          <div className="max-w-2xl mx-auto w-full px-6 py-12 md:py-20">
 
             <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-4">Choose your path</div>
             <h1 className="font-serif text-[clamp(30px,3.6vw,46px)] leading-[1.1] tracking-tight text-ink text-balance">
@@ -53,7 +53,7 @@ export default function StartPage() {
               Wherever you are in your journey planning, we&apos;ll help design a version of Brazil tailored to you.
             </p>
 
-            <div className="mt-12 grid gap-4">
+            <div className="mt-10 grid gap-4">
 
               {/* Option A — I know where I want to go */}
               <Link
@@ -102,7 +102,7 @@ export default function StartPage() {
               </Link>
             </div>
 
-            <div className="mt-12 pt-7 border-t border-line text-[13.5px] text-ink-soft text-center">
+            <div className="mt-10 pt-7 border-t border-line text-[13.5px] text-ink-soft text-center">
               Still not sure?{" "}
               <a
                 href={`https://wa.me/${SITE.whatsapp}`}

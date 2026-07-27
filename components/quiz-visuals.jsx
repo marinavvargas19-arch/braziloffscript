@@ -43,7 +43,7 @@ export function QuizResultGallery({ title = "More Brazil to picture next", intro
   if (!images?.length) return null;
 
   return (
-    <section className="mt-12 pt-10 border-t border-line">
+    <section className="mt-10 pt-10 border-t border-line">
       <h3 className="font-serif text-[24px] text-ink leading-tight">{title}</h3>
       {intro && <p className="mt-2 text-[14.5px] text-ink-soft">{intro}</p>}
       <div className="mt-7 grid grid-cols-2 md:grid-cols-3 gap-3">

@@ -42,13 +42,13 @@ export default function BlogPostPage({ params }) {
         </div>
       </Container>
 
-      <Container className="mt-10">
+      <Container className="mt-8">
         <div className="aspect-[16/9] rounded-2xl overflow-hidden">
           <img src={post.img} alt="" className="w-full h-full object-cover"/>
         </div>
       </Container>
 
-      <article className="py-16">
+      <article className="py-12">
         <Container className="max-w-[720px]">
           <p className="font-serif text-[22px] leading-[1.55] text-ink mb-8 italic">{post.excerpt}</p>
           <p className="text-ink-soft text-[17px] leading-[1.75] mb-6">
@@ -57,22 +57,22 @@ export default function BlogPostPage({ params }) {
           <p className="text-ink-soft text-[17px] leading-[1.75] mb-6">
             What follows are three corners of the country that almost never appear on a first-time itinerary — and the reasons we keep sending our most curious travelers to them first.
           </p>
-          <h2 className="font-serif text-[28px] text-ink mt-12 mb-4">1. Maranhão&apos;s quieter side — Caburé, not Atins.</h2>
+          <h2 className="font-serif text-[28px] text-ink mt-10 mb-4">1. Maranhão&apos;s quieter side — Caburé, not Atins.</h2>
           <p className="text-ink-soft text-[17px] leading-[1.75] mb-6">
             Most travelers headed for Lençóis Maranhenses sleep in Atins. Drive forty minutes north and you reach Caburé — three pousadas, the dunes rolling right up to the river. Stay two nights. Walk the dunes at sunrise.
           </p>
           <blockquote className="border-l-4 border-terra pl-5 my-10 font-serif text-[22px] italic text-ink-soft leading-relaxed">
             &quot;The best Brazilian destinations don&apos;t reveal themselves on day one. Caburé is a place that becomes itself on day three.&quot;
           </blockquote>
-          <h2 className="font-serif text-[28px] text-ink mt-12 mb-4">2. The Dendê Coast — south of Salvador, north of Itacaré.</h2>
+          <h2 className="font-serif text-[28px] text-ink mt-10 mb-4">2. The Dendê Coast — south of Salvador, north of Itacaré.</h2>
           <p className="text-ink-soft text-[17px] leading-[1.75] mb-6">
             Boipeba, Barra Grande, and Maraú — a stretch of Bahia that the highway doesn&apos;t reach. The kind of trip where you forget what day it is by Wednesday and remember sometime around Sunday.
           </p>
-          <h2 className="font-serif text-[28px] text-ink mt-12 mb-4">3. The Chapada dos Veadeiros — but with the right guide.</h2>
+          <h2 className="font-serif text-[28px] text-ink mt-10 mb-4">3. The Chapada dos Veadeiros — but with the right guide.</h2>
           <p className="text-ink-soft text-[17px] leading-[1.75] mb-6">
             The waterfalls everyone sees, plus the canyons and quartz fields most miss. The Chapada rewards depth: a strong guide, three nights minimum.
           </p>
-          <div className="mt-12 p-7 bg-paper border border-line rounded-2xl">
+          <div className="mt-10 p-7 bg-paper border border-line rounded-2xl">
             <div className="text-[12px] tracking-[.16em] uppercase text-terra font-bold">Want to go off script?</div>
             <h3 className="font-serif text-[26px] text-ink mt-2">Tell us what you&apos;re imagining.</h3>
             <p className="mt-2 text-ink-soft">Real planning, real humans, real Brazil.</p>
@@ -84,7 +84,7 @@ export default function BlogPostPage({ params }) {
         </Container>
       </article>
 
-      <section className="py-16 bg-paper border-t border-line">
+      <section className="py-12 bg-paper border-t border-line">
         <Container>
           <SectionHead eyebrow="Keep reading" title="More from the journal."/>
           <div className="grid md:grid-cols-3 gap-7 mt-8">

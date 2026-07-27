@@ -29,7 +29,7 @@ export default function AboutPage() {
           <img src="/quiz-region-left.jpg" className="w-full h-full object-cover" alt="Lençóis Maranhenses dunes and lagoons"/>
           <div className="absolute inset-0 bg-leaf-d/55"/>
         </div>
-        <Container className="relative py-20 md:py-24 text-cream-50">
+        <Container className="relative py-16 md:py-20 text-cream-50">
           <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">About us</div>
           <h1 className="font-serif font-medium text-[clamp(32px,4vw,54px)] leading-[1.06] tracking-tight">Brazil, off script.</h1>
           <p className="mt-5 max-w-2xl text-cream-50/90 text-[17px] leading-relaxed">
@@ -39,8 +39,8 @@ export default function AboutPage() {
       </section>
 
       {/* Philosophy + gallery */}
-      <section className="py-24">
-        <Container className="grid md:grid-cols-12 gap-10">
+      <section className="py-20">
+        <Container className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-5">
             <SectionHead eyebrow="Our Philosophy" title="Travel beyond the obvious."/>
           </div>
@@ -56,7 +56,7 @@ export default function AboutPage() {
           </div>
         </Container>
 
-        <Container className="mt-16">
+        <Container className="mt-12">
           <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
             {GALLERY.map((src, i) => (
               <div key={i} className="overflow-hidden rounded-xl aspect-square">
@@ -68,7 +68,7 @@ export default function AboutPage() {
       </section>
 
       {/* What makes us different */}
-      <section className="bg-leaf-d text-cream-50 py-24">
+      <section className="bg-leaf-d text-cream-50 py-20">
         <Container>
           <SectionHead
             eyebrow="What makes us different"
@@ -76,7 +76,7 @@ export default function AboutPage() {
             center eyebrowColor="terra"
             titleClassName="!text-cream-50"
           />
-          <div className="grid md:grid-cols-3 gap-5 mt-12">
+          <div className="grid md:grid-cols-3 gap-5 mt-10">
             {[
               { n:"1", t:"Hidden destinations and unique experiences",    d:"We take you beyond the obvious to discover the real Brazil." },
               { n:"2", t:"Boutique and carefully selected accommodations", d:"Handpicked stays that reflect the charm and authenticity of each region." },
@@ -97,7 +97,7 @@ export default function AboutPage() {
 
       {/* How it works — intro */}
       <section id="how" className="bg-paper border-y border-line">
-        <Container className="py-16 md:py-24">
+        <Container className="py-12 md:py-20">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">How it works</div>
           <h2 className="font-serif text-[clamp(34px,4.6vw,60px)] leading-[1.04] text-ink max-w-3xl">
             From &ldquo;I&apos;m thinking about Brazil&rdquo; to{" "}
@@ -110,7 +110,7 @@ export default function AboutPage() {
       </section>
 
       {/* How it works — steps */}
-      <section className="py-20">
+      <section className="py-16">
         <Container>
           <div className="space-y-5">
             {HOW_STEPS.map(s => {
@@ -135,7 +135,7 @@ export default function AboutPage() {
       </section>
 
       {/* How it works — CTA */}
-      <section className="pb-20">
+      <section className="pb-16">
         <Container className="text-center">
           <h2 className="font-serif text-[clamp(28px,3.4vw,42px)] text-ink">Ready when you are.</h2>
           <p className="mt-3 text-ink-soft max-w-xl mx-auto">Take the 60-second quiz, browse our journeys, or talk to a human.</p>

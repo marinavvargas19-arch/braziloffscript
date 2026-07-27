@@ -115,7 +115,7 @@ export default function QuizDiscoveryClient() {
         {/* Right content panel */}
         <main className="lg:w-3/5 flex flex-col bg-cream">
           <div className="flex-1 overflow-auto">
-            <div className="max-w-2xl mx-auto px-6 py-14 md:py-20">
+            <div className="max-w-2xl mx-auto px-6 py-12 md:py-16">
 
               <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">
                 Quiz complete · your result
@@ -142,7 +142,7 @@ export default function QuizDiscoveryClient() {
               )}
 
               {tours.length > 0 && (
-                <div className="mt-12 pt-10 border-t border-line">
+                <div className="mt-10 pt-10 border-t border-line">
                   <h3 className="font-serif text-[24px] text-ink leading-tight">Journeys made for this</h3>
                   <p className="mt-2 text-[14.5px] text-ink-soft">A preview to get you dreaming — we&apos;ll tailor everything to you.</p>
                   <div className="grid sm:grid-cols-2 gap-5 mt-7">
@@ -171,7 +171,7 @@ export default function QuizDiscoveryClient() {
               )}
 
               {/* Contact options */}
-              <div className="mt-12 pt-10 border-t border-line">
+              <div className="mt-10 pt-10 border-t border-line">
                 <h3 className="font-serif text-[24px] text-ink leading-tight">Ready to talk it through?</h3>
                 <p className="mt-2 text-[14.5px] text-ink-soft">Reach a Brazil specialist directly — pick whatever&apos;s easiest for you.</p>
                 <div className="grid sm:grid-cols-3 gap-3 mt-7">
@@ -211,7 +211,7 @@ export default function QuizDiscoveryClient() {
               </div>
 
               {/* Bottom CTAs */}
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/quiz">Plan this exact trip</Button>
                 <Button variant="ghost" href="/journeys">Browse all journeys</Button>
                 <button
@@ -258,13 +258,13 @@ export default function QuizDiscoveryClient() {
 
         {/* Question */}
         <div className="flex-1 overflow-auto">
-          <div className="max-w-2xl mx-auto px-6 py-12">
+          <div className="max-w-2xl mx-auto px-6 py-10">
             <div className="text-[40px] leading-none mb-4">{q.emoji}</div>
             <h1 className="font-serif text-[clamp(28px,3.4vw,42px)] leading-tight text-ink text-balance">
               {q.title}
             </h1>
 
-            <div className="mt-10 grid sm:grid-cols-2 gap-3">
+            <div className="mt-8 grid sm:grid-cols-2 gap-3">
               {q.options.map((o, i) => {
                 const selected = answers[q.id] === i;
                 return (

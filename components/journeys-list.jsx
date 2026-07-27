@@ -33,7 +33,7 @@ export default function JourneysList({ initialCategory }) {
           <img src="/start-beach.jpg" className="w-full h-full object-cover" alt="Aerial view of a beach in northeastern Brazil"/>
           <div className="absolute inset-0 bg-leaf-d/55"/>
         </div>
-        <Container className="relative py-20 md:py-24 text-cream-50">
+        <Container className="relative py-16 md:py-20 text-cream-50">
           <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">Our Journeys</div>
           <h1 className="font-serif font-medium text-[clamp(32px,4vw,54px)] leading-[1.06] tracking-tight max-w-4xl">
             Brazil — many worlds in one country.
@@ -45,10 +45,10 @@ export default function JourneysList({ initialCategory }) {
       </section>
 
       {/* Grid */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-20">
         <Container>
           {/* Tabs */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div className="inline-flex p-1 rounded-full bg-paper border border-line flex-wrap">
               {[{ value: "all", label: "All journeys" }, ...CATEGORIES.map(c => ({ value: c.slug, label: c.name }))].map(t => (
                 <button
@@ -68,7 +68,7 @@ export default function JourneysList({ initialCategory }) {
 
           {/* Collection description banner */}
           {tab === "all" ? (
-            <div className="mb-10 rounded-2xl bg-leaf/[.06] border border-leaf/20 p-7 md:p-9">
+            <div className="mb-8 rounded-2xl bg-leaf/[.06] border border-leaf/20 p-7 md:p-9">
               <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-leaf-d mb-2">Collection</div>
               <h2 className="font-serif text-[clamp(28px,3.4vw,40px)] leading-tight text-ink">All Journeys</h2>
               <p className="mt-4 text-ink-soft max-w-3xl text-[16px] leading-relaxed">
@@ -83,7 +83,7 @@ export default function JourneysList({ initialCategory }) {
             const c = CATEGORIES.find(x => x.slug === tab);
             return (
               <div className={cn(
-                "mb-10 rounded-2xl p-7 md:p-9",
+                "mb-8 rounded-2xl p-7 md:p-9",
                 c.color === "terra" ? "bg-terra/10" : c.color === "leaf" ? "bg-leaf/10" : "bg-azul/10"
               )}>
                 <div className={cn(
@@ -142,7 +142,7 @@ export default function JourneysList({ initialCategory }) {
       </section>
 
       {/* CTA */}
-      <section className="bg-paper py-20 border-t border-line">
+      <section className="bg-paper py-16 border-t border-line">
         <Container className="text-center">
           <h2 className="font-serif text-[clamp(28px,3.4vw,42px)] leading-tight text-ink">Don&apos;t see your dream Brazil?</h2>
           <p className="mt-4 max-w-xl mx-auto text-ink-soft text-[17px]">

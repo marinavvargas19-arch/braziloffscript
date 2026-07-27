@@ -5,8 +5,8 @@ import { SITE } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="bg-leaf-d text-[#cfc8a8] pt-16 pb-7 px-5">
-      <div className="max-w-[1240px] mx-auto grid md:grid-cols-12 gap-10">
+    <footer className="bg-leaf-d text-[#cfc8a8] pt-12 pb-7 px-5">
+      <div className="max-w-[1240px] mx-auto grid md:grid-cols-12 gap-8">
         <div className="md:col-span-4">
           <div className="font-serif text-cream-50 text-[36px] leading-[0.95]">Brazil<br/>Off Script</div>
           <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed opacity-90">
@@ -45,7 +45,7 @@ export function Footer() {
           <Button variant="ghostLight" size="sm" href="/contact" className="mt-5">Start a conversation <ArrowRight size={16}/></Button>
         </div>
       </div>
-      <div className="max-w-[1240px] mx-auto mt-10 pt-6 border-t border-cream-50/12 flex flex-wrap gap-3 justify-between text-[12.5px] opacity-70">
+      <div className="max-w-[1240px] mx-auto mt-8 pt-6 border-t border-cream-50/12 flex flex-wrap gap-3 justify-between text-[12.5px] opacity-70">
         <span>© {new Date().getFullYear()} Brazil Off Script — Tailor-made journeys.</span>
         <span>Made with care in Espírito Santo - Brasil.</span>
       </div>

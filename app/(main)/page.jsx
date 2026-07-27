@@ -31,7 +31,7 @@ export default function HomePage() {
           <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(255,248,232,0) 48%, rgba(255,248,232,.08) 70%, rgba(255,248,232,.16))"}}></div>
         </div>
         <div className="relative flex min-h-[calc(100svh-105px)] items-center">
-          <Container className="w-full py-12 sm:py-14 lg:py-16">
+          <Container className="w-full py-10 sm:py-12 lg:py-12">
             <div className="max-w-[680px] text-cream-50" style={{textShadow: "0 2px 18px rgba(0,0,0,.45)"}}>
               <Badge variant="light" className="mb-4 sm:mb-5 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
                 <span className="w-1.5 h-1.5 rounded-full bg-terra"></span> Real Brazil, curated for you
@@ -77,9 +77,9 @@ export default function HomePage() {
       */}
 
       {/* Method */}
-      <section id="about" className="py-24 md:py-32">
+      <section id="about" className="py-20 md:py-24">
         <Container>
-          <div className="grid md:grid-cols-12 gap-10 items-end mb-14">
+          <div className="grid md:grid-cols-12 gap-8 items-end mb-12">
             <div className="md:col-span-7">
               <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-4">Our Essence</div>
               <h2 className="font-serif text-[clamp(34px,4.6vw,58px)] leading-[1.05] tracking-tight text-ink text-balance">
@@ -114,10 +114,10 @@ export default function HomePage() {
       </section>
 
       {/* Three collections */}
-      <section id="journeys" className="bg-paper py-24">
+      <section id="journeys" className="bg-paper py-20">
         <Container>
           <SectionHead eyebrow="Our Journeys" title="Three ways to experience Brazil" sub="Signature collections, thoughtfully curated to reveal different sides of the country." center/>
-          <div className="grid md:grid-cols-3 gap-5 mt-12">
+          <div className="grid md:grid-cols-3 gap-5 mt-10">
             {CATEGORIES.map((c, i) => {
               const heroImg = i === 0 ? IMG.rioSugar : i === 1 ? "/the-explorer.jpg" : "/paradise-found.jpg";
               const tint = c.color === "terra" ? "224,122,78" : c.color === "leaf" ? "31,74,47" : "45,90,138";
@@ -141,11 +141,11 @@ export default function HomePage() {
       </section>
 
       {/* Quiz CTA */}
-      <section id="quiz" className="relative scroll-mt-20 bg-leaf-d text-cream-50 overflow-hidden">
+      <section id="quiz" className="relative scroll-mt-16 bg-leaf-d text-cream-50 overflow-hidden">
         <div className="absolute inset-0 opacity-[.08]" style={{backgroundImage: "radial-gradient(circle at 1px 1px, #f8f1df 1px, transparent 0)", backgroundSize: "26px 26px"}}></div>
         <div className="absolute inset-x-0 top-0 h-px bg-cream-50/15"></div>
         <Container className="relative">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center py-20 md:py-28">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-10 items-center py-16 md:py-20">
             <div className="lg:col-span-5">
               <Badge variant="light" className="!bg-cream-50/15 !text-cream-50 backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold"></span> Quiz · 60 seconds
@@ -222,9 +222,9 @@ export default function HomePage() {
       </section>
 
       {/* Featured tours */}
-      <section id="tours" className="py-24">
+      <section id="tours" className="py-20">
         <Container>
-          <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
+          <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
             <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Each itinerary is fully tailor-made — these are just a place to begin."/>
             <Button variant="ghost" href="/tours">Explore Destinations <ArrowRight size={16}/></Button>
           </div>
@@ -253,10 +253,10 @@ export default function HomePage() {
 
 
       {/* ===== ARCHIVED FOR FUTURE USE — "What guests say" testimonials. Uncomment to restore. =====
-      <section className="py-24">
+      <section className="py-20">
         <Container>
           <SectionHead eyebrow="What guests say" title="The trips that stay with you." center/>
-          <div className="grid md:grid-cols-3 gap-5 mt-12">
+          <div className="grid md:grid-cols-3 gap-5 mt-10">
             {REVIEWS.map((r,i)=>(
               <div key={i} className="bg-paper border border-line rounded-2xl p-7 relative">
                 <div className="absolute left-6 top-5 font-serif text-[80px] leading-[.55] text-terra/40">&ldquo;</div>
@@ -271,7 +271,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-8">
             <div className="inline-flex items-center gap-2 text-muted text-[13px]">
               <div className="flex">{[0,0,0,0,0].map((_,i)=><Star key={i} size={14} className="text-gold fill-gold"/>)}</div>
               <strong className="text-ink">4.96 / 5</strong>
