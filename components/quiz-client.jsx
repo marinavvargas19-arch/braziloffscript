@@ -280,9 +280,12 @@ export default function QuizClient() {
 
       <QuizImagePanel
         image={s.image}
-        eyebrow="60-second quiz"
-        title="Discover your version of Brazil."
-        body="A real local expert will reply within 48 hours with a personalized proposal - no obligation."
+        eyebrow={s.type === "contact" ? "Plan your journey" : "60-second quiz"}
+        title={s.type === "contact" ? "Tell us about your trip." : "Discover your version of Brazil."}
+        body={s.type === "contact"
+          ? "Share your details and a real local expert will reply within 48 hours with a personalized proposal - no obligation."
+          : "A real local expert will reply within 48 hours with a personalized proposal - no obligation."
+        }
       />
 
       {/* Right form panel */}
