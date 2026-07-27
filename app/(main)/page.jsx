@@ -6,9 +6,22 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { NewsletterBand } from "@/components/layout/newsletter";
-import { IMG, CATEGORIES, TOURS, REVIEWS } from "@/lib/data";
+import { IMG, CATEGORIES, TOURS, REVIEWS, DESTINATIONS, DEST_TRIP } from "@/lib/data";
 
 export default function HomePage() {
+  const pantanal = DESTINATIONS.find(destination => destination.slug === "pantanal");
+  const featuredTours = [
+    TOURS.find(tour => tour.slug === "best-of-brazil-10-days"),
+    TOURS.find(tour => tour.slug === "women-who-explore"),
+    pantanal && {
+      ...pantanal,
+      title: pantanal.name,
+      days: DEST_TRIP.pantanal.days,
+      regions: DEST_TRIP.pantanal.regions,
+      tags: [],
+    },
+  ].filter(Boolean);
+
   return (
     <>
       {/* HERO */}
@@ -225,11 +238,11 @@ export default function HomePage() {
       <section id="tours" className="py-20">
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
-            <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Iconic Brazil and journeys designed especially for women — each itinerary is fully tailor-made."/>
+            <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Iconic Brazil, wild nature, and a journey designed especially for women — each itinerary is fully tailor-made."/>
             <Button variant="ghost" href="/tours">Explore Destinations <ArrowRight size={16}/></Button>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {TOURS.slice(0,3).map(t => {
+            {featuredTours.map(t => {
               const isWomensJourney = t.tags?.includes("Women-led");
               return (
                 <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
