@@ -5,7 +5,7 @@ import { Users, ArrowRight, Check } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
-import { IMG, SITE } from "@/lib/data";
+import { SITE } from "@/lib/data";
 
 function cn(...c) {
   return c.filter(Boolean).join(" ");
@@ -60,7 +60,12 @@ export default function BookingPanel({ tour }) {
     <div>
       <div className="rounded-t-2xl bg-gradient-to-br from-leaf-d to-leaf p-6 flex items-center gap-4 text-cream-50 relative overflow-hidden">
         <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-gold/20 blur-2xl" />
-        <Avatar src={IMG.helena} size={64} alt="Marina" className="border-[3px] border-cream-50/25 relative" />
+        <Avatar
+          src="/marina-vargas-contact.jpeg"
+          size={64}
+          alt="Marina Vargas"
+          className="border-[3px] border-cream-50/25 relative [background-size:220%] [background-position:50%_72%]"
+        />
         <div className="relative">
           <div className="text-[13px] opacity-90">Plan with your local expert</div>
           <div className="font-serif text-[26px] leading-none mt-1">Marina Vargas</div>
