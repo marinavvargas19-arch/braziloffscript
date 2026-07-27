@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { Avatar } from "@/components/ui/avatar";
-import { IMG, SITE } from "@/lib/data";
+import { SITE } from "@/lib/data";
 
 export default function ContactClient() {
   const [sent, setSent] = useState(false);
@@ -121,7 +121,12 @@ export default function ContactClient() {
 
             <div className="bg-paper border border-line rounded-2xl p-6 mt-5">
               <div className="flex items-center gap-3">
-                <Avatar src={IMG.helena} size={52}/>
+                <Avatar
+                  src="/marina-vargas-contact.jpeg"
+                  alt="Marina Vargas"
+                  size={52}
+                  className="[background-size:220%] [background-position:50%_72%]"
+                />
                 <div>
                   <div className="font-semibold text-ink">Marina Vargas</div>
                   <div className="text-[12.5px] text-muted">Lead destination expert · Espírito Santo</div>
