@@ -14,7 +14,7 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const d = DESTINATIONS.find((x) => x.slug === params.slug);
-  return { title: d ? d.name : "Destination" };
+  return { title: d ? d.name : "Destination", alternates: { canonical: `/destinations/${params.slug}`, languages: { en: `/destinations/${params.slug}`, "es-ES": `/es/destinations/${params.slug}` } } };
 }
 
 export default function DestinationPage({ params }) {

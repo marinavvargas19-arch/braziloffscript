@@ -6,9 +6,65 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { NewsletterBand } from "@/components/layout/newsletter";
-import { IMG, CATEGORIES, TOURS, REVIEWS, DESTINATIONS, DEST_TRIP } from "@/lib/data";
+import * as EN from "@/lib/data";
+import * as ES from "@/lib/data-es";
+import { localePath } from "@/lib/i18n";
 
-export default function HomePage() {
+const COPY = {
+  en: {
+    heroBadge: "Real Brazil, curated for you",
+    heroTitle: <>Brazil is more <br/>than a destination <br/>— it&apos;s a <em className="not-italic text-terra-l">feeling.</em></>,
+    heroBody: <>The warmth of the people, the spontaneity, the joy, the music, the flavors, the breathtaking natural beauty, the lifestyle, the emotional connection that make Brazil truly unique. <br/><span className="font-semibold">This is Brazil, off script.</span></>,
+    design: "Design your journey", exploreJourneys: "Explore our journeys",
+    protected: "Financially protected", sustainable: "Sustainable stays",
+    essence: "Our Essence", essenceTitle: <>The way we believe Brazil <em className="not-italic text-leaf">should be experienced.</em></>,
+    essenceBody: "We go beyond the obvious to connect you with the real Brazil — crafted with care, soul, and local perspective. Every journey is built around six commitments.",
+    commitments: [
+      ["Feel Brazil, not just visit", "We design experiences that leave you feeling Brazil — not just photographing it."],
+      ["Beyond the obvious", "We move past checklists. Every itinerary is intentionally curated to reveal a more authentic country."],
+      ["Real connections", "Meaningful local encounters and memorable stories over mass tourism. Always."],
+      ["Tailored for you", "Built around your interests, pace, travel style, and desired level of comfort — no templates."],
+      ["Curated by locals", "Itineraries are built from local knowledge, trusted connections, and real cultural immersion."],
+      ["Slow & meaningful", "We believe the best journeys are the ones that stay with you forever — not the ones that exhaust you."],
+    ],
+    journeysEyebrow: "Our Journeys", journeysTitle: "Three ways to experience Brazil", journeysSub: "Signature collections, thoughtfully curated to reveal different sides of the country.", discover: "Discover",
+    quizBadge: "Quiz · 60 seconds", quizTitle: <>Find the Brazil that <em className="not-italic text-gold">feels like you.</em></>,
+    quizBody: "A quick, intuitive quiz that turns your travel style into a curated starting point: where to go, what pace to choose, and which experiences are worth building the trip around.",
+    quizSteps: ["Choose your mood", "Reveal your match", "Start planning"], takeQuiz: "Take the Travel Quiz", browse: "Browse first", yourMatch: "Your match", matchTitle: "Bahia & the Northeast", matchBody: "Culture, warm coastlines, and a slower rhythm with local soul.", matchTags: ["Beach", "Wildlife", "Culture", "Slow travel"],
+    featured: "Featured Tours", featuredTitle: "Hand-picked starting points", featuredSub: "Iconic Brazil, wild nature, and a journey designed especially for women — each itinerary is fully tailor-made.", exploreDestinations: "Explore Destinations", days: "days", women: "Women’s Journey",
+  },
+  es: {
+    heroBadge: "Brasil auténtico, diseñado para ti",
+    heroTitle: <>Brasil es mucho más <br/>que un destino <br/>— es una <em className="not-italic text-terra-l">emoción.</em></>,
+    heroBody: <>La calidez de su gente, la espontaneidad, la alegría, la música, los sabores, una naturaleza que corta la respiración, su forma de vivir y esa conexión emocional que hace de Brasil un lugar único. <br/><span className="font-semibold">Así es Brasil, fuera de guion.</span></>,
+    design: "Diseña tu viaje", exploreJourneys: "Explora nuestros viajes",
+    protected: "Protección financiera", sustainable: "Alojamientos sostenibles",
+    essence: "Nuestra esencia", essenceTitle: <>Cómo creemos que <em className="not-italic text-leaf">debe vivirse Brasil.</em></>,
+    essenceBody: "Vamos más allá de lo evidente para conectarte con el Brasil real, con cuidado, alma y mirada local. Cada viaje nace de seis compromisos.",
+    commitments: [
+      ["Siente Brasil, no solo lo visites", "Diseñamos experiencias que te permiten sentir Brasil, no limitarte a fotografiarlo."],
+      ["Más allá de lo evidente", "Dejamos atrás las listas. Cada itinerario está pensado para descubrir un país más auténtico."],
+      ["Conexiones reales", "Encuentros locales con sentido e historias memorables, lejos del turismo de masas."],
+      ["Hecho a tu medida", "Adaptado a tus intereses, tu ritmo, tu estilo de viaje y el nivel de comodidad que buscas."],
+      ["Diseñado por personas locales", "Itinerarios creados con conocimiento local, contactos de confianza e inmersión cultural real."],
+      ["Sin prisas y con sentido", "Los mejores viajes son los que permanecen contigo, no los que te dejan agotado."],
+    ],
+    journeysEyebrow: "Nuestros viajes", journeysTitle: "Tres formas de vivir Brasil", journeysSub: "Colecciones diseñadas con mimo para revelar distintas caras del país.", discover: "Descubrir",
+    quizBadge: "Test · 60 segundos", quizTitle: <>Encuentra el Brasil que <em className="not-italic text-gold">encaja contigo.</em></>,
+    quizBody: "Un test rápido e intuitivo que transforma tu manera de viajar en un punto de partida: dónde ir, qué ritmo elegir y qué experiencias merecen formar parte del viaje.",
+    quizSteps: ["Elige tu estilo", "Descubre tu resultado", "Empieza a planificar"], takeQuiz: "Haz el test de viaje", browse: "Explorar primero", yourMatch: "Tu resultado", matchTitle: "Bahía y el Nordeste", matchBody: "Cultura, costas cálidas y un ritmo más pausado con alma local.", matchTags: ["Playa", "Fauna", "Cultura", "Viajar sin prisas"],
+    featured: "Viajes destacados", featuredTitle: "Puntos de partida seleccionados", featuredSub: "Iconos de Brasil, naturaleza salvaje y un viaje diseñado especialmente para mujeres; todos los itinerarios son completamente a medida.", exploreDestinations: "Explorar destinos", days: "días", women: "Viaje para mujeres",
+  },
+};
+
+export const metadata = {
+  alternates: { canonical: "/", languages: { en: "/", "es-ES": "/es" } },
+};
+
+export default function HomePage({ locale = "en" }) {
+  const { IMG, CATEGORIES, TOURS, REVIEWS, DESTINATIONS, DEST_TRIP } = locale === "es" ? ES : EN;
+  const copy = COPY[locale] || COPY.en;
+  const href = path => localePath(path, locale);
   const pantanal = DESTINATIONS.find(destination => destination.slug === "pantanal");
   const featuredTours = [
     TOURS.find(tour => tour.slug === "best-of-brazil-10-days"),
@@ -47,24 +103,24 @@ export default function HomePage() {
           <Container className="w-full py-10 sm:py-12 lg:py-12">
             <div className="max-w-[680px] text-cream-50" style={{textShadow: "0 2px 18px rgba(0,0,0,.45)"}}>
               <Badge variant="light" className="mb-4 sm:mb-5 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
-                <span className="w-1.5 h-1.5 rounded-full bg-terra"></span> Real Brazil, curated for you
+                <span className="w-1.5 h-1.5 rounded-full bg-terra"></span> {copy.heroBadge}
               </Badge>
               <h1
                 className="font-serif font-medium tracking-tight text-[clamp(40px,5.2vw,72px)]"
                 style={{lineHeight: 1.04, textShadow: "0 3px 24px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35)"}}
               >
-                Brazil is more <br/>than a destination <br/>— it&apos;s a <em className="not-italic text-terra-l">feeling.</em>
+                {copy.heroTitle}
               </h1>
               <p className="mt-5 sm:mt-6 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-cream-50">
-                The warmth of the people, the spontaneity, the joy, the music, the flavors, the breathtaking natural beauty, the lifestyle, the emotional connection that make Brazil truly unique. <br/><span className="font-semibold">This is Brazil, off script.</span>
+                {copy.heroBody}
               </p>
               <div className="mt-6 sm:mt-7 flex flex-wrap gap-3">
-                <Button href="/start" size="lg">Design your journey <ArrowRight size={16}/></Button>
-                <Button variant="ghostLight" size="lg" href="/journeys">Explore our journeys</Button>
+                <Button href={href("/start")} size="lg">{copy.design} <ArrowRight size={16}/></Button>
+                <Button variant="ghostLight" size="lg" href={href("/journeys")}>{copy.exploreJourneys}</Button>
               </div>
               <div className="mt-7 sm:mt-8 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
-                <div className="hidden sm:flex items-center gap-2"><Shield size={14}/> Financially protected</div>
-                <div className="hidden md:flex items-center gap-2"><Leaf size={14}/> Sustainable stays</div>
+                <div className="hidden sm:flex items-center gap-2"><Shield size={14}/> {copy.protected}</div>
+                <div className="hidden md:flex items-center gap-2"><Leaf size={14}/> {copy.sustainable}</div>
               </div>
             </div>
           </Container>
@@ -94,26 +150,19 @@ export default function HomePage() {
         <Container>
           <div className="grid md:grid-cols-12 gap-8 items-end mb-12">
             <div className="md:col-span-7">
-              <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-4">Our Essence</div>
+              <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-4">{copy.essence}</div>
               <h2 className="font-serif text-[clamp(34px,4.6vw,58px)] leading-[1.05] tracking-tight text-ink text-balance">
-                The way we believe Brazil <em className="not-italic text-leaf">should be experienced.</em>
+                {copy.essenceTitle}
               </h2>
             </div>
             <div className="md:col-span-5">
               <p className="text-[17px] leading-relaxed text-ink-soft max-w-xl">
-                We go beyond the obvious to connect you with the real Brazil — crafted with care, soul, and local perspective. Every journey is built around six commitments.
+                {copy.essenceBody}
               </p>
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {[
-              {n:"01", t:"Feel Brazil, not just visit", c:"terra", d:"We design experiences that leave you feeling Brazil — not just photographing it." },
-              {n:"02", t:"Beyond the obvious",          c:"leaf",  d:"We move past checklists. Every itinerary is intentionally curated to reveal a more authentic country." },
-              {n:"03", t:"Real connections",            c:"gold",  d:"Meaningful local encounters and memorable stories over mass tourism. Always." },
-              {n:"04", t:"Tailored for you",            c:"azul",  d:"Built around your interests, pace, travel style, and desired level of comfort — no templates." },
-              {n:"05", t:"Curated by locals",           c:"terra", d:"Itineraries are built from local knowledge, trusted connections, and real cultural immersion." },
-              {n:"06", t:"Slow & meaningful",           c:"leaf",  d:"We believe the best journeys are the ones that stay with you forever — not the ones that exhaust you." },
-            ].map((it)=>(
+            {copy.commitments.map(([t, d], index) => ({ n: String(index + 1).padStart(2, "0"), t, d, c: ["terra", "leaf", "gold", "azul", "terra", "leaf"][index] })).map((it)=>(
               <div key={it.n} className="bg-paper border border-line rounded-2xl p-7 flex gap-5 transition hover:shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)] hover:-translate-y-0.5">
                 <div className={`font-serif text-[44px] leading-none ${it.c==="terra"?"text-terra":it.c==="leaf"?"text-leaf":it.c==="gold"?"text-[#b88a3f]":"text-azul"}`}>{it.n}</div>
                 <div>
@@ -129,13 +178,13 @@ export default function HomePage() {
       {/* Three collections */}
       <section id="journeys" className="bg-paper py-20">
         <Container>
-          <SectionHead eyebrow="Our Journeys" title="Three ways to experience Brazil" sub="Signature collections, thoughtfully curated to reveal different sides of the country." center/>
+          <SectionHead eyebrow={copy.journeysEyebrow} title={copy.journeysTitle} sub={copy.journeysSub} center/>
           <div className="grid md:grid-cols-3 gap-5 mt-10">
             {CATEGORIES.map((c, i) => {
               const heroImg = i === 0 ? IMG.rioSugar : i === 1 ? "/the-explorer.jpg" : "/paradise-found.jpg";
               const tint = c.color === "terra" ? "224,122,78" : c.color === "leaf" ? "31,74,47" : "45,90,138";
               return (
-                <Link key={c.slug} href={`/journeys/${c.slug}`} className="group relative rounded-2xl overflow-hidden block" style={{aspectRatio: "3/4"}}>
+                <Link key={c.slug} href={href(`/journeys/${c.slug}`)} className="group relative rounded-2xl overflow-hidden block" style={{aspectRatio: "3/4"}}>
                   <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-[1.06]"/>
                   {/* Soft brand-color tint, stronger near the bottom but never hiding the image */}
                   <div className="absolute inset-0" style={{background: `linear-gradient(to top, rgba(${tint},.5) 0%, rgba(${tint},.22) 55%, rgba(${tint},.08) 100%)`}}></div>
@@ -144,7 +193,7 @@ export default function HomePage() {
                   <div className="absolute inset-0 p-7 flex flex-col justify-end text-cream-50" style={{textShadow: "0 2px 14px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.55)"}}>
                     <div className="font-serif text-[32px] leading-tight">{c.name}</div>
                     <p className="mt-2 text-[14.5px] leading-relaxed text-cream-50 max-w-xs">{c.tagline}</p>
-                    <div className="mt-5 inline-flex items-center gap-2 text-[13.5px] font-semibold">Discover <ArrowRight size={16} className="transition group-hover:translate-x-1"/></div>
+                    <div className="mt-5 inline-flex items-center gap-2 text-[13.5px] font-semibold">{copy.discover} <ArrowRight size={16} className="transition group-hover:translate-x-1"/></div>
                   </div>
                 </Link>
               );
@@ -161,21 +210,17 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-10 items-center py-16 md:py-20">
             <div className="lg:col-span-5">
               <Badge variant="light" className="!bg-cream-50/15 !text-cream-50 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold"></span> Quiz · 60 seconds
+                <span className="w-1.5 h-1.5 rounded-full bg-gold"></span> {copy.quizBadge}
               </Badge>
               <h2 className="font-serif text-[clamp(38px,5vw,66px)] leading-[1.05] mt-6 text-balance">
-                Find the Brazil that <em className="not-italic text-gold">feels like you.</em>
+                {copy.quizTitle}
               </h2>
               <p className="mt-6 text-cream-50/84 text-[17px] md:text-[18px] leading-relaxed max-w-xl">
-                A quick, intuitive quiz that turns your travel style into a curated starting point: where to go, what pace to choose, and which experiences are worth building the trip around.
+                {copy.quizBody}
               </p>
 
               <div className="mt-7 grid grid-cols-3 gap-3 max-w-xl">
-                {[
-                  ["01", "Choose your mood"],
-                  ["02", "Reveal your match"],
-                  ["03", "Start planning"],
-                ].map(([n, t]) => (
+                {copy.quizSteps.map((t, index) => [String(index + 1).padStart(2, "0"), t]).map(([n, t]) => (
                   <div key={n} className="border border-cream-50/15 bg-cream-50/[.06] rounded-xl px-4 py-3">
                     <div className="font-serif text-[26px] leading-none text-gold">{n}</div>
                     <div className="mt-1 text-[12.5px] leading-snug text-cream-50/82">{t}</div>
@@ -184,8 +229,8 @@ export default function HomePage() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/quiz-discovery" size="lg">Take the Travel Quiz <Sparkles size={16}/></Button>
-                <Button href="/tours" variant="ghostLight" size="lg">Browse first</Button>
+                <Button href={href("/quiz-discovery")} size="lg">{copy.takeQuiz} <Sparkles size={16}/></Button>
+                <Button href={href("/tours")} variant="ghostLight" size="lg">{copy.browse}</Button>
               </div>
             </div>
 
@@ -215,16 +260,16 @@ export default function HomePage() {
 
                   <div className="col-span-2 flex flex-col justify-center rounded-2xl border border-cream-50/30 p-5 text-ink shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] sm:col-start-3 sm:row-start-4" style={{background: "rgba(248,241,223,.97)"}}>
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">Your match</span>
+                      <span className="text-[10px] tracking-[.18em] uppercase font-bold text-terra">{copy.yourMatch}</span>
                       <Star size={15} className="text-gold fill-gold"/>
                     </div>
-                    <div className="mt-3 font-serif text-[25px] leading-none text-leaf-d md:text-[27px]">Bahia & the Northeast</div>
-                    <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">Culture, warm coastlines, and a slower rhythm with local soul.</p>
+                    <div className="mt-3 font-serif text-[25px] leading-none text-leaf-d md:text-[27px]">{copy.matchTitle}</div>
+                    <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">{copy.matchBody}</p>
                   </div>
                 </div>
 
                 <div className="absolute left-4 top-4 z-20 hidden max-w-[300px] flex-wrap gap-2 md:flex">
-                  {["Beach", "Wildlife", "Culture", "Slow travel"].map((x) => (
+                  {copy.matchTags.map((x) => (
                     <span key={x} className="rounded-full bg-ink/76 px-3 py-1.5 text-[12px] font-bold text-cream-50 shadow-[0_14px_30px_-22px_rgba(0,0,0,.9)] ring-1 ring-cream-50/15 backdrop-blur-sm">{x}</span>
                   ))}
                 </div>
@@ -238,20 +283,20 @@ export default function HomePage() {
       <section id="tours" className="py-20">
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
-            <SectionHead eyebrow="Featured Tours" title="Hand-picked starting points" sub="Iconic Brazil, wild nature, and a journey designed especially for women — each itinerary is fully tailor-made."/>
-            <Button variant="ghost" href="/tours">Explore Destinations <ArrowRight size={16}/></Button>
+            <SectionHead eyebrow={copy.featured} title={copy.featuredTitle} sub={copy.featuredSub}/>
+            <Button variant="ghost" href={href("/tours")}>{copy.exploreDestinations} <ArrowRight size={16}/></Button>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {featuredTours.map(t => {
-              const isWomensJourney = t.tags?.includes("Women-led");
+              const isWomensJourney = t.slug === "women-who-explore";
               return (
-                <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
+                <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group h-full">
                   <Card className="h-full flex flex-col">
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <img src={t.img} alt="" className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.05]"/>
                       <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                        <Badge variant="inkSolid">{t.days} days</Badge>
-                        {isWomensJourney && <Badge variant="terraSolid">Women&apos;s Journey</Badge>}
+                        <Badge variant="inkSolid">{t.days} {copy.days}</Badge>
+                        {isWomensJourney && <Badge variant="terraSolid">{copy.women}</Badge>}
                       </div>
                     </div>
                     <div className="p-6 flex flex-col flex-1">
@@ -259,7 +304,7 @@ export default function HomePage() {
                       <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{t.title}</h3>
                       <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{t.blurb}</p>
                       <div className="mt-auto pt-5 flex items-center justify-end">
-                        <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">Discover <ArrowRight size={16}/></span>
+                        <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">{copy.discover} <ArrowRight size={16}/></span>
                       </div>
                     </div>
                   </Card>
@@ -301,7 +346,7 @@ export default function HomePage() {
       </section>
       ===== END ARCHIVED ===== */}
 
-      <NewsletterBand/>
+      <NewsletterBand locale={locale}/>
     </>
   );
 }

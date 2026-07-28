@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/data";
 import { Sparkles, Users, Compass, Heart, Shield, Phone, ArrowRight } from "lucide-react";
 
-export const metadata = { title: "About us — Brazil Off Script" };
+export const metadata = { title: "About us — Brazil Off Script", alternates: { canonical: "/about", languages: { en: "/about", "es-ES": "/es/about" } } };
 
 const HOW_STEPS = [
   { n: "01", t: "Tell us your dream",      d: "Take our 60-second quiz, or send us a note. We'll learn about your style, pace, and what kind of Brazil you're imagining.",                                                     icon: Sparkles },

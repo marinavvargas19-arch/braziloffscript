@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, MapPin, Sparkles } from "lucide-react";
 import { IMG, SITE } from "@/lib/data";
 
-export const metadata = { title: "Start your journey — Brazil Off Script" };
+export const metadata = { title: "Start your journey — Brazil Off Script", alternates: { canonical: "/start", languages: { en: "/start", "es-ES": "/es/start" } } };
 
 export default function StartPage() {
   return (

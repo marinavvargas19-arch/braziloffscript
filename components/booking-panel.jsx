@@ -6,14 +6,18 @@ import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { SITE } from "@/lib/data";
+import { localePath } from "@/lib/i18n";
 
 function cn(...c) {
   return c.filter(Boolean).join(" ");
 }
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_ES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
-export default function BookingPanel({ tour }) {
+export default function BookingPanel({ tour, locale = "en" }) {
+  const es = locale === "es";
+  const months = es ? MONTHS_ES : MONTHS;
   const [sent, setSent] = useState(false);
   const [month, setMonth] = useState(null);
   const [flexible, setFlexible] = useState(false);
@@ -41,7 +45,7 @@ export default function BookingPanel({ tour }) {
 
     if (month === null && !flexible) {
       setErrors({
-        month: "Please select an ideal month or choose flexible.",
+        month: es ? "Selecciona un mes ideal o indica que tus fechas son flexibles." : "Please select an ideal month or choose flexible.",
       });
 
       monthRef.current?.scrollIntoView({
@@ -67,9 +71,9 @@ export default function BookingPanel({ tour }) {
           className="border-[3px] border-cream-50/25 relative [background-size:220%] [background-position:50%_72%]"
         />
         <div className="relative">
-          <div className="text-[13px] opacity-90">Plan with your local expert</div>
+          <div className="text-[13px] opacity-90">{es ? "Planifica con tu experta local" : "Plan with your local expert"}</div>
           <div className="font-serif text-[26px] leading-none mt-1">Marina Vargas</div>
-          <div className="text-[12px] opacity-80 mt-1">Local Expert & Trip Designer</div>
+          <div className="text-[12px] opacity-80 mt-1">{es ? "Experta local y diseñadora de viajes" : "Local Expert & Trip Designer"}</div>
         </div>
       </div>
 
@@ -78,7 +82,7 @@ export default function BookingPanel({ tour }) {
         className="bg-paper border border-line border-t-0 rounded-b-2xl p-6 shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)]"
       >
         <div className="font-serif text-[24px] text-ink pb-4 border-b border-line">
-          Start Planning Your Journey
+          {es ? "Empieza a planificar tu viaje" : "Start Planning Your Journey"}
         </div>
 
         {sent ? (
@@ -86,12 +90,12 @@ export default function BookingPanel({ tour }) {
             <div className="w-12 h-12 rounded-full bg-leaf text-cream-50 flex items-center justify-center mb-4">
               <Check size={20} />
             </div>
-            <h4 className="font-serif text-[22px] text-ink leading-tight">Request received.</h4>
+            <h4 className="font-serif text-[22px] text-ink leading-tight">{es ? "Solicitud recibida." : "Request received."}</h4>
             <p className="mt-2 text-[14.5px] text-ink-soft">
-              Marina will be in touch within 48 hours with a personalized proposal.
+              {es ? "Marina se pondrá en contacto contigo en un máximo de 48 horas con una propuesta personalizada." : "Marina will be in touch within 48 hours with a personalized proposal."}
             </p>
-            <Button variant="ghost" href="/journeys" className="mt-5 w-full justify-center">
-              Keep exploring
+            <Button variant="ghost" href={localePath("/journeys", locale)} className="mt-5 w-full justify-center">
+              {es ? "Seguir explorando" : "Keep exploring"}
             </Button>
           </div>
         ) : (
@@ -103,11 +107,11 @@ export default function BookingPanel({ tour }) {
                 errors.month ? "text-red-600" : "text-muted"
               )}
             >
-              Ideal month *
+              {es ? "Mes ideal" : "Ideal month"} *
             </label>
 
             <div className="grid grid-cols-4 gap-1.5 mb-2">
-              {MONTHS.map((m, i) => (
+              {months.map((m, i) => (
                 <button
                   key={m}
                   type="button"
@@ -138,7 +142,7 @@ export default function BookingPanel({ tour }) {
                   : "border-line text-muted hover:border-terra hover:text-terra-d"
               )}
             >
-              {flexible ? "✓ I'm flexible — no fixed date yet" : "I don't have a date yet"}
+              {flexible ? (es ? "✓ Tengo flexibilidad: aún no hay una fecha fija" : "✓ I'm flexible — no fixed date yet") : (es ? "Todavía no tengo fecha" : "I don't have a date yet")}
             </button>
 
             {errors.month && (
@@ -148,7 +152,7 @@ export default function BookingPanel({ tour }) {
             )}
 
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
-              Travelers
+              {es ? "Viajeros" : "Travelers"}
             </label>
             <Field icon={<Users size={16} />}>
               <select
@@ -156,24 +160,24 @@ export default function BookingPanel({ tour }) {
                 onChange={(e) => setTravelers(e.target.value)}
                 className={inputCls + " appearance-none"}
               >
-                <option value="1">1 Traveler</option>
-                <option value="2">2 Travelers</option>
-                <option value="3">3 Travelers</option>
-                <option value="4">4 Travelers</option>
-                <option value="5">5+ Travelers</option>
+                <option value="1">1 {es ? "viajero" : "Traveler"}</option>
+                <option value="2">2 {es ? "viajeros" : "Travelers"}</option>
+                <option value="3">3 {es ? "viajeros" : "Travelers"}</option>
+                <option value="4">4 {es ? "viajeros" : "Travelers"}</option>
+                <option value="5">5+ {es ? "viajeros" : "Travelers"}</option>
               </select>
             </Field>
 
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
-              Trip length
+              {es ? "Duración del viaje" : "Trip length"}
             </label>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { v: "7-10", l: "7–10 days" },
-                { v: "10-14", l: "10–14 days" },
-                { v: "14-18", l: "14–18 days" },
-                { v: "18+", l: "18+ days" },
-                { v: "not-sure", l: "Not sure yet" },
+                { v: "7-10", l: `7–10 ${es ? "días" : "days"}` },
+                { v: "10-14", l: `10–14 ${es ? "días" : "days"}` },
+                { v: "14-18", l: `14–18 ${es ? "días" : "days"}` },
+                { v: "18+", l: `18+ ${es ? "días" : "days"}` },
+                { v: "not-sure", l: es ? "Aún no lo sé" : "Not sure yet" },
               ].map((o) => (
                 <button
                   type="button"
@@ -192,14 +196,14 @@ export default function BookingPanel({ tour }) {
             </div>
 
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
-              Comfort level
+              {es ? "Nivel de comodidad" : "Comfort level"}
             </label>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { v: "comfort", l: "Comfort" },
+                { v: "comfort", l: es ? "Confort" : "Comfort" },
                 { v: "premium", l: "Premium" },
-                { v: "luxury", l: "Luxury" },
-                { v: "mix", l: "A mix of both" },
+                { v: "luxury", l: es ? "Lujo" : "Luxury" },
+                { v: "mix", l: es ? "Una combinación" : "A mix of both" },
               ].map((o) => (
                 <button
                   type="button"
@@ -218,24 +222,24 @@ export default function BookingPanel({ tour }) {
             </div>
 
             <Button type="submit" className="w-full justify-center mt-5">
-              Request this trip <ArrowRight size={16} />
+              {es ? "Solicitar este viaje" : "Request this trip"} <ArrowRight size={16} />
             </Button>
 
             <a
-              href={`https://wa.me/${SITE.whatsapp}?text=Hi,%20I%20want%20to%20plan%20a%20Brazil%20trip`}
+              href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(es ? "Hola, quiero planificar un viaje a Brasil" : "Hi, I want to plan a Brazil trip")}`}
               target="_blank"
               rel="noreferrer"
               className="w-full justify-center mt-3 inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold py-3 transition"
             >
-              Or chat on WhatsApp
+              {es ? "O escríbenos por WhatsApp" : "Or chat on WhatsApp"}
             </a>
 
             <p className="mt-4 text-[12px] text-muted text-center leading-relaxed">
-              Tailor-made journeys · Reply within 48 hours · Designed by local experts
+              {es ? "Viajes a medida · Respuesta en 48 horas · Diseñados por expertas locales" : "Tailor-made journeys · Reply within 48 hours · Designed by local experts"}
             </p>
 
             <div className="mt-5 pt-5 border-t border-line flex justify-between gap-3 text-[12px] text-muted">
-              {["100% tailor-made", "Local experts", "Financially protected"].map((x) => (
+              {(es ? ["100 % a medida", "Expertas locales", "Protección financiera"] : ["100% tailor-made", "Local experts", "Financially protected"]).map((x) => (
                 <span key={x} className="flex items-center gap-1.5">
                   <Check size={14} className="text-leaf" />
                   {x}

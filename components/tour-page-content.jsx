@@ -4,13 +4,18 @@ import Link from "next/link";
 import { Clock, Users, Leaf, Shield, Check } from "lucide-react";
 import { Container, SectionHead } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { TOURS } from "@/lib/data";
+import * as EN from "@/lib/data";
+import * as ES from "@/lib/data-es";
+import { localePath } from "@/lib/i18n";
 import BookingPanel from "@/components/booking-panel";
 import ItineraryAccordion from "@/components/itinerary-accordion";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
-export default function TourPageContent({ tour, cat, dayPlanBase }) {
+export default function TourPageContent({ tour, cat, dayPlanBase, locale = "en" }) {
+  const { TOURS } = locale === "es" ? ES : EN;
+  const es = locale === "es";
+  const href = path => localePath(path, locale);
   const [vIdx, setVIdx] = useState(0);
 
   // If this tour has duration variants (e.g. Bahia 10 vs 15 days)
@@ -38,16 +43,16 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
             <p className="mt-2 font-serif italic text-[clamp(21px,2.4vw,28px)] text-leaf">{view.tagline}</p>
           )}
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-ink-soft">
-            <span className="flex items-center gap-2"><Clock size={16}/> {view.days} days</span>
-            <span className="flex items-center gap-2"><Users size={16}/> Private trip</span>
-            <span className="flex items-center gap-2"><Leaf size={16}/> Sustainable stays</span>
-            <span className="flex items-center gap-2"><Shield size={16}/> Financially protected</span>
+            <span className="flex items-center gap-2"><Clock size={16}/> {view.days} {es ? "días" : "days"}</span>
+            <span className="flex items-center gap-2"><Users size={16}/> {es ? "Viaje privado" : "Private trip"}</span>
+            <span className="flex items-center gap-2"><Leaf size={16}/> {es ? "Alojamientos sostenibles" : "Sustainable stays"}</span>
+            <span className="flex items-center gap-2"><Shield size={16}/> {es ? "Protección financiera" : "Financially protected"}</span>
           </div>
 
           {/* Journey variant selector */}
           {tour.variants && (
             <div className="mt-7 bg-paper border border-line rounded-2xl p-5">
-              <div className="text-[11px] tracking-[.16em] uppercase text-muted font-bold mb-3">{tour.selectorLabel || "Choose your pace"}</div>
+              <div className="text-[11px] tracking-[.16em] uppercase text-muted font-bold mb-3">{tour.selectorLabel || (es ? "Elige tu ritmo" : "Choose your pace")}</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {tour.variants.map((v, i) => (
                   <button
@@ -82,7 +87,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
             {view.intro ? (
               view.intro
             ) : (
-              <><strong className="text-ink">Discover the heart of Brazil</strong> on a journey that blends urban energy with serene escapes. This immersive trip invites you to explore iconic regions, diving deep into the local culture and meeting the people who make this country so fascinating. Between <strong className="text-ink">sustainable stays and guided excursions through lush nature</strong>, you will gain a genuine perspective on Brazil&apos;s many layers.</>
+              es ? <><strong className="text-ink">Descubre el corazón de Brasil</strong> en un viaje que combina energía urbana y escapadas serenas. Explora regiones emblemáticas, sumérgete en la cultura local y conoce a las personas que hacen de este país un lugar fascinante. Entre <strong className="text-ink">alojamientos sostenibles y excursiones guiadas por una naturaleza exuberante</strong>, descubrirás las muchas capas de Brasil.</> : <><strong className="text-ink">Discover the heart of Brazil</strong> on a journey that blends urban energy with serene escapes. This immersive trip invites you to explore iconic regions, diving deep into the local culture and meeting the people who make this country so fascinating. Between <strong className="text-ink">sustainable stays and guided excursions through lush nature</strong>, you will gain a genuine perspective on Brazil&apos;s many layers.</>
             )}
           </p>
         </div>
@@ -90,10 +95,10 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         {/* Stats strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 mt-8 border border-line bg-paper rounded-2xl overflow-hidden">
           {[
-            { k: view.days,                                     v: "days" },
-            { k: "Balanced",                                    v: "pace" },
-            { k: staysLabel,                                    v: "stays", compact: true },
-            { k: "May–Oct",                                     v: "best season" },
+            { k: view.days,                                     v: es ? "días" : "days" },
+            { k: es ? "Equilibrado" : "Balanced",             v: es ? "ritmo" : "pace" },
+            { k: staysLabel,                                    v: es ? "estancias" : "stays", compact: true },
+            { k: es ? "May–Oct" : "May–Oct",                  v: es ? "mejor época" : "best season" },
           ].map((s, i) => (
             <div key={i} className={[
               "p-5 border-line",
@@ -113,26 +118,33 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
         {/* Day by day accordion */}
         <div className="mt-12">
           <SectionHead
-            eyebrow="Day by day"
-            title="The shape of your days."
-            sub="Tap any day to open the details — every detail is fully customizable."
+            eyebrow={es ? "Día a día" : "Day by day"}
+            title={es ? "Así serán tus días." : "The shape of your days."}
+            sub={es ? "Abre cualquier día para ver los detalles. Todo es completamente personalizable." : "Tap any day to open the details — every detail is fully customizable."}
           />
-          <ItineraryAccordion days={dayPlan}/>
+          <ItineraryAccordion days={dayPlan} locale={locale}/>
         </div>
 
         {/* Included / not included */}
         <div className="mt-12 grid md:grid-cols-2 gap-5">
           <div className="bg-paper border border-line rounded-2xl p-7">
-            <h3 className="font-serif text-[22px] text-ink mb-4">Included</h3>
+            <h3 className="font-serif text-[22px] text-ink mb-4">{es ? "Incluido" : "Included"}</h3>
             <ul className="space-y-2.5 text-[14.5px] text-ink-soft">
-              {[
+              {(es ? [
+                "Todos los traslados privados y vuelos domésticos dentro de Brasil",
+                "Alojamiento boutique o ecolujo seleccionado",
+                "Guías locales privados para todas las excursiones",
+                "Asistencia local 24 horas durante el viaje",
+                "Desayuno diario",
+                "Experiencias seleccionadas y reservadas con antelación",
+              ] : [
                 "All private transfers and domestic flights within Brazil",
                 "Hand-picked boutique or eco-luxury accommodation",
                 "Private local guides for every excursion",
                 "24/7 in-country support during your trip",
                 "Daily breakfast",
                 "Curated experiences booked in advance",
-              ].map(x => (
+              ]).map(x => (
                 <li key={x} className="flex gap-3">
                   <span className="text-leaf mt-0.5"><Check size={16}/></span>
                   <span>{x}</span>
@@ -141,15 +153,21 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
             </ul>
           </div>
           <div className="bg-paper border border-line rounded-2xl p-7">
-            <h3 className="font-serif text-[22px] text-ink mb-4">Not included</h3>
+            <h3 className="font-serif text-[22px] text-ink mb-4">{es ? "No incluido" : "Not included"}</h3>
             <ul className="space-y-2.5 text-[14.5px] text-ink-soft">
-              {[
+              {(es ? [
+                "Vuelos internacionales a Brasil y desde Brasil",
+                "Seguro de viaje (te recomendaremos proveedores de confianza)",
+                "Gastos personales y propinas",
+                "Comidas no indicadas expresamente",
+                "Experiencias opcionales adicionales",
+              ] : [
                 "International flights to / from Brazil",
                 "Travel insurance (we'll recommend trusted providers)",
                 "Personal expenses & gratuities",
                 "Meals not specifically listed",
                 "Optional add-on experiences",
-              ].map(x => (
+              ]).map(x => (
                 <li key={x} className="flex gap-3">
                   <span className="text-muted mt-0.5">×</span>
                   <span>{x}</span>
@@ -161,16 +179,16 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
 
         {/* Related journeys */}
         <div className="mt-12">
-          <SectionHead eyebrow="You might also love" title="Related journeys."/>
+          <SectionHead eyebrow={es ? "También te pueden gustar" : "You might also love"} title={es ? "Viajes relacionados." : "Related journeys."}/>
           <div className="grid md:grid-cols-3 gap-5 mt-8">
             {TOURS.filter(x => x.slug !== tour.slug).slice(0, 3).map(t => (
-              <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
+              <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group h-full">
                 <Card className="h-full flex flex-col">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={t.img} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt=""/>
                   </div>
                   <div className="p-5 flex-1">
-                    <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{t.days} days</div>
+                    <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{t.days} {es ? "días" : "days"}</div>
                     <h4 className="font-serif text-[19px] mt-1.5 text-ink">{t.title}</h4>
                   </div>
                 </Card>
@@ -183,7 +201,7 @@ export default function TourPageContent({ tour, cat, dayPlanBase }) {
       {/* Booking panel */}
       <aside className="lg:col-span-4">
         <div className="lg:sticky lg:top-24">
-          <BookingPanel tour={view}/>
+          <BookingPanel tour={view} locale={locale}/>
         </div>
       </aside>
     </Container>

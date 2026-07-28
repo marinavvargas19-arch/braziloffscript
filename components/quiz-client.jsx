@@ -7,7 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
-import { DISCO_DESTINATIONS, DISCO_QUESTIONS, QUIZ_STEPS, TOURS, SITE, DESTINATIONS, DEST_TRIP } from "@/lib/data";
+import * as EN from "@/lib/data";
+import * as ES from "@/lib/data-es";
+import { localePath } from "@/lib/i18n";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
@@ -28,7 +30,9 @@ const JOURNEY_GALLERY = [
   { src: "/iguazu-falls.jpg", label: "Iguazu falls" },
 ];
 
-const QUIZ_RESULT_JOURNEYS = [
+function quizResultJourneys(data) {
+  const { DESTINATIONS, DEST_TRIP, TOURS } = data;
+  return [
   ...DESTINATIONS.map(destination => {
     const trip = DEST_TRIP[destination.slug] || {};
     return {
@@ -43,6 +47,7 @@ const QUIZ_RESULT_JOURNEYS = [
   }),
   TOURS.find(tour => tour.slug === "best-of-brazil-10-days"),
 ].filter(Boolean);
+}
 
 function optionLabels(step, value) {
   if (!step?.options) return value || "—";
@@ -52,8 +57,8 @@ function optionLabels(step, value) {
     .join(", ");
 }
 
-function buildQuizSummary(answers, extra) {
-  return QUIZ_STEPS
+function buildQuizSummary(answers, extra, steps) {
+  return steps
     .filter(step => step.type !== "contact")
     .map(step => ({
       question: step.title,
@@ -62,7 +67,8 @@ function buildQuizSummary(answers, extra) {
     }));
 }
 
-function buildDiscoveryProfile(saved) {
+function buildDiscoveryProfile(saved, data) {
+  const { DISCO_DESTINATIONS, DISCO_QUESTIONS } = data;
   if (!saved?.answers || !saved.done) return null;
 
   const totals = {};
@@ -91,7 +97,12 @@ function buildDiscoveryProfile(saved) {
   };
 }
 
-export default function QuizClient() {
+export default function QuizClient({ locale = "en" }) {
+  const data = locale === "es" ? ES : EN;
+  const { QUIZ_STEPS, SITE } = data;
+  const resultJourneys = useMemo(() => quizResultJourneys(data), [data]);
+  const es = locale === "es";
+  const href = path => localePath(path, locale);
   const [step, setStep]     = useState(0);
   const [answers, setAnswers] = useState({});
   const [extra, setExtra]   = useState({});
@@ -107,9 +118,9 @@ export default function QuizClient() {
     try {
       const raw = localStorage.getItem(DISCOVERY_LS_KEY);
       if (!raw) return;
-      setDiscoveryProfile(buildDiscoveryProfile(JSON.parse(raw)));
+      setDiscoveryProfile(buildDiscoveryProfile(JSON.parse(raw), data));
     } catch (e) {}
-  }, []);
+  }, [data]);
 
   const canContinue = useMemo(() => {
     if (s.type === "contact") {
@@ -150,7 +161,7 @@ export default function QuizClient() {
       contactMethod: CONTACT_METHOD_LABELS[contact.contactMethod] || contact.contactMethod,
       note: contact.note,
       discoveryProfile,
-      quizAnswers: buildQuizSummary(answers, extra),
+      quizAnswers: buildQuizSummary(answers, extra, QUIZ_STEPS),
       matchedTours: matched.map(t => ({
         title: t.title,
         regions: t.regions,
@@ -170,7 +181,7 @@ export default function QuizClient() {
       if (!json.ok) throw new Error(json.error || "Could not send quiz request");
       setDone(true);
     } catch (err) {
-      setSubmitError("We couldn't send your quiz yet. Please try again or email hello@braziloffscript.com.");
+      setSubmitError(es ? "No hemos podido enviar el formulario. Inténtalo de nuevo o escribe a hello@braziloffscript.com." : "We couldn't send your quiz yet. Please try again or email hello@braziloffscript.com.");
     } finally {
       setSubmitting(false);
     }
@@ -182,7 +193,7 @@ export default function QuizClient() {
     const dur     = answers.duration;
     const regionWords = { rio:"rio", bahia:"bahia", pantanal:"pantanal bonito", foz:"iguaçu iguacu foz", south:"south florianópolis porto", central:"chapada jalapão", amazon:"amazon manaus", noronha:"noronha", lencois:"lençóis lencois maranhenses jericoacoara dunes" };
     const styleWords  = { culture:"culture history", food:"food wine", nature:"wildlife nature", beach:"beach island", adventure:"adventure off-road hiking", slow:"slow", city:"city", family:"family" };
-    return QUIZ_RESULT_JOURNEYS.map(t => {
+    return resultJourneys.map(t => {
       let score = 0;
       const text = (t.title + " " + t.regions.join(" ") + " " + t.tags.join(" ") + " " + t.blurb).toLowerCase();
       regions.forEach(r  => { if (regionWords[r]  && regionWords[r].split(" ").some(w  => text.includes(w)))  score += 3; });
@@ -194,7 +205,7 @@ export default function QuizClient() {
       if (dur === "long"  && t.days >= 12)           score += 1;
       return { ...t, _score: score };
     }).sort((a, b) => b._score - a._score).slice(0, 3);
-  }, [answers, done, discoveryProfile]);
+  }, [answers, done, discoveryProfile, resultJourneys]);
 
   /* ── SUCCESS SCREEN ─────────────────────────────────────────── */
   if (done) {
@@ -203,10 +214,11 @@ export default function QuizClient() {
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         <QuizImagePanel
+          locale={locale}
           image="/quiz-success.jpg"
-          eyebrow="Quiz complete"
-          title="Your journey is taking shape."
-          body="We've matched your answers to the journeys our travelers love most - and a real expert will take it from here."
+          eyebrow={es ? "Formulario completado" : "Quiz complete"}
+          title={es ? "Tu viaje empieza a tomar forma." : "Your journey is taking shape."}
+          body={es ? "Hemos relacionado tus respuestas con nuestros viajes más apreciados. A partir de aquí, una experta real se ocupará de todo." : "We've matched your answers to the journeys our travelers love most - and a real expert will take it from here."}
         />
 
         {/* Right content panel */}
@@ -217,20 +229,24 @@ export default function QuizClient() {
               <div className="w-16 h-16 rounded-full bg-leaf text-cream-50 flex items-center justify-center mb-6">
                 <Check size={28}/>
               </div>
-              <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">Your match is on the way</div>
+              <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">{es ? "Tu propuesta está en camino" : "Your match is on the way"}</div>
               <h1 className="font-serif text-[clamp(30px,3.6vw,46px)] leading-[1.1] text-ink text-balance">
-                Thanks{contact.name ? `, ${contact.name.split(" ")[0]}` : ""} — we&apos;ve got everything we need.
+                {es ? `Gracias${contact.name ? `, ${contact.name.split(" ")[0]}` : ""}. Ya tenemos todo lo necesario.` : <>Thanks{contact.name ? `, ${contact.name.split(" ")[0]}` : ""} — we&apos;ve got everything we need.</>}
               </h1>
               <p className="mt-5 text-ink-soft text-[16.5px] leading-relaxed">
-                One of our destination experts will reach out within 48 hours with a personalized proposal{contact.email ? ` at ${contact.email}` : ""}. No obligation, no sales calls.
+                {es ? `Una de nuestras expertas en destinos se pondrá en contacto contigo en un máximo de 48 horas con una propuesta personalizada${contact.email ? ` en ${contact.email}` : ""}. Sin compromiso ni llamadas comerciales.` : <>One of our destination experts will reach out within 48 hours with a personalized proposal{contact.email ? ` at ${contact.email}` : ""}. No obligation, no sales calls.</>}
               </p>
 
               <div className="mt-8 grid sm:grid-cols-3 gap-3">
-                {[
+                {(es ? [
+                  { n:"01", t:"Revisamos personalmente tus respuestas" },
+                  { n:"02", t:"Preparamos una propuesta a medida" },
+                  { n:"03", t:"Te respondemos en un máximo de 48 horas" },
+                ] : [
                   { n:"01", t:"We review your answers by hand" },
                   { n:"02", t:"We craft a tailored proposal" },
                   { n:"03", t:"You hear from us within 48 hours" },
-                ].map(it => (
+                ]).map(it => (
                   <div key={it.n} className="rounded-xl border border-line bg-paper p-4">
                     <div className="font-serif text-[22px] text-leaf-d">{it.n}</div>
                     <p className="mt-1.5 text-[13.5px] text-ink-soft leading-snug">{it.t}</p>
@@ -239,24 +255,24 @@ export default function QuizClient() {
               </div>
 
               <div className="mt-10 pt-10 border-t border-line">
-                <h3 className="font-serif text-[24px] text-ink leading-tight">Journeys aligned with your answers</h3>
-                <p className="mt-2 text-[14.5px] text-ink-soft">A preview while you wait — your expert may suggest others.</p>
+                <h3 className="font-serif text-[24px] text-ink leading-tight">{es ? "Viajes que encajan con tus respuestas" : "Journeys aligned with your answers"}</h3>
+                <p className="mt-2 text-[14.5px] text-ink-soft">{es ? "Una primera selección mientras esperas; tu experta puede recomendarte otras opciones." : "A preview while you wait — your expert may suggest others."}</p>
                 <div className="grid sm:grid-cols-2 gap-5 mt-7">
                   {matched.map((t, i) => (
-                    <Link key={t.slug} href={`/tours/${t.slug}`} className="group block">
+                    <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group block">
                       <Card>
                         <div className="relative overflow-hidden aspect-[4/3]">
                           <img src={t.img} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt=""/>
                           <div className="absolute top-3 left-3 flex gap-2">
-                            <Badge variant="light">{t.days} days</Badge>
-                            {i === 0 && <Badge variant="terra">Best match</Badge>}
+                            <Badge variant="light">{t.days} {es ? "días" : "days"}</Badge>
+                            {i === 0 && <Badge variant="terra">{es ? "Mejor opción" : "Best match"}</Badge>}
                           </div>
                         </div>
                         <div className="p-5">
                           <h4 className="font-serif text-[20px] text-ink leading-tight">{t.title}</h4>
                           <div className="text-[12.5px] text-muted mt-1">{t.regions.join(" · ")}</div>
                           <div className="mt-3 text-terra font-semibold text-[13.5px] inline-flex items-center gap-1.5">
-                            See itinerary <ArrowRight size={16}/>
+                            {es ? "Ver itinerario" : "See itinerary"} <ArrowRight size={16}/>
                           </div>
                         </div>
                       </Card>
@@ -266,20 +282,20 @@ export default function QuizClient() {
               </div>
 
               <QuizResultGallery
-                title="A few places we may weave in"
-                intro="Extra scenes your specialist may stitch into the proposal, depending on your pace and route."
-                images={JOURNEY_GALLERY}
+                title={es ? "Otros lugares que podemos incorporar" : "A few places we may weave in"}
+                intro={es ? "Rincones adicionales que tu experta puede integrar en la propuesta según tu ritmo y tu ruta." : "Extra scenes your specialist may stitch into the proposal, depending on your pace and route."}
+                images={es ? JOURNEY_GALLERY.map((image, index) => ({ ...image, label: ["Río y Costa Verde", "Playas de Bahía", "Ríos de Bonito", "Dunas del Nordeste", "Canales de la Amazonía", "Cataratas de Iguaçu"][index] })) : JOURNEY_GALLERY}
               />
 
               <div className="mt-10 flex flex-wrap gap-3">
-                <Button href="/journeys">Browse all journeys</Button>
+                <Button href={href("/journeys")}>{es ? "Ver todos los viajes" : "Browse all journeys"}</Button>
                 <a
                   href={`https://wa.me/${SITE.whatsapp}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-ink-soft px-5 py-3 font-semibold text-[14px] text-ink hover:bg-ink hover:text-cream-50 transition"
                 >
-                  Message us on WhatsApp
+                  {es ? "Escríbenos por WhatsApp" : "Message us on WhatsApp"}
                 </a>
               </div>
 
@@ -295,12 +311,13 @@ export default function QuizClient() {
     <div className="flex flex-col lg:flex-row min-h-screen">
 
       <QuizImagePanel
+        locale={locale}
         image={s.image}
-        eyebrow={s.type === "contact" ? "Plan your journey" : "60-second quiz"}
-        title={s.type === "contact" ? "Tell us about your trip." : "Discover your version of Brazil."}
+        eyebrow={s.type === "contact" ? (es ? "Planifica tu viaje" : "Plan your journey") : (es ? "Formulario rápido" : "60-second quiz")}
+        title={s.type === "contact" ? (es ? "Cuéntanos cómo imaginas tu viaje." : "Tell us about your trip.") : (es ? "Descubre tu versión de Brasil." : "Discover your version of Brazil.")}
         body={s.type === "contact"
-          ? "Share your details and a real local expert will reply within 48 hours with a personalized proposal - no obligation."
-          : "A real local expert will reply within 48 hours with a personalized proposal - no obligation."
+          ? (es ? "Comparte tus datos y una experta local te responderá en 48 horas con una propuesta personalizada, sin compromiso." : "Share your details and a real local expert will reply within 48 hours with a personalized proposal - no obligation.")
+          : (es ? "Una experta local te responderá en 48 horas con una propuesta personalizada, sin compromiso." : "A real local expert will reply within 48 hours with a personalized proposal - no obligation.")
         }
       />
 
@@ -311,8 +328,8 @@ export default function QuizClient() {
         <div className="sticky top-0 z-10 bg-cream/95 backdrop-blur border-b border-line">
           <div className="max-w-2xl mx-auto px-6 py-5">
             <div className="flex items-center justify-between text-[12px] text-muted">
-              <span>Step {step + 1} of {total}</span>
-              <Link href="/" className="hover:text-leaf-d underline underline-offset-4">Cancel</Link>
+              <span>{es ? `Paso ${step + 1} de ${total}` : `Step ${step + 1} of ${total}`}</span>
+              <Link href={href("/")} className="hover:text-leaf-d underline underline-offset-4">{es ? "Cancelar" : "Cancel"}</Link>
             </div>
             <div className="h-1.5 bg-line rounded-full mt-3 overflow-hidden">
               <div className="h-full bg-leaf transition-all duration-500" style={{ width: `${((step + 1) / total) * 100}%` }}/>
@@ -328,7 +345,7 @@ export default function QuizClient() {
 
             <div className="mt-8">
               {s.type === "contact" ? (
-                <ContactStep value={answers.contact || {}} onChange={v => setAnswers(a => ({ ...a, contact: v }))}/>
+                <ContactStep value={answers.contact || {}} onChange={v => setAnswers(a => ({ ...a, contact: v }))} locale={locale}/>
               ) : s.options[0]?.img ? (
                 /* Image grid (region picker) */
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -424,7 +441,7 @@ export default function QuizClient() {
                   : "border-ink-soft text-ink hover:bg-ink hover:text-cream-50"
               )}
             >
-              <ArrowLeft size={16}/> Back
+              <ArrowLeft size={16}/> {es ? "Atrás" : "Back"}
             </button>
             {isLast ? (
               <button
@@ -435,7 +452,7 @@ export default function QuizClient() {
                   canContinue && !submitting ? "bg-terra hover:bg-terra-d text-cream-50" : "bg-line text-muted cursor-not-allowed"
                 )}
               >
-                {submitting ? "Sending..." : "Get my journey match"} <Sparkles size={16}/>
+                {submitting ? (es ? "Enviando…" : "Sending...") : (es ? "Recibir mi propuesta" : "Get my journey match")} <Sparkles size={16}/>
               </button>
             ) : (
               <button
@@ -446,7 +463,7 @@ export default function QuizClient() {
                   canContinue ? "bg-leaf hover:bg-leaf-d text-cream-50" : "bg-line text-muted cursor-not-allowed"
                 )}
               >
-                Continue <ArrowRight size={16}/>
+                {es ? "Continuar" : "Continue"} <ArrowRight size={16}/>
               </button>
             )}
           </div>
@@ -463,13 +480,14 @@ export default function QuizClient() {
 }
 
 /* ── CONTACT STEP ───────────────────────────────────────────────── */
-function ContactStep({ value, onChange }) {
+function ContactStep({ value, onChange, locale = "en" }) {
+  const es = locale === "es";
   function set(k, v) { onChange({ ...value, [k]: v }); }
   return (
     <div className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Your name</label>
+          <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Nombre" : "Your name"}</label>
           <Field icon={<Users size={16}/>}>
             <input className={inputCls} value={value.name || ""} onChange={e => set("name", e.target.value)} placeholder="Helena Silva"/>
           </Field>
@@ -483,14 +501,14 @@ function ContactStep({ value, onChange }) {
       </div>
 
       <div>
-        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Phone or WhatsApp (optional)</label>
+        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono o WhatsApp (opcional)" : "Phone or WhatsApp (optional)"}</label>
         <Field icon={<Phone size={16}/>}>
           <input className={inputCls} value={value.phone || ""} onChange={e => set("phone", e.target.value)} placeholder="+1 555 000 0000"/>
         </Field>
       </div>
 
       <div>
-        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">How would you like us to reach out?</label>
+        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Cómo prefieres que contactemos contigo?" : "How would you like us to reach out?"}</label>
         <div className="grid grid-cols-3 gap-3">
           {[
             { value: "email",    label: "E-mail",      icon: <Mail size={18}/> },
@@ -517,18 +535,18 @@ function ContactStep({ value, onChange }) {
       </div>
 
       <div>
-        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Anything else we should know?</label>
+        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Hay algo más que debamos saber?" : "Anything else we should know?"}</label>
         <textarea
           value={value.note || ""}
           onChange={e => set("note", e.target.value)}
           rows={3}
-          placeholder="Special dates, occasions, dietary needs, mobility considerations…"
+          placeholder={es ? "Fechas especiales, celebraciones, necesidades alimentarias o de movilidad…" : "Special dates, occasions, dietary needs, mobility considerations…"}
           className="w-full border border-line bg-white rounded-xl p-4 outline-none focus:border-leaf focus:shadow-[0_0_0_3px_rgba(31,74,47,.10)] text-[14.5px] leading-relaxed"
         />
       </div>
 
       <div className="bg-paper border border-line rounded-xl p-4 text-[13px] text-ink-soft leading-relaxed">
-        We use your details only to send you a personalized proposal. No newsletters unless you opt in, no resale, ever.
+        {es ? "Solo utilizaremos tus datos para enviarte una propuesta personalizada. No recibirás newsletters salvo que lo autorices y nunca cederemos tu información." : "We use your details only to send you a personalized proposal. No newsletters unless you opt in, no resale, ever."}
       </div>
     </div>
   );

@@ -4,7 +4,8 @@ import { ChevronRight } from "lucide-react";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
-export default function ItineraryAccordion({ days }) {
+export default function ItineraryAccordion({ days, locale = "en" }) {
+  const es = locale === "es";
   const [open, setOpen] = useState(0); // first day open by default
 
   return (
@@ -21,7 +22,7 @@ export default function ItineraryAccordion({ days }) {
                 isOpen && "bg-terra/[.04]"
               )}
             >
-              <div className="font-serif text-[20px] text-ink self-center">Day {i + 1}</div>
+              <div className="font-serif text-[20px] text-ink self-center">{es ? "Día" : "Day"} {i + 1}</div>
               <div>
                 <div className="text-[13.5px] text-muted">{d.route}</div>
                 <div className="font-semibold text-ink text-[16px] mt-0.5">{d.city}</div>
@@ -54,7 +55,7 @@ export default function ItineraryAccordion({ days }) {
                   ))}
                   {d.meals && (
                     <div className="mt-6 pt-5 border-t border-dashed border-line flex items-center gap-2 text-[13.5px] text-muted">
-                      Meals included: {d.meals}
+                      {es ? "Comidas incluidas" : "Meals included"}: {d.meals}
                     </div>
                   )}
                 </div>

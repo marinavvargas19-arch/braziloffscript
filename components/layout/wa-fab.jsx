@@ -1,9 +1,12 @@
 import { SITE } from "@/lib/data";
 
-export function WhatsAppFab() {
+export function WhatsAppFab({ locale = "en" }) {
+  const message = locale === "es"
+    ? "Hola Brazil Off Script, me gustaría empezar a planificar un viaje"
+    : "Hi Brazil Off Script, I'd like to plan a trip";
   return (
     <a
-      href={`https://wa.me/${SITE.whatsapp}?text=Hi%20Brazil%20Off%20Script%2C%20I'd%20like%20to%20plan%20a%20trip`}
+      href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noreferrer"
       aria-label="WhatsApp"

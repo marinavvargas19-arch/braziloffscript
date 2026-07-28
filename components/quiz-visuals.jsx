@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
-export function QuizImagePanel({ image, eyebrow, title, body }) {
+export function QuizImagePanel({ image, eyebrow, title, body, locale = "en" }) {
   return (
     <aside className="lg:w-2/5 relative lg:sticky lg:top-0 lg:h-screen overflow-hidden min-h-[340px]">
       <img src={image} alt="" className="absolute inset-0 w-full h-full object-cover"/>
@@ -18,8 +18,8 @@ export function QuizImagePanel({ image, eyebrow, title, body }) {
         }}
       />
       <div className="relative h-full flex flex-col p-7 md:p-10 text-cream-50">
-        <Link href="/" className="inline-flex items-center gap-2 text-[13px] font-semibold text-cream-50 drop-shadow-[0_2px_8px_rgba(0,0,0,.45)] hover:text-gold transition-colors">
-          <ArrowLeft size={16}/> Back to Brazil Off Script
+        <Link href={locale === "es" ? "/es" : "/"} className="inline-flex items-center gap-2 text-[13px] font-semibold text-cream-50 drop-shadow-[0_2px_8px_rgba(0,0,0,.45)] hover:text-gold transition-colors">
+          <ArrowLeft size={16}/> {locale === "es" ? "Volver a Brazil Off Script" : "Back to Brazil Off Script"}
         </Link>
         <div className="mt-auto pt-10 max-w-md">
           <div className="rounded-lg bg-ink/68 px-5 py-5 shadow-[0_24px_60px_-24px_rgba(0,0,0,.75)] backdrop-blur-[2px] ring-1 ring-cream-50/15">

@@ -8,7 +8,7 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const c = CATEGORIES.find((x) => x.slug === params.slug);
-  return { title: c ? c.name : "Journeys" };
+  return { title: c ? c.name : "Journeys", alternates: { canonical: `/journeys/${params.slug}`, languages: { en: `/journeys/${params.slug}`, "es-ES": `/es/journeys/${params.slug}` } } };
 }
 
 export default function Page({ params }) {

@@ -7,7 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Field, inputCls } from "@/components/ui/field";
-import { TOURS, CATEGORIES, DESTINATIONS, DEST_TRIP } from "@/lib/data";
+import * as EN from "@/lib/data";
+import * as ES from "@/lib/data-es";
+import { localePath } from "@/lib/i18n";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
 
@@ -67,7 +69,10 @@ function catBadgeVariant(color) {
   return "goldSolid";
 }
 
-export default function ToursList() {
+export default function ToursList({ locale = "en" }) {
+  const { TOURS, CATEGORIES, DESTINATIONS, DEST_TRIP } = locale === "es" ? ES : EN;
+  const es = locale === "es";
+  const href = path => localePath(path, locale);
   const [q, setQ]         = useState("");
   const [cat, setCat]     = useState("all");
   const [dur, setDur]     = useState("all");
@@ -121,7 +126,17 @@ export default function ToursList() {
     return arr;
   }, [q, cat, dur, price, sort, ALL]);
 
-  const collectionFilters = FILTER_GROUPS;
+  const collectionFilters = FILTER_GROUPS.map(group => ({
+    ...group,
+    l: es ? ({
+      all: "Todos los viajes",
+      "beyond-the-obvious": "Más allá de lo evidente",
+      "the-explorer": "El explorador",
+      "paradise-found": "Paraíso encontrado",
+      "women-who-explore": "Mujeres exploradoras",
+      honeymoon: "Luna de miel",
+    }[group.v] || group.l) : group.l,
+  }));
   const activeCollection = collectionFilters.find(group => group.v === cat);
 
   return (
@@ -129,13 +144,13 @@ export default function ToursList() {
       {/* Header */}
       <section className="bg-paper border-b border-line">
         <Container className="py-10 md:py-12">
-          <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">All Journeys</div>
+          <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">{es ? "Todos los viajes" : "All Journeys"}</div>
           <h1 className="font-serif text-[clamp(30px,3.6vw,48px)] leading-[1.08] text-ink max-w-3xl">
-            A starting point for inspiration.{" "}
-            <em className="not-italic text-leaf">A journey designed around you.</em>
+            {es ? "Un punto de partida para inspirarte. " : "A starting point for inspiration. "}
+            <em className="not-italic text-leaf">{es ? "Un viaje diseñado a tu medida." : "A journey designed around you."}</em>
           </h1>
           <p className="mt-4 max-w-2xl text-ink-soft text-[16px] leading-relaxed">
-            Explore curated itineraries across Brazil, then let us tailor every detail to your travel style, pace, and interests.
+            {es ? "Explora itinerarios seleccionados por todo Brasil y deja que adaptemos cada detalle a tu estilo, tu ritmo y tus intereses." : "Explore curated itineraries across Brazil, then let us tailor every detail to your travel style, pace, and interests."}
           </p>
         </Container>
       </section>
@@ -149,26 +164,26 @@ export default function ToursList() {
             <div className="lg:sticky lg:top-24">
               <div className="bg-paper border border-line rounded-2xl p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-ink">Filters</h3>
+                  <h3 className="font-semibold text-ink">{es ? "Filtros" : "Filters"}</h3>
                   <button
                     onClick={() => { setQ(""); setCat("all"); setDur("all"); setPrice(8000); setSort("featured"); }}
                     className="text-[12.5px] text-terra hover:underline"
                   >
-                    Reset
+                    {es ? "Restablecer" : "Reset"}
                   </button>
                 </div>
 
                 <Field icon={<Search size={16}/>} className="mb-5">
                   <input
                     className={inputCls}
-                    placeholder="Search regions, tags…"
+                    placeholder={es ? "Buscar regiones o etiquetas…" : "Search regions, tags…"}
                     value={q}
                     onChange={e => setQ(e.target.value)}
                   />
                 </Field>
 
                 <div className="mb-5">
-                  <div className="text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Collection</div>
+                  <div className="text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Colección" : "Collection"}</div>
                   <div className="flex flex-col gap-1.5">
                     {collectionFilters.map(o => (
                       <button
@@ -186,13 +201,13 @@ export default function ToursList() {
                 </div>
 
                 <div className="mb-5">
-                  <div className="text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Duration</div>
+                  <div className="text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Duración" : "Duration"}</div>
                   <div className="grid grid-cols-2 gap-1.5">
                     {[
-                      { v: "all",   l: "Any" },
-                      { v: "short", l: "≤ 7 days" },
-                      { v: "mid",   l: "7–10 days" },
-                      { v: "long",  l: "10+ days" },
+                      { v: "all",   l: es ? "Cualquiera" : "Any" },
+                      { v: "short", l: `≤ 7 ${es ? "días" : "days"}` },
+                      { v: "mid",   l: `7–10 ${es ? "días" : "days"}` },
+                      { v: "long",  l: `10+ ${es ? "días" : "days"}` },
                     ].map(o => (
                       <button
                         key={o.v}
@@ -218,7 +233,7 @@ export default function ToursList() {
           <div className="lg:col-span-9">
             <div className="flex justify-between items-center mb-6">
               <div className="text-[14px] text-muted">
-                {filtered.length} journey{filtered.length === 1 ? "" : "s"} found
+                {filtered.length} {es ? (filtered.length === 1 ? "viaje encontrado" : "viajes encontrados") : `journey${filtered.length === 1 ? "" : "s"} found`}
               </div>
               <div className="relative">
                 <select
@@ -226,9 +241,9 @@ export default function ToursList() {
                   onChange={e => setSort(e.target.value)}
                   className="appearance-none bg-paper border border-line rounded-full pl-4 pr-9 py-2 text-[13.5px] font-semibold text-ink cursor-pointer"
                 >
-                  <option value="featured">Featured</option>
-                  <option value="duration-asc">Duration (short → long)</option>
-                  <option value="duration-desc">Duration (long → short)</option>
+                  <option value="featured">{es ? "Destacados" : "Featured"}</option>
+                  <option value="duration-asc">{es ? "Duración (menor → mayor)" : "Duration (short → long)"}</option>
+                  <option value="duration-desc">{es ? "Duración (mayor → menor)" : "Duration (long → short)"}</option>
                 </select>
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ink">
                   <ChevronDown size={16}/>
@@ -238,9 +253,9 @@ export default function ToursList() {
 
             {filtered.length === 0 ? (
               <div className="bg-paper border border-line rounded-2xl p-10 text-center">
-                <h3 className="font-serif text-2xl text-ink">Nothing matches just yet.</h3>
-                <p className="text-ink-soft mt-2">Try widening the filters — or let us design something completely custom.</p>
-                <Button href="/start" className="mt-5">Plan something custom</Button>
+                <h3 className="font-serif text-2xl text-ink">{es ? "Todavía no hay coincidencias." : "Nothing matches just yet."}</h3>
+                <p className="text-ink-soft mt-2">{es ? "Amplía los filtros o deja que diseñemos algo completamente a medida." : "Try widening the filters — or let us design something completely custom."}</p>
+                <Button href={href("/start")} className="mt-5">{es ? "Diseñar un viaje a medida" : "Plan something custom"}</Button>
               </div>
             ) : (
               <div className="grid md:grid-cols-2 gap-5 items-start">
@@ -251,7 +266,7 @@ export default function ToursList() {
                     ? catBadgeVariant(c.color)
                     : "goldSolid";
                   return (
-                    <Link key={t.slug} href={`/tours/${t.slug}`} className="group h-full">
+                    <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group h-full">
                       <Card className="h-full flex flex-col">
                         <div className="relative aspect-[16/10] overflow-hidden">
                           <img
@@ -260,7 +275,7 @@ export default function ToursList() {
                             className="w-full h-full object-cover transition duration-700 group-hover:scale-[1.04]"
                           />
                           <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2">
-                            <Badge variant="inkSolid">{t.days} days</Badge>
+                            <Badge variant="inkSolid">{t.days} {es ? "días" : "days"}</Badge>
                             {showActiveCollection && (
                               <Badge variant={activeCollectionVariant}>
                                 {activeCollection.l}
@@ -286,7 +301,7 @@ export default function ToursList() {
                           )}
                           <div className="mt-auto pt-5 border-t border-line flex items-center justify-end">
                             <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">
-                              Discover <ArrowRight size={16}/>
+                              {es ? "Descubrir" : "Discover"} <ArrowRight size={16}/>
                             </span>
                           </div>
                         </div>

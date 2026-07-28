@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const p = BLOG_POSTS.find((x) => x.slug === params.slug);
-  return { title: p ? p.title : "Story" };
+  return { title: p ? p.title : "Story", alternates: { canonical: `/blog/${params.slug}`, languages: { en: `/blog/${params.slug}`, "es-ES": `/es/blog/${params.slug}` } } };
 }
 
 export default function BlogPostPage({ params }) {

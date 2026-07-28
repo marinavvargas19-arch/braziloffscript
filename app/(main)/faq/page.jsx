@@ -4,7 +4,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { FAQS, SITE } from "@/lib/data";
 
-export const metadata = { title: "FAQ" };
+export const metadata = { title: "FAQ", alternates: { canonical: "/faq", languages: { en: "/faq", "es-ES": "/es/faq" } } };
 
 export default function FaqPage() {
   return (
