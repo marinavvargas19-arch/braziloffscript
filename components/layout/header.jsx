@@ -30,7 +30,7 @@ const COPY = {
       { href: "/tours", label: "Explorar destinos", key: "tours" },
       { href: "/about", label: "Quiénes somos", key: "about" },
     ],
-    quiz: "Haz el test de viaje",
+    quiz: "Descubre tu viaje ideal",
     start: "Empieza tu viaje",
     find: "Encuentra mi viaje",
     contact: "Contacta con nosotros",
