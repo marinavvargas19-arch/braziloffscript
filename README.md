@@ -96,14 +96,51 @@ By default, the contact form POSTs to `/api/contact` and just logs to the server
 3. Get an API key
 4. In Vercel → **Settings → Environment Variables**, add:
    - `RESEND_API_KEY` = your key
-   - `CONTACT_TO_EMAIL` = `ola@braziloffscript.com`
+   - `CONTACT_TO_EMAIL` = `hello@braziloffscript.com`
 5. Redeploy
 
 Logic lives in `app/api/contact/route.js` — edit there to change subject lines or routing.
 
 ---
 
-## 5. Editing common things
+## 5. Lead dashboard
+
+The site can also save every contact or quiz submission into Supabase and show it in a private dashboard at `/admin/leads`.
+
+In Vercel → **Settings → Environment Variables**, add:
+
+- `ADMIN_PASSWORD` = password for `/admin/login`
+- `ADMIN_SESSION_SECRET` = any long random string
+- `SUPABASE_URL` = your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY` = Supabase service role key, server-side only
+- `SUPABASE_LEADS_TABLE` = `leads` (optional; this is the default)
+
+Create this table in Supabase SQL editor:
+
+```sql
+create table public.leads (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  source text,
+  name text,
+  email text,
+  phone text,
+  contact_method text,
+  note text,
+  profile_match text,
+  profile_runner_up text,
+  profile_answers jsonb not null default '[]'::jsonb,
+  quiz_answers jsonb not null default '[]'::jsonb,
+  matched_tours jsonb not null default '[]'::jsonb,
+  payload jsonb not null default '{}'::jsonb
+);
+```
+
+Do not expose the service role key in the browser. It is only used by server routes and server-rendered admin pages.
+
+---
+
+## 6. Editing common things
 
 | Want to change… | Edit this file |
 |---|---|
@@ -119,7 +156,7 @@ Logic lives in `app/api/contact/route.js` — edit there to change subject lines
 
 ---
 
-## 6. Replacing placeholder photos
+## 7. Replacing placeholder photos
 
 Most photos are placeholder Unsplash URLs in `lib/data.js`. When you have real photos:
 
