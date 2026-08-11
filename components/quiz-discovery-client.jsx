@@ -109,7 +109,7 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
     const runner = result.runnerUp ? DISCO_DESTINATIONS[result.runnerUp] : null;
     const tours = matchSignatureJourneys(result.winner, d.regionWords, data);
     const matchSummary = runner
-      ? (es ? `Resultado principal: ${d.name}. Segunda combinación: ${runner.name}.` : `Primary match: ${d.name}. Second match: ${runner.name}.`)
+      ? (es ? `Resultado principal: ${d.name}. También encaja contigo: ${runner.name}.` : `Primary match: ${d.name}. Strong fit: ${runner.name}.`)
       : (es ? `Resultado principal: ${d.name}.` : `Primary match: ${d.name}.`);
     function trackContactChoice(channel) {
       void fetch("/api/quiz-contact-click", {
