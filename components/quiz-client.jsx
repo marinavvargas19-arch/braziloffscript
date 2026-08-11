@@ -358,7 +358,7 @@ export default function QuizClient({ locale = "en" }) {
                         key={o.value}
                         onClick={() => toggle(o.value)}
                         className={cn(
-                          "relative group text-left rounded-xl overflow-hidden border transition",
+                          "relative group h-full text-left rounded-xl overflow-hidden border transition flex flex-col",
                           selected ? "border-leaf ring-2 ring-leaf/30" : "border-line hover:border-leaf"
                         )}
                       >
@@ -371,7 +371,7 @@ export default function QuizClient({ locale = "en" }) {
                           </div>
                         )}
                         <div className={cn(
-                          "p-3 text-[13.5px] leading-tight font-medium",
+                          "w-full min-h-[76px] flex flex-1 items-center p-3 text-[13.5px] leading-tight font-medium",
                           selected ? "bg-leaf/10 text-leaf-d" : "bg-paper text-ink-soft"
                         )}>
                           {o.label}

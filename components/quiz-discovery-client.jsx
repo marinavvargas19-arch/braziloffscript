@@ -149,35 +149,6 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
                 </div>
               )}
 
-              {tours.length > 0 && (
-                <div className="mt-10 pt-10 border-t border-line">
-                  <h3 className="font-serif text-[24px] text-ink leading-tight">{es ? "Viajes pensados para ti" : "Journeys made for this"}</h3>
-                  <p className="mt-2 text-[14.5px] text-ink-soft">{es ? "Una primera inspiración; después adaptaremos cada detalle a ti." : <>A preview to get you dreaming — we&apos;ll tailor everything to you.</>}</p>
-                  <div className="grid sm:grid-cols-2 gap-5 mt-7">
-                    {tours.map((t, i) => (
-                      <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group block">
-                        <Card>
-                          <div className="relative overflow-hidden aspect-[4/3]">
-                            <img src={t.img} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt=""/>
-                            <div className="absolute top-3 left-3 flex gap-2">
-                              <Badge variant="light">{t.days} {es ? "días" : "days"}</Badge>
-                              {i === 0 && <Badge variant="terra">{es ? "Mejor opción" : "Top pick"}</Badge>}
-                            </div>
-                          </div>
-                          <div className="p-5">
-                            <h4 className="font-serif text-[20px] text-ink leading-tight">{t.title}</h4>
-                            <div className="text-[12.5px] text-muted mt-1">{t.regions.join(" · ")}</div>
-                            <div className="mt-3 text-terra font-semibold text-[13.5px] inline-flex items-center gap-1.5">
-                              {es ? "Ver itinerario" : "See itinerary"} <ArrowRight size={16}/>
-                            </div>
-                          </div>
-                        </Card>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Contact options */}
               <div className="mt-10 pt-10 border-t border-line">
                 <h3 className="font-serif text-[24px] text-ink leading-tight">{es ? "¿Quieres que lo hablemos?" : "Ready to talk it through?"}</h3>
@@ -218,10 +189,39 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
                 </div>
               </div>
 
+              {tours.length > 0 && (
+                <div className="mt-10 pt-10 border-t border-line">
+                  <h3 className="font-serif text-[24px] text-ink leading-tight">{es ? "Viajes pensados para ti" : "Journeys made for this"}</h3>
+                  <p className="mt-2 text-[14.5px] text-ink-soft">{es ? "Una primera inspiración; después adaptaremos cada detalle a ti." : <>A preview to get you dreaming — we&apos;ll tailor everything to you.</>}</p>
+                  <div className="grid sm:grid-cols-2 gap-5 mt-7">
+                    {tours.map((t, i) => (
+                      <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group block">
+                        <Card>
+                          <div className="relative overflow-hidden aspect-[4/3]">
+                            <img src={t.img} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt=""/>
+                            <div className="absolute top-3 left-3 flex gap-2">
+                              <Badge variant="light">{t.days} {es ? "días" : "days"}</Badge>
+                              {i === 0 && <Badge variant="terra">{es ? "Mejor opción" : "Top pick"}</Badge>}
+                            </div>
+                          </div>
+                          <div className="p-5">
+                            <h4 className="font-serif text-[20px] text-ink leading-tight">{t.title}</h4>
+                            <div className="text-[12.5px] text-muted mt-1">{t.regions.join(" · ")}</div>
+                            <div className="mt-3 text-terra font-semibold text-[13.5px] inline-flex items-center gap-1.5">
+                              {es ? "Ver itinerario" : "See itinerary"} <ArrowRight size={16}/>
+                            </div>
+                          </div>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Bottom CTAs */}
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href={href("/quiz")}>{es ? "Planificar este viaje" : "Plan this exact trip"}</Button>
-                <Button variant="ghost" href={href("/journeys")}>{es ? "Ver todos los viajes" : "Browse all journeys"}</Button>
+                <Button variant="ghost" href={href("/tours")}>{es ? "Ver todos los viajes" : "Browse all journeys"}</Button>
                 <button
                   onClick={reset}
                   className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 font-semibold text-[14px] text-ink-soft hover:border-ink hover:text-ink transition"
