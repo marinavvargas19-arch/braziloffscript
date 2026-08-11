@@ -108,6 +108,26 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
     const d = DISCO_DESTINATIONS[result.winner];
     const runner = result.runnerUp ? DISCO_DESTINATIONS[result.runnerUp] : null;
     const tours = matchSignatureJourneys(result.winner, d.regionWords, data);
+    const matchSummary = runner
+      ? (es ? `Resultado principal: ${d.name}. Segunda combinación: ${runner.name}.` : `Primary match: ${d.name}. Second match: ${runner.name}.`)
+      : (es ? `Resultado principal: ${d.name}.` : `Primary match: ${d.name}.`);
+    function trackContactChoice(channel) {
+      void fetch("/api/quiz-contact-click", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({
+          source: "quiz-contact-choice",
+          contactMethod: channel,
+          note: matchSummary,
+          locale,
+          discoveryProfile: {
+            winner: d.name,
+            runnerUp: runner?.name || "",
+          },
+        }),
+      }).catch(() => {});
+    }
 
     return (
       <div className="flex flex-col lg:flex-row min-h-screen">
@@ -155,7 +175,8 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
                 <p className="mt-2 text-[14.5px] text-ink-soft">{es ? "Contacta directamente con una especialista en Brasil por el medio que prefieras." : <>Reach a Brazil specialist directly — pick whatever&apos;s easiest for you.</>}</p>
                 <div className="grid sm:grid-cols-3 gap-3 mt-7">
                   <a
-                    href={`mailto:${SITE.email}?subject=${encodeURIComponent(es ? `Planificar mi viaje a Brasil — ${d.name}` : `Planning my Brazil trip — ${d.name}`)}&body=${encodeURIComponent(es ? `Hola, acabo de hacer el test y mi resultado es ${d.name}. Me gustaría empezar a planificar el viaje.` : `Hi! I just took the quiz and my match is ${d.name}. I'd love to start planning.`)}`}
+                    href={`mailto:${SITE.email}?subject=${encodeURIComponent(es ? `Planificar mi viaje a Brasil — ${d.name}` : `Planning my Brazil trip — ${d.name}`)}&body=${encodeURIComponent(es ? `Hola, acabo de hacer el test.\n\n${matchSummary}\n\nMe gustaría empezar a planificar el viaje.` : `Hi! I just took the quiz.\n\n${matchSummary}\n\nI'd love to start planning.`)}`}
+                    onClick={() => trackContactChoice("Email")}
                     className="group flex flex-col gap-2 rounded-xl border border-line bg-paper p-4 transition hover:border-leaf hover:shadow-[0_14px_34px_-20px_rgba(25,40,30,.4)]"
                   >
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-leaf/10 text-leaf-d">
@@ -165,7 +186,8 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
                     <span className="text-[12.5px] text-muted">{SITE.email}</span>
                   </a>
                   <a
-                    href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(es ? `Hola, mi resultado del test es ${d.name} y me gustaría planificar un viaje.` : `Hi! My quiz match is ${d.name} — I'd love to plan a trip.`)}`}
+                    href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(es ? `Hola, acabo de hacer el test. ${matchSummary} Me gustaría planificar un viaje.` : `Hi! I just took the quiz. ${matchSummary} I'd love to plan a trip.`)}`}
+                    onClick={() => trackContactChoice("WhatsApp")}
                     target="_blank" rel="noreferrer"
                     className="group flex flex-col gap-2 rounded-xl border border-line bg-paper p-4 transition hover:border-leaf hover:shadow-[0_14px_34px_-20px_rgba(25,40,30,.4)]"
                   >
@@ -177,6 +199,7 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
                   </a>
                   <a
                     href={SITE.calendly}
+                    onClick={() => trackContactChoice("Google Calendar")}
                     target="_blank" rel="noreferrer"
                     className="group flex flex-col gap-2 rounded-xl border border-line bg-paper p-4 transition hover:border-leaf hover:shadow-[0_14px_34px_-20px_rgba(25,40,30,.4)]"
                   >

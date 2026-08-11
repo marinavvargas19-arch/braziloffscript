@@ -489,7 +489,7 @@ function ContactStep({ value, onChange, locale = "en" }) {
         <div>
           <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Nombre" : "Your name"}</label>
           <Field icon={<Users size={16}/>}>
-            <input className={inputCls} value={value.name || ""} onChange={e => set("name", e.target.value)} placeholder="Helena Silva"/>
+            <input className={inputCls} value={value.name || ""} onChange={e => set("name", e.target.value)} placeholder={es ? "Sofía García" : "Emily Johnson"}/>
           </Field>
         </div>
         <div>
