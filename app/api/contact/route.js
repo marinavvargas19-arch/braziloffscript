@@ -24,7 +24,9 @@ function contactHtml(body) {
     <h2>New trip inquiry — Brazil Off Script</h2>
     <p><strong>${escapeHtml(nameFrom(body))}</strong> · ${escapeHtml(body.email || "—")} · ${escapeHtml(body.phone || "—")}</p>
     <p><strong>When:</strong> ${escapeHtml(body.when || "—")} · <strong>Travelers:</strong> ${escapeHtml(body.travelers || "—")}</p>
-    <p><strong>Interests:</strong> ${escapeHtml(body.interests || "—")}</p>
+    <p><strong>Destinations:</strong> ${escapeHtml(body.interests || "—")}</p>
+    <p><strong>Estimated investment:</strong> ${escapeHtml(body.budget || "—")}</p>
+    <p><strong>Preferred contact:</strong> ${escapeHtml(body.contactMethod || "—")}</p>
     <hr/>
     <p>${lines(body.note || "")}</p>
   `;

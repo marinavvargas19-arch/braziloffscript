@@ -43,6 +43,7 @@ function JsonList({ items }) {
 }
 
 function LeadDetails({ lead }) {
+  const trip = lead.payload || {};
   return (
     <div className="border-t border-line bg-cream-50/40 px-4 py-6 md:px-6">
       <div className="grid gap-7 lg:grid-cols-[300px_1fr]">
@@ -63,6 +64,17 @@ function LeadDetails({ lead }) {
         </aside>
 
         <section className="grid gap-6 xl:grid-cols-2">
+          {lead.source === "contact" && (
+            <div>
+              <h3 className="font-serif text-[22px] text-ink">Trip request</h3>
+              <div className="mt-3 space-y-3 rounded-xl border border-line bg-white p-4 text-[14px] text-ink-soft">
+                <div><strong className="text-ink">Destinations:</strong> {trip.interests || "—"}</div>
+                <div><strong className="text-ink">Travel period:</strong> {trip.when || "—"}</div>
+                <div><strong className="text-ink">Travelers:</strong> {trip.travelers || "—"}</div>
+                <div><strong className="text-ink">Estimated investment:</strong> {trip.budget || "—"}</div>
+              </div>
+            </div>
+          )}
           <div>
             <h3 className="font-serif text-[22px] text-ink">Profile context</h3>
             <div className="mt-3 rounded-xl border border-line bg-white p-4">

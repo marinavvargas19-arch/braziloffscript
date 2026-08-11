@@ -1,28 +1,48 @@
 "use client";
 import { useState } from "react";
-import { Mail, Phone, Calendar, Users, ArrowRight, Check, Clock, MapPin } from "lucide-react";
+import { Mail, Phone, Calendar, Users, ArrowRight, Check, Clock, MapPin, MessageCircle } from "lucide-react";
 import { Container } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { Avatar } from "@/components/ui/avatar";
-import { SITE } from "@/lib/data";
+import * as EN from "@/lib/data";
+import * as ES from "@/lib/data-es";
 import { localePath } from "@/lib/i18n";
 
 export default function ContactClient({ locale = "en" }) {
   const es = locale === "es";
+  const content = es ? ES : EN;
+  const { SITE, DESTINATIONS } = content;
   const href = path => localePath(path, locale);
-  const interests = es ? ["Cultura e historia","Gastronomía y vino","Fauna","Playas e islas","Aventura","Viajar sin prisas","Familia","Luna de miel"] : ["Culture & history","Food & wine","Wildlife","Beaches & islands","Adventure","Slow travel","Family","Honeymoon"];
+  const destinations = [...DESTINATIONS.map(destination => destination.name), es ? "Aún no lo sé" : "Not sure yet"];
+  const budgetOptions = es
+    ? ["Aún no lo sé", "US$3.000–5.000 por persona", "US$5.000–8.000 por persona", "US$8.000+ por persona"]
+    : ["Not sure yet", "US$3,000–5,000 per person", "US$5,000–8,000 per person", "US$8,000+ per person"];
   const [sent, setSent] = useState(false);
-  const [data, setData] = useState({first:"",last:"",email:"",phone:"",when:"",travelers:"2",interests:"",note:""});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [data, setData] = useState({name:"",email:"",phone:"",when:"",travelers:"2",interests:"",budget:"",contactMethod:"",note:""});
   function set(k,v){ setData(d=>({...d,[k]:v})); }
+  function toggleDestination(value) {
+    const selected = data.interests ? data.interests.split("|||" ).filter(Boolean) : [];
+    const next = selected.includes(value) ? selected.filter(item => item !== value) : [...selected, value];
+    set("interests", next.join("|||"));
+  }
 
   async function submit(e){
     e.preventDefault();
-    // Optionally POST to /api/contact — see README for how to wire it up.
+    setSubmitting(true);
+    setSubmitError("");
     try {
-      await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-    } catch {}
-    setSent(true);
+      const payload = { ...data, interests: data.interests.split("|||").filter(Boolean).join(", "), source: "contact" };
+      const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      if (!response.ok) throw new Error("Could not send contact request");
+      setSent(true);
+    } catch {
+      setSubmitError(es ? "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp." : "We couldn't send your request. Please try again or contact us on WhatsApp.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -48,28 +68,22 @@ export default function ContactClient({ locale = "en" }) {
                 </div>
               </div>
             ) : (
-              <form onSubmit={submit} className="bg-paper border border-line rounded-2xl p-7 md:p-10">
-                <div className="grid sm:grid-cols-2 gap-5">
+              <form onSubmit={submit} className="bg-paper border border-line rounded-2xl p-7 md:p-10 space-y-5">
+                <div className="grid sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Nombre" : "First name"}</label>
-                    <Field icon={<Users size={16}/>}><input required className={inputCls} value={data.first} onChange={e=>set("first",e.target.value)}/></Field>
+                    <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Nombre" : "Your name"}</label>
+                    <Field icon={<Users size={16}/>}><input required className={inputCls} value={data.name} onChange={e=>set("name",e.target.value)} placeholder={es ? "Sofía García" : "Emily Johnson"}/></Field>
                   </div>
-                  <div>
-                    <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Apellidos" : "Last name"}</label>
-                    <Field icon={<Users size={16}/>}><input required className={inputCls} value={data.last} onChange={e=>set("last",e.target.value)}/></Field>
-                  </div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-5 mt-5">
                   <div>
                     <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">Email</label>
-                    <Field icon={<Mail size={16}/>}><input type="email" required className={inputCls} value={data.email} onChange={e=>set("email",e.target.value)}/></Field>
-                  </div>
-                  <div>
-                    <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono / WhatsApp (opcional)" : "Phone / WhatsApp (optional)"}</label>
-                    <Field icon={<Phone size={16}/>}><input className={inputCls} value={data.phone} onChange={e=>set("phone",e.target.value)}/></Field>
+                    <Field icon={<Mail size={16}/>}><input type="email" required className={inputCls} value={data.email} onChange={e=>set("email",e.target.value)} placeholder="you@yourdomain.com"/></Field>
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-5 mt-5">
+                <div>
+                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono o WhatsApp (opcional)" : "Phone or WhatsApp (optional)"}</label>
+                  <Field icon={<Phone size={16}/>}><input className={inputCls} value={data.phone} onChange={e=>set("phone",e.target.value)} placeholder="+1 555 000 0000"/></Field>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Cuándo quieres viajar?" : "When are you traveling?"}</label>
                     <Field icon={<Calendar size={16}/>}><input type="month" className={inputCls} value={data.when} onChange={e=>set("when",e.target.value)}/></Field>
@@ -83,22 +97,65 @@ export default function ContactClient({ locale = "en" }) {
                     </Field>
                   </div>
                 </div>
-                <div className="mt-5">
-                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Qué te atrae de Brasil?" : <>What&apos;s pulling you to Brazil?</>}</label>
+                <div>
+                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Destinos que te interesan" : "Destinations you're interested in"}</label>
                   <div className="flex flex-wrap gap-2">
-                    {interests.map(t=>{
-                      const on = data.interests.includes(t);
-                      return <button type="button" key={t} onClick={()=>set("interests", on ? data.interests.replace(new RegExp(`,?\\s*${t}`,'g'),'').replace(/^,\s*/,'') : (data.interests?data.interests+", "+t:t))} className={`px-3 py-1.5 rounded-full text-[13px] border transition ${on?"bg-leaf border-leaf text-cream-50":"bg-cream-50 border-line text-ink-soft hover:border-leaf"}`}>{t}</button>;
+                    {destinations.map(destination=>{
+                      const selected = data.interests.split("|||").filter(Boolean).includes(destination);
+                      return <button type="button" key={destination} onClick={()=>toggleDestination(destination)} className={`px-3 py-1.5 rounded-full text-[13px] border transition ${selected?"bg-leaf border-leaf text-cream-50":"bg-cream-50 border-line text-ink-soft hover:border-leaf"}`}>{destination}</button>;
                     })}
                   </div>
                 </div>
-                <div className="mt-5">
-                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Cuéntanos cualquier otro detalle" : "Tell us anything else"}</label>
-                  <textarea rows={5} className="w-full border border-line bg-white rounded-xl p-4 outline-none focus:border-leaf focus:shadow-[0_0_0_3px_rgba(31,74,47,.10)]" value={data.note} onChange={e=>set("note",e.target.value)} placeholder={es ? "Fechas especiales, celebraciones, necesidades alimentarias o de movilidad…" : "Special dates, occasions, dietary or mobility considerations…"}/>
+                <div>
+                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Inversión estimada" : "Estimated investment"}</label>
+                  <div className="grid sm:grid-cols-2 gap-2">
+                    {budgetOptions.map(option => (
+                      <button
+                        type="button"
+                        key={option}
+                        onClick={() => set("budget", option)}
+                        className={`rounded-xl border px-4 py-3 text-left text-[13.5px] font-semibold transition ${data.budget === option ? "border-leaf bg-leaf/10 text-leaf-d" : "border-line bg-white text-ink-soft hover:border-leaf"}`}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-[12.5px] text-muted max-w-md">{es ? "Al enviar el formulario, aceptas que nos pongamos en contacto contigo sobre tu viaje. Nunca cedemos tus datos." : "By submitting, you agree to be contacted about your trip. We never resell your info."}</p>
-                  <Button type="submit" size="lg">{es ? "Enviar mensaje" : "Send message"} <ArrowRight size={16}/></Button>
+                <div>
+                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Cómo prefieres que contactemos contigo?" : "How would you like us to reach out?"}</label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { value: "E-mail", label: "E-mail", icon: <Mail size={18}/> },
+                      { value: "WhatsApp", label: "WhatsApp", icon: <MessageCircle size={18}/> },
+                      { value: "Google Meet", label: "Google Meet", icon: <Users size={18}/> },
+                    ].map(option => {
+                      const selected = data.contactMethod === option.value;
+                      return (
+                        <button
+                          type="button"
+                          key={option.value}
+                          onClick={() => set("contactMethod", option.value)}
+                          className={`flex flex-col items-center justify-center gap-2 rounded-xl border px-3 py-4 text-center transition ${selected ? "border-leaf bg-leaf/10 text-leaf-d" : "border-line bg-white text-ink-soft hover:border-leaf"}`}
+                        >
+                          <span className={selected ? "text-leaf-d" : "text-muted"}>{option.icon}</span>
+                          <span className="text-[13.5px] font-semibold leading-tight">{option.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Hay algo más que debamos saber?" : "Anything else we should know?"}</label>
+                  <textarea rows={4} className="w-full border border-line bg-white rounded-xl p-4 outline-none focus:border-leaf focus:shadow-[0_0_0_3px_rgba(31,74,47,.10)]" value={data.note} onChange={e=>set("note",e.target.value)} placeholder={es ? "Fechas especiales, celebraciones, necesidades alimentarias o de movilidad…" : "Special dates, occasions, dietary needs, mobility considerations…"}/>
+                </div>
+                <div className="bg-cream border border-line rounded-xl p-4 text-[13px] text-ink-soft leading-relaxed">
+                  {es ? "Solo utilizaremos tus datos para preparar una propuesta personalizada. No recibirás newsletters salvo que lo autorices y nunca cederemos tu información." : "We use your details only to prepare a personalized proposal. No newsletters unless you opt in, no resale, ever."}
+                </div>
+                {submitError && <p className="text-[13px] text-terra-d">{submitError}</p>}
+                <div className="flex justify-end">
+                  <Button type="submit" size="lg" disabled={submitting || !data.contactMethod}>
+                    {submitting ? (es ? "Enviando…" : "Sending…") : (es ? "Solicitar mi propuesta personalizada" : "Request my personalized proposal")} <ArrowRight size={16}/>
+                  </Button>
                 </div>
               </form>
             )}
