@@ -64,7 +64,7 @@ function LeadDetails({ lead }) {
         </aside>
 
         <section className="grid gap-6 xl:grid-cols-2">
-          {lead.source === "contact" && (
+          {["contact", "tour-booking-panel"].includes(lead.source) && (
             <div>
               <h3 className="font-serif text-[22px] text-ink">Trip request</h3>
               <div className="mt-3 space-y-3 rounded-xl border border-line bg-white p-4 text-[14px] text-ink-soft">

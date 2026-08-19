@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Users, ArrowRight, Check } from "lucide-react";
+import { Users, ArrowRight, Check, Mail, Phone, MessageCircle } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
@@ -24,6 +24,9 @@ export default function BookingPanel({ tour, locale = "en" }) {
   const [travelers, setTravelers] = useState("2");
   const [tripLength, setTripLength] = useState("10-14");
   const [comfort, setComfort] = useState("comfort");
+  const [contact, setContact] = useState({ name: "", email: "", phone: "", contactMethod: "", note: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [errors, setErrors] = useState({});
   const monthRef = useRef(null);
@@ -40,7 +43,11 @@ export default function BookingPanel({ tour, locale = "en" }) {
     setErrors({});
   }
 
-  function handleSubmit(e) {
+  function setContactField(key, value) {
+    setContact((current) => ({ ...current, [key]: value }));
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (month === null && !flexible) {
@@ -57,7 +64,44 @@ export default function BookingPanel({ tour, locale = "en" }) {
     }
 
     setErrors({});
-    setSent(true);
+    setSubmitError("");
+    setSubmitting(true);
+
+    const travelMonth = flexible ? (es ? "Fechas flexibles" : "Flexible dates") : months[month];
+    const comfortLabels = {
+      comfort: es ? "Confort" : "Comfort",
+      premium: "Premium",
+      luxury: es ? "Lujo" : "Luxury",
+      mix: es ? "Una combinación" : "A mix",
+    };
+    const note = [
+      `${es ? "Roteiro" : "Journey"}: ${tour.title}`,
+      `${es ? "Duración" : "Trip length"}: ${tripLength} ${es ? "días" : "days"}`,
+      `${es ? "Nivel de comodidad" : "Comfort level"}: ${comfortLabels[comfort]}`,
+      contact.note ? `${es ? "Observaciones" : "Notes"}: ${contact.note}` : "",
+    ].filter(Boolean).join("\n");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "tour-booking-panel",
+          ...contact,
+          when: travelMonth,
+          travelers,
+          interests: tour.title,
+          budget: comfortLabels[comfort],
+          note,
+        }),
+      });
+      if (!response.ok) throw new Error("Could not send request");
+      setSent(true);
+    } catch {
+      setSubmitError(es ? "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp." : "We couldn't send your request. Please try again or contact us on WhatsApp.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -221,8 +265,92 @@ export default function BookingPanel({ tour, locale = "en" }) {
               ))}
             </div>
 
-            <Button type="submit" className="w-full justify-center mt-5">
-              {es ? "Solicitar este viaje" : "Request this trip"} <ArrowRight size={16} />
+            <div className="mt-6 pt-6 border-t border-line">
+              <div className="font-serif text-[21px] text-ink">{es ? "Tus datos de contacto" : "Your contact details"}</div>
+              <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">{es ? "Una experta local te responderá en un máximo de 48 horas." : "A local expert will reply within 48 hours."}</p>
+            </div>
+
+            <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+              {es ? "Nombre" : "Your name"} *
+            </label>
+            <Field icon={<Users size={16}/> }>
+              <input
+                required
+                className={inputCls}
+                value={contact.name}
+                onChange={(e) => setContactField("name", e.target.value)}
+                placeholder={es ? "Sofía García" : "Emily Johnson"}
+              />
+            </Field>
+
+            <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+              Email *
+            </label>
+            <Field icon={<Mail size={16}/> }>
+              <input
+                required
+                type="email"
+                className={inputCls}
+                value={contact.email}
+                onChange={(e) => setContactField("email", e.target.value)}
+                placeholder="you@yourdomain.com"
+              />
+            </Field>
+
+            <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+              {es ? "Teléfono o WhatsApp (opcional)" : "Phone or WhatsApp (optional)"}
+            </label>
+            <Field icon={<Phone size={16}/> }>
+              <input
+                className={inputCls}
+                value={contact.phone}
+                onChange={(e) => setContactField("phone", e.target.value)}
+                placeholder="+1 555 000 0000"
+              />
+            </Field>
+
+            <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+              {es ? "¿Cómo prefieres que contactemos contigo?" : "How would you like us to reach out?"} *
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { value: "E-mail", label: "E-mail", icon: <Mail size={17}/> },
+                { value: "WhatsApp", label: "WhatsApp", icon: <MessageCircle size={17}/> },
+                { value: "Google Meet", label: "Google Meet", icon: <Users size={17}/> },
+              ].map((option) => {
+                const selected = contact.contactMethod === option.value;
+                return (
+                  <button
+                    type="button"
+                    key={option.value}
+                    onClick={() => setContactField("contactMethod", option.value)}
+                    className={cn(
+                      "flex min-h-[82px] flex-col items-center justify-center gap-2 rounded-xl border px-2 py-3 text-center transition",
+                      selected ? "border-leaf bg-leaf/10 text-leaf-d" : "border-line bg-white text-ink-soft hover:border-leaf"
+                    )}
+                  >
+                    {option.icon}
+                    <span className="text-[12px] font-semibold leading-tight">{option.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
+              {es ? "¿Hay algo más que debamos saber?" : "Anything else we should know?"}
+            </label>
+            <textarea
+              rows={3}
+              value={contact.note}
+              onChange={(e) => setContactField("note", e.target.value)}
+              placeholder={es ? "Celebraciones, preferencias o necesidades especiales…" : "Celebrations, preferences, or special requirements…"}
+              className="w-full rounded-xl border border-line bg-white p-4 text-[14px] leading-relaxed outline-none focus:border-leaf focus:shadow-[0_0_0_3px_rgba(31,74,47,.10)]"
+            />
+
+            {submitError && <p className="mt-3 text-[12.5px] text-terra-d">{submitError}</p>}
+
+            <Button type="submit" disabled={submitting || !contact.contactMethod} className="w-full justify-center mt-5">
+              {submitting ? (es ? "Enviando…" : "Sending…") : (es ? "Solicitar este viaje" : "Request this trip")} <ArrowRight size={16} />
             </Button>
 
             <a
