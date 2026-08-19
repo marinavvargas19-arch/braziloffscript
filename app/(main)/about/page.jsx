@@ -1,7 +1,6 @@
 import { Container, SectionHead } from "@/components/ui/section";
 import { NewsletterBand } from "@/components/layout/newsletter";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/lib/data";
 import { Sparkles, Users, Compass, Heart, Shield, Phone, ArrowRight } from "lucide-react";
 
 export const metadata = { title: "About us — Brazil Off Script", alternates: { canonical: "/about", languages: { en: "/about", "es-ES": "/es/about" } } };
@@ -141,7 +140,7 @@ export default function AboutPage() {
           <p className="mt-3 text-ink-soft max-w-xl mx-auto">Take the 60-second quiz, browse our journeys, or talk to a human.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Button href="/start" size="lg">Take the quiz <Sparkles size={16}/></Button>
-            <Button variant="ghost" size="lg" href={`https://wa.me/${SITE.whatsapp}`}>Talk to a human <ArrowRight size={16}/></Button>
+            <Button variant="ghost" size="lg" href="/talk-to-human">Talk to a human <ArrowRight size={16}/></Button>
           </div>
         </Container>
       </section>

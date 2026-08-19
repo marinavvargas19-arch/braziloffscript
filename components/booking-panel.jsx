@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Users, ArrowRight, Check, Mail, Phone, MessageCircle } from "lucide-react";
+import { Users, ArrowRight, Check, Mail, Phone, MessageCircle, Video } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
@@ -87,6 +87,7 @@ export default function BookingPanel({ tour, locale = "en" }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           source: "tour-booking-panel",
+          leadOrigin: "tour-form",
           ...contact,
           when: travelMonth,
           travelers,
@@ -298,10 +299,11 @@ export default function BookingPanel({ tour, locale = "en" }) {
             </Field>
 
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
-              {es ? "Teléfono o WhatsApp (opcional)" : "Phone or WhatsApp (optional)"}
+              {es ? "Teléfono o WhatsApp" : "Phone or WhatsApp"} *
             </label>
             <Field icon={<Phone size={16}/> }>
               <input
+                required
                 className={inputCls}
                 value={contact.phone}
                 onChange={(e) => setContactField("phone", e.target.value)}
@@ -312,11 +314,12 @@ export default function BookingPanel({ tour, locale = "en" }) {
             <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mt-4 mb-2">
               {es ? "¿Cómo prefieres que contactemos contigo?" : "How would you like us to reach out?"} *
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {[
                 { value: "E-mail", label: "E-mail", icon: <Mail size={17}/> },
                 { value: "WhatsApp", label: "WhatsApp", icon: <MessageCircle size={17}/> },
-                { value: "Google Meet", label: "Google Meet", icon: <Users size={17}/> },
+                { value: "Phone call", label: es ? "Llamada" : "Phone call", icon: <Phone size={17}/> },
+                { value: "Video call", label: es ? "Videollamada" : "Video call", icon: <Video size={17}/> },
               ].map((option) => {
                 const selected = contact.contactMethod === option.value;
                 return (
@@ -349,7 +352,7 @@ export default function BookingPanel({ tour, locale = "en" }) {
 
             {submitError && <p className="mt-3 text-[12.5px] text-terra-d">{submitError}</p>}
 
-            <Button type="submit" disabled={submitting || !contact.contactMethod} className="w-full justify-center mt-5">
+            <Button type="submit" disabled={submitting || !contact.phone || !contact.contactMethod} className="w-full justify-center mt-5">
               {submitting ? (es ? "Enviando…" : "Sending…") : (es ? "Solicitar este viaje" : "Request this trip")} <ArrowRight size={16} />
             </Button>
 

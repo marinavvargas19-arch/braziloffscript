@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Mail, Phone, Calendar, Users, ArrowRight, Check, Clock, MapPin, MessageCircle } from "lucide-react";
+import { Mail, Phone, Calendar, Users, ArrowRight, Check, Clock, MapPin, MessageCircle, Video } from "lucide-react";
 import { Container } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
@@ -9,7 +9,7 @@ import * as EN from "@/lib/data";
 import * as ES from "@/lib/data-es";
 import { localePath } from "@/lib/i18n";
 
-export default function ContactClient({ locale = "en" }) {
+export default function ContactClient({ locale = "en", leadOrigin = "contact-page", humanFlow = false }) {
   const es = locale === "es";
   const content = es ? ES : EN;
   const { SITE, DESTINATIONS } = content;
@@ -34,7 +34,7 @@ export default function ContactClient({ locale = "en" }) {
     setSubmitting(true);
     setSubmitError("");
     try {
-      const payload = { ...data, interests: data.interests.split("|||").filter(Boolean).join(", "), source: "contact" };
+      const payload = { ...data, interests: data.interests.split("|||").filter(Boolean).join(", "), source: "contact", leadOrigin };
       const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       if (!response.ok) throw new Error("Could not send contact request");
       setSent(true);
@@ -49,8 +49,8 @@ export default function ContactClient({ locale = "en" }) {
     <>
       <section className="bg-paper border-b border-line">
         <Container className="py-12">
-          <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">{es ? "Contacta con nosotros" : "Get in touch"}</div>
-          <h1 className="font-serif text-[clamp(34px,4.5vw,56px)] leading-tight text-ink max-w-3xl">{es ? "Cuéntanos qué estás imaginando." : <>Tell us what you&apos;re imagining.</>}</h1>
+          <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">{humanFlow ? (es ? "Habla con una experta local" : "Talk to a local expert") : (es ? "Contacta con nosotros" : "Get in touch")}</div>
+          <h1 className="font-serif text-[clamp(34px,4.5vw,56px)] leading-tight text-ink max-w-3xl">{humanFlow ? (es ? "Cuéntanos cómo imaginas tu viaje." : <>Tell us how you&apos;re imagining your trip.</>) : (es ? "Cuéntanos qué estás imaginando." : <>Tell us what you&apos;re imagining.</>)}</h1>
           <p className="mt-4 text-ink-soft text-[17px] max-w-2xl leading-relaxed">{es ? "Una experta local en Brasil te responderá en un máximo de 48 horas, normalmente el mismo día laborable. Sin llamadas comerciales ni compromiso." : "A real Brazilian destination expert replies within 48 hours — usually the same business day. No newsletters, no sales calls, no obligation."}</p>
         </Container>
       </section>
@@ -80,8 +80,8 @@ export default function ContactClient({ locale = "en" }) {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono o WhatsApp (opcional)" : "Phone or WhatsApp (optional)"}</label>
-                  <Field icon={<Phone size={16}/>}><input className={inputCls} value={data.phone} onChange={e=>set("phone",e.target.value)} placeholder="+1 555 000 0000"/></Field>
+                  <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono o WhatsApp" : "Phone or WhatsApp"} *</label>
+                  <Field icon={<Phone size={16}/>}><input required className={inputCls} value={data.phone} onChange={e=>set("phone",e.target.value)} placeholder="+1 555 000 0000"/></Field>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div>
@@ -123,11 +123,12 @@ export default function ContactClient({ locale = "en" }) {
                 </div>
                 <div>
                   <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Cómo prefieres que contactemos contigo?" : "How would you like us to reach out?"}</label>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {[
                       { value: "E-mail", label: "E-mail", icon: <Mail size={18}/> },
                       { value: "WhatsApp", label: "WhatsApp", icon: <MessageCircle size={18}/> },
-                      { value: "Google Meet", label: "Google Meet", icon: <Users size={18}/> },
+                      { value: "Phone call", label: es ? "Llamada" : "Phone call", icon: <Phone size={18}/> },
+                      { value: "Video call", label: es ? "Videollamada" : "Video call", icon: <Video size={18}/> },
                     ].map(option => {
                       const selected = data.contactMethod === option.value;
                       return (
@@ -153,7 +154,7 @@ export default function ContactClient({ locale = "en" }) {
                 </div>
                 {submitError && <p className="text-[13px] text-terra-d">{submitError}</p>}
                 <div className="flex justify-end">
-                  <Button type="submit" size="lg" disabled={submitting || !data.contactMethod}>
+                  <Button type="submit" size="lg" disabled={submitting || !data.phone || !data.contactMethod}>
                     {submitting ? (es ? "Enviando…" : "Sending…") : (es ? "Solicitar mi propuesta personalizada" : "Request my personalized proposal")} <ArrowRight size={16}/>
                   </Button>
                 </div>

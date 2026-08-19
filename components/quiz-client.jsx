@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Check, Sparkles, Users, Mail, Phone } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Sparkles, Users, Mail, Phone, Video } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,8 @@ function cn(...classes) { return classes.filter(Boolean).join(" "); }
 const CONTACT_METHOD_LABELS = {
   email: "E-mail",
   whatsapp: "WhatsApp",
-  meet: "Google Meet",
+  phone: "Phone call",
+  meet: "Video call",
 };
 
 const DISCOVERY_LS_KEY = "disco-quiz-v2";
@@ -125,7 +126,7 @@ export default function QuizClient({ locale = "en" }) {
   const canContinue = useMemo(() => {
     if (s.type === "contact") {
       const c = answers.contact || {};
-      return c.name && c.email && /\S+@\S+\.\S+/.test(c.email) && c.contactMethod;
+      return c.name && c.email && /\S+@\S+\.\S+/.test(c.email) && c.phone && c.contactMethod;
     }
     if (!s.required) return true;
     const v = answers[s.id];
@@ -151,8 +152,11 @@ export default function QuizClient({ locale = "en" }) {
 
     const contact = answers.contact || {};
     const [first = contact.name || "", ...rest] = (contact.name || "").trim().split(/\s+/);
+    let leadOrigin = "quiz-direct";
+    try { leadOrigin = sessionStorage.getItem("bos-lead-source") || leadOrigin; } catch {}
     const payload = {
       source: "quiz",
+      leadOrigin,
       first,
       last: rest.join(" "),
       name: contact.name,
@@ -179,6 +183,7 @@ export default function QuizClient({ locale = "en" }) {
       if (!res.ok) throw new Error("Could not send quiz request");
       const json = await res.json();
       if (!json.ok) throw new Error(json.error || "Could not send quiz request");
+      try { sessionStorage.removeItem("bos-lead-source"); } catch {}
       setDone(true);
     } catch (err) {
       setSubmitError(es ? "No hemos podido enviar el formulario. Inténtalo de nuevo o escribe a hello@braziloffscript.com." : "We couldn't send your quiz yet. Please try again or email hello@braziloffscript.com.");
@@ -452,7 +457,7 @@ export default function QuizClient({ locale = "en" }) {
                   canContinue && !submitting ? "bg-terra hover:bg-terra-d text-cream-50" : "bg-line text-muted cursor-not-allowed"
                 )}
               >
-                {submitting ? (es ? "Enviando…" : "Sending...") : (es ? "Recibir mi propuesta" : "Get my journey match")} <Sparkles size={16}/>
+                {submitting ? (es ? "Enviando…" : "Sending...") : (es ? "Solicitar mi propuesta personalizada" : "Request my personalized proposal")} <Sparkles size={16}/>
               </button>
             ) : (
               <button
@@ -501,19 +506,20 @@ function ContactStep({ value, onChange, locale = "en" }) {
       </div>
 
       <div>
-        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono o WhatsApp (opcional)" : "Phone or WhatsApp (optional)"}</label>
+        <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "Teléfono o WhatsApp" : "Phone or WhatsApp"} *</label>
         <Field icon={<Phone size={16}/>}>
-          <input className={inputCls} value={value.phone || ""} onChange={e => set("phone", e.target.value)} placeholder="+1 555 000 0000"/>
+          <input required className={inputCls} value={value.phone || ""} onChange={e => set("phone", e.target.value)} placeholder="+1 555 000 0000"/>
         </Field>
       </div>
 
       <div>
         <label className="block text-[11px] tracking-[.14em] uppercase text-muted font-bold mb-2">{es ? "¿Cómo prefieres que contactemos contigo?" : "How would you like us to reach out?"}</label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { value: "email",    label: "E-mail",      icon: <Mail size={18}/> },
             { value: "whatsapp", label: "WhatsApp",    icon: <Phone size={18}/> },
-            { value: "meet",     label: "Google Meet", icon: <Users size={18}/> },
+            { value: "phone",    label: es ? "Llamada" : "Phone call", icon: <Phone size={18}/> },
+            { value: "meet",     label: es ? "Videollamada" : "Video call", icon: <Video size={18}/> },
           ].map(o => {
             const selected = value.contactMethod === o.value;
             return (

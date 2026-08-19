@@ -23,6 +23,25 @@ function dateKey(value) {
   return `${year}-${month}-${day}`;
 }
 
+const SOURCE_LABELS = {
+  "header-start-journey": "Header — Start your journey",
+  "header-travel-quiz": "Header — Travel Quiz",
+  "tour-form": "Tour itinerary form",
+  "contact-page": "Contact page",
+  "talk-to-a-human": "Talk to a human page",
+  "quiz-direct": "Journey builder quiz",
+  "quiz-result-contact": "Quiz result contact",
+  "tour-booking-panel": "Tour itinerary form",
+  "quiz-contact-choice": "Quiz result contact",
+  quiz: "Journey builder quiz",
+  contact: "Contact page",
+};
+
+function sourceLabel(lead) {
+  const source = lead.payload?.leadOrigin || lead.source || "unknown";
+  return SOURCE_LABELS[source] || source;
+}
+
 function JsonList({ items }) {
   if (!Array.isArray(items) || items.length === 0) {
     return <p className="text-[13px] text-muted">No answers captured.</p>;
@@ -49,7 +68,7 @@ function LeadDetails({ lead }) {
       <div className="grid gap-7 lg:grid-cols-[300px_1fr]">
         <aside>
           <div className="inline-flex rounded-full bg-leaf/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[.12em] text-leaf-d">
-            {lead.source || "lead"}
+            {sourceLabel(lead)}
           </div>
           <div className="mt-4 space-y-2 text-[14px] text-ink-soft">
             <div className="flex items-center gap-2"><Mail size={15}/> {lead.email || "—"}</div>
@@ -154,8 +173,9 @@ export default function LeadsList({ leads }) {
       </div>
 
       <div className="mt-5 overflow-hidden rounded-2xl border border-line bg-paper">
-        <div className="hidden grid-cols-[180px_1fr_1fr_36px] gap-4 border-b border-line bg-cream-50/60 px-6 py-3 text-[11px] font-bold uppercase tracking-[.14em] text-muted md:grid">
+        <div className="hidden grid-cols-[160px_180px_1fr_1fr_36px] gap-4 border-b border-line bg-cream-50/60 px-6 py-3 text-[11px] font-bold uppercase tracking-[.14em] text-muted md:grid">
           <div>Date</div>
+          <div>Lead source</div>
           <div>Name</div>
           <div>Email</div>
           <div/>
@@ -172,9 +192,10 @@ export default function LeadsList({ leads }) {
                 type="button"
                 onClick={() => setOpenId(isOpen ? null : id)}
                 aria-expanded={isOpen}
-                className="grid w-full gap-1 px-4 py-4 text-left transition hover:bg-cream-50/60 md:grid-cols-[180px_1fr_1fr_36px] md:items-center md:gap-4 md:px-6"
+                className="grid w-full gap-1 px-4 py-4 text-left transition hover:bg-cream-50/60 md:grid-cols-[160px_180px_1fr_1fr_36px] md:items-center md:gap-4 md:px-6"
               >
                 <div className="text-[12.5px] text-muted md:text-[13.5px]">{formatDate(lead.created_at)}</div>
+                <div className="text-[12px] font-semibold text-leaf-d">{sourceLabel(lead)}</div>
                 <div className="font-serif text-[20px] leading-tight text-ink">{lead.name || "Unnamed lead"}</div>
                 <div className="truncate text-[14px] text-ink-soft">{lead.email || "—"}</div>
                 <ChevronDown size={18} className={`hidden text-muted transition-transform md:block ${isOpen ? "rotate-180" : ""}`}/>

@@ -1,7 +1,6 @@
 import { Container, SectionHead } from "@/components/ui/section";
 import { NewsletterBand } from "@/components/layout/newsletter";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/lib/data-es";
 import { Sparkles, Users, Compass, Heart, Shield, Phone, ArrowRight } from "lucide-react";
 
 export const metadata = {
@@ -65,7 +64,7 @@ export default function AboutPage() {
 
       <section className="py-16"><Container><div className="space-y-5">{STEPS.map(([number, title, description, Icon]) => <div key={number} className="grid md:grid-cols-12 gap-6 bg-paper border border-line rounded-2xl p-7 md:p-9"><div className="md:col-span-2 flex md:flex-col items-center md:items-start gap-3"><div className="font-serif text-[44px] leading-none text-terra">{number}</div><div className="w-10 h-10 rounded-full bg-leaf/10 text-leaf-d flex items-center justify-center"><Icon size={18}/></div></div><div className="md:col-span-10"><h3 className="font-serif text-[clamp(22px,2.4vw,30px)] text-ink leading-tight">{title}</h3><p className="mt-3 text-ink-soft text-[16.5px] leading-relaxed max-w-3xl">{description}</p></div></div>)}</div></Container></section>
 
-      <section className="pb-16"><Container className="text-center"><h2 className="font-serif text-[clamp(28px,3.4vw,42px)] text-ink">Cuando tú quieras.</h2><p className="mt-3 text-ink-soft max-w-xl mx-auto">Haz el test de 60 segundos, explora nuestros viajes o habla con una persona.</p><div className="mt-7 flex flex-wrap justify-center gap-3"><Button href="/es/start" size="lg">Haz el test <Sparkles size={16}/></Button><Button variant="ghost" size="lg" href={`https://wa.me/${SITE.whatsapp}`}>Habla con nosotros <ArrowRight size={16}/></Button></div></Container></section>
+      <section className="pb-16"><Container className="text-center"><h2 className="font-serif text-[clamp(28px,3.4vw,42px)] text-ink">Cuando tú quieras.</h2><p className="mt-3 text-ink-soft max-w-xl mx-auto">Haz el test de 60 segundos, explora nuestros viajes o habla con una persona.</p><div className="mt-7 flex flex-wrap justify-center gap-3"><Button href="/es/start" size="lg">Haz el test <Sparkles size={16}/></Button><Button variant="ghost" size="lg" href="/es/talk-to-human">Habla con nosotros <ArrowRight size={16}/></Button></div></Container></section>
       <NewsletterBand locale="es"/>
     </>
   );

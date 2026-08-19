@@ -53,6 +53,9 @@ export function Header({ locale = "en" }) {
   })();
 
   useEffect(() => { setOpen(false); }, [pathname]);
+  const markLeadSource = (source) => {
+    try { sessionStorage.setItem("bos-lead-source", source); } catch {}
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
@@ -77,10 +80,10 @@ export function Header({ locale = "en" }) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
+          <Link onClick={() => markLeadSource("header-travel-quiz")} href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
             <Sparkles size={16}/> {copy.quiz}
           </Link>
-          <Button href={localePath("/start", locale)} className="!px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
+          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="!px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
           <div className="hidden lg:flex items-center border-l border-line/80 pl-3 ml-1">
             <LanguageSwitcher compact />
           </div>
@@ -113,7 +116,7 @@ export function Header({ locale = "en" }) {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3">
-              <Button href={localePath("/start", locale)} className="w-full justify-center">{copy.find} <ArrowRight size={16} /></Button>
+              <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="w-full justify-center">{copy.find} <ArrowRight size={16} /></Button>
               <Button variant="ghost" href={localePath("/contact", locale)} className="w-full justify-center">{copy.contact}</Button>
             </div>
             <div className="mt-7 pt-5 border-t border-line/60 flex items-center justify-between">

@@ -112,12 +112,15 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
       ? (es ? `Resultado principal: ${d.name}. También encaja contigo: ${runner.name}.` : `Primary match: ${d.name}. Strong fit: ${runner.name}.`)
       : (es ? `Resultado principal: ${d.name}.` : `Primary match: ${d.name}.`);
     function trackContactChoice(channel) {
+      let leadOrigin = "quiz-result-contact";
+      try { leadOrigin = sessionStorage.getItem("bos-lead-source") || leadOrigin; } catch {}
       void fetch("/api/quiz-contact-click", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         keepalive: true,
         body: JSON.stringify({
           source: "quiz-contact-choice",
+          leadOrigin,
           contactMethod: channel,
           note: matchSummary,
           locale,
