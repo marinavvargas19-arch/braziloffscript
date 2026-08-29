@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export function Container({ children, className }) {
   return (
-    <div className={cn("max-w-[1240px] mx-auto px-5 sm:px-7", className)}>{children}</div>
+    <div className={cn("max-w-[1240px] mx-auto px-[18px] sm:px-7", className)}>{children}</div>
   );
 }
 
@@ -20,11 +20,11 @@ export function SectionHead({ eyebrow, title, sub, center, className, titleClass
         </div>
       )}
       {title && (
-        <h2 className={cn("font-serif text-[clamp(30px,3.4vw,46px)] font-medium leading-[1.08] tracking-tight text-ink text-balance", titleClassName)}>
+        <h2 className={cn("font-serif text-[clamp(28px,3.4vw,46px)] font-medium leading-[1.1] sm:leading-[1.08] tracking-tight text-ink text-balance", titleClassName)}>
           {title}
         </h2>
       )}
-      {sub && <p className="mt-3 text-[17px] leading-relaxed text-ink-soft">{sub}</p>}
+      {sub && <p className="mt-3 text-[15px] sm:text-[17px] leading-relaxed text-ink-soft">{sub}</p>}
     </div>
   );
 }

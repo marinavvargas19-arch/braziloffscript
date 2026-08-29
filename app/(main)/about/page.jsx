@@ -28,17 +28,17 @@ export default function AboutPage() {
           <img src="/quiz-region-left.jpg" className="w-full h-full object-cover" alt="Lençóis Maranhenses dunes and lagoons"/>
           <div className="absolute inset-0 bg-leaf-d/55"/>
         </div>
-        <Container className="relative py-16 md:py-20 text-cream-50">
+        <Container className="relative py-12 sm:py-16 md:py-20 text-cream-50">
           <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">About us</div>
-          <h1 className="font-serif font-medium text-[clamp(32px,4vw,54px)] leading-[1.06] tracking-tight">Brazil, off script.</h1>
-          <p className="mt-5 max-w-2xl text-cream-50/90 text-[17px] leading-relaxed">
+          <h1 className="font-serif font-medium text-[30px] sm:text-[clamp(32px,4vw,54px)] leading-[1.1] sm:leading-[1.06] tracking-tight">Brazil, off script.</h1>
+          <p className="mt-4 sm:mt-5 max-w-2xl text-cream-50/90 text-[15px] sm:text-[17px] leading-relaxed">
             We create immersive journeys designed to reveal a more authentic, emotional, and <strong>meaningful side of Brazil</strong> — uncovering places, stories, and experiences hidden even from many Brazilians.
           </p>
         </Container>
       </section>
 
       {/* Philosophy + gallery */}
-      <section className="py-20">
+      <section className="py-14 sm:py-20">
         <Container className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-5">
             <SectionHead eyebrow="Our Philosophy" title="Travel beyond the obvious."/>
@@ -55,7 +55,7 @@ export default function AboutPage() {
           </div>
         </Container>
 
-        <Container className="mt-12">
+        <Container className="mt-8 sm:mt-12">
           <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
             {GALLERY.map((src, i) => (
               <div key={i} className="overflow-hidden rounded-xl aspect-square">
@@ -67,7 +67,7 @@ export default function AboutPage() {
       </section>
 
       {/* What makes us different */}
-      <section className="bg-leaf-d text-cream-50 py-20">
+      <section className="bg-leaf-d text-cream-50 py-14 sm:py-20">
         <Container>
           <SectionHead
             eyebrow="What makes us different"
@@ -84,8 +84,8 @@ export default function AboutPage() {
               { n:"5", t:"A balance between sophistication and adventure", d:"From luxury to exploration, we craft the perfect balance for you." },
               { n:"6", t:"Slow travel and meaningful experiences",        d:"We believe the best journeys are the ones that stay with you forever." },
             ].map((it, i) => (
-              <div key={i} className="rounded-2xl bg-cream-50/5 border border-cream-50/10 p-7">
-                <div className="font-serif text-[48px] leading-none text-gold">{it.n}</div>
+              <div key={i} className="rounded-2xl bg-cream-50/5 border border-cream-50/10 p-5 sm:p-7">
+                <div className="font-serif text-[38px] sm:text-[48px] leading-none text-gold">{it.n}</div>
                 <div className="font-semibold mt-3 text-cream-50 text-[16.5px]">{it.t}</div>
                 <p className="mt-2 text-cream-50/80 text-[14.5px] leading-relaxed">{it.d}</p>
               </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
       <section id="how" className="bg-paper border-y border-line">
         <Container className="py-12 md:py-20">
           <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3">How it works</div>
-          <h2 className="font-serif text-[clamp(34px,4.6vw,60px)] leading-[1.04] text-ink max-w-3xl">
+          <h2 className="font-serif text-[30px] sm:text-[clamp(34px,4.6vw,60px)] leading-[1.1] sm:leading-[1.04] text-ink max-w-3xl">
             From &ldquo;I&apos;m thinking about Brazil&rdquo; to{" "}
             <em className="not-italic text-leaf">&ldquo;I can&apos;t believe that just happened&rdquo;</em> in six steps.
           </h2>
@@ -115,7 +115,7 @@ export default function AboutPage() {
             {HOW_STEPS.map(s => {
               const Icon = s.icon;
               return (
-                <div key={s.n} className="grid md:grid-cols-12 gap-6 bg-paper border border-line rounded-2xl p-7 md:p-9">
+                <div key={s.n} className="grid md:grid-cols-12 gap-4 sm:gap-6 bg-paper border border-line rounded-2xl p-5 sm:p-7 md:p-9">
                   <div className="md:col-span-2 flex md:flex-col items-center md:items-start gap-3">
                     <div className="font-serif text-[44px] leading-none text-terra">{s.n}</div>
                     <div className="w-10 h-10 rounded-full bg-leaf/10 text-leaf-d flex items-center justify-center">

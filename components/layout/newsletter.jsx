@@ -14,11 +14,11 @@ export function NewsletterBand({ locale = "en" }) {
   };
   const [done, setDone] = useState(false);
   return (
-    <section className="bg-terra text-cream-50 py-12">
-      <Container className="grid md:grid-cols-2 gap-8 items-center">
+    <section className="bg-terra text-cream-50 py-9 sm:py-12">
+      <Container className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
         <div>
           <div className="text-[11px] tracking-[.22em] uppercase font-bold opacity-80">Newsletter</div>
-          <h3 className="font-serif text-[clamp(28px,3vw,38px)] mt-2 leading-tight">
+          <h3 className="font-serif text-[26px] sm:text-[clamp(28px,3vw,38px)] mt-2 leading-tight">
             {copy.title}
           </h3>
         </div>
@@ -31,8 +31,8 @@ export function NewsletterBand({ locale = "en" }) {
           ) : (
             <>
               <input type="email" required placeholder="you@yourdomain.com"
-                className="flex-1 bg-cream-50/95 text-ink placeholder:text-ink/40 rounded-full px-5 py-3.5 outline-none border border-transparent focus:border-leaf"/>
-              <button className="rounded-full bg-leaf-d hover:bg-leaf text-cream-50 font-semibold px-7 py-3.5 transition">
+                className="flex-1 bg-cream-50/95 text-ink placeholder:text-ink/40 rounded-full px-5 py-3 outline-none border border-transparent focus:border-leaf"/>
+              <button className="rounded-full bg-leaf-d hover:bg-leaf text-cream-50 text-sm font-semibold px-7 py-3 transition">
                 {copy.join}
               </button>
             </>

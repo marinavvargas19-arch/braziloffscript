@@ -81,7 +81,7 @@ export default function HomePage({ locale = "en" }) {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[calc(100svh-105px)] overflow-hidden">
+      <section className="relative min-h-[calc(100svh-69px)] sm:min-h-[calc(100svh-93px)] lg:min-h-[calc(100svh-105px)] overflow-hidden">
         <div className="absolute inset-0">
           <video
             src="/hero.mp4"
@@ -99,26 +99,26 @@ export default function HomePage({ locale = "en" }) {
           <div className="absolute inset-0" style={{background: "linear-gradient(105deg, rgba(10,25,15,.72), rgba(10,25,15,.56) 32%, rgba(10,25,15,.18) 54%, rgba(10,25,15,0) 76%)"}}></div>
           <div className="absolute inset-0" style={{background: "linear-gradient(to right, rgba(255,248,232,0) 48%, rgba(255,248,232,.08) 70%, rgba(255,248,232,.16))"}}></div>
         </div>
-        <div className="relative flex min-h-[calc(100svh-105px)] items-center">
-          <Container className="w-full py-10 sm:py-12 lg:py-12">
+        <div className="relative flex min-h-[calc(100svh-69px)] sm:min-h-[calc(100svh-93px)] lg:min-h-[calc(100svh-105px)] items-center">
+          <Container className="w-full py-7 sm:py-12 lg:py-12">
             <div className="max-w-[680px] text-cream-50" style={{textShadow: "0 2px 18px rgba(0,0,0,.45)"}}>
-              <Badge variant="light" className="mb-4 sm:mb-5 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
+              <Badge variant="light" className="mb-3 sm:mb-5 !bg-cream-50/15 !text-cream-50 backdrop-blur-sm" style={{textShadow: "none"}}>
                 <span className="w-1.5 h-1.5 rounded-full bg-terra"></span> {copy.heroBadge}
               </Badge>
               <h1
-                className="font-serif font-medium tracking-tight text-[clamp(40px,5.2vw,72px)]"
-                style={{lineHeight: 1.04, textShadow: "0 3px 24px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35)"}}
+                className="font-serif font-medium tracking-tight text-[34px] min-[380px]:text-[37px] sm:text-[clamp(40px,5.2vw,72px)]"
+                style={{lineHeight: 1.08, textShadow: "0 3px 24px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35)"}}
               >
                 {copy.heroTitle}
               </h1>
-              <p className="mt-5 sm:mt-6 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-cream-50">
+              <p className="mt-4 sm:mt-6 max-w-xl text-[14px] min-[380px]:text-[14.5px] sm:text-[17px] leading-[1.65] text-cream-50">
                 {copy.heroBody}
               </p>
-              <div className="mt-6 sm:mt-7 flex flex-wrap gap-3">
-                <Button href={href("/start")} size="lg">{copy.design} <ArrowRight size={16}/></Button>
-                <Button variant="ghostLight" size="lg" href={href("/journeys")}>{copy.exploreJourneys}</Button>
+              <div className="mt-5 sm:mt-7 flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-2.5 sm:gap-3">
+                <Button href={href("/start")} size="lg" className="w-full min-[420px]:w-auto">{copy.design} <ArrowRight size={16}/></Button>
+                <Button variant="ghostLight" size="lg" href={href("/journeys")} className="w-full min-[420px]:w-auto">{copy.exploreJourneys}</Button>
               </div>
-              <div className="mt-7 sm:mt-8 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
+              <div className="mt-0 sm:mt-8 flex flex-wrap items-center gap-6 text-cream-50/85 text-[13px]">
                 <div className="hidden sm:flex items-center gap-2"><Shield size={14}/> {copy.protected}</div>
                 <div className="hidden md:flex items-center gap-2"><Leaf size={14}/> {copy.sustainable}</div>
               </div>
@@ -146,25 +146,25 @@ export default function HomePage({ locale = "en" }) {
       */}
 
       {/* Method */}
-      <section id="about" className="py-20 md:py-24">
+      <section id="about" className="py-14 sm:py-20 md:py-24">
         <Container>
-          <div className="grid md:grid-cols-12 gap-8 items-end mb-12">
+          <div className="grid md:grid-cols-12 gap-5 sm:gap-8 items-end mb-8 sm:mb-12">
             <div className="md:col-span-7">
-              <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-4">{copy.essence}</div>
-              <h2 className="font-serif text-[clamp(34px,4.6vw,58px)] leading-[1.05] tracking-tight text-ink text-balance">
+              <div className="text-[10px] sm:text-[11px] tracking-[.22em] uppercase font-semibold text-terra mb-3 sm:mb-4">{copy.essence}</div>
+              <h2 className="font-serif text-[30px] sm:text-[clamp(34px,4.6vw,58px)] leading-[1.1] sm:leading-[1.05] tracking-tight text-ink text-balance">
                 {copy.essenceTitle}
               </h2>
             </div>
             <div className="md:col-span-5">
-              <p className="text-[17px] leading-relaxed text-ink-soft max-w-xl">
+              <p className="text-[15px] sm:text-[17px] leading-relaxed text-ink-soft max-w-xl">
                 {copy.essenceBody}
               </p>
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {copy.commitments.map(([t, d], index) => ({ n: String(index + 1).padStart(2, "0"), t, d, c: ["terra", "leaf", "gold", "azul", "terra", "leaf"][index] })).map((it)=>(
-              <div key={it.n} className="bg-paper border border-line rounded-2xl p-7 flex gap-5 transition hover:shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)] hover:-translate-y-0.5">
-                <div className={`font-serif text-[44px] leading-none ${it.c==="terra"?"text-terra":it.c==="leaf"?"text-leaf":it.c==="gold"?"text-[#b88a3f]":"text-azul"}`}>{it.n}</div>
+              <div key={it.n} className="bg-paper border border-line rounded-2xl p-5 sm:p-7 flex gap-4 sm:gap-5 transition hover:shadow-[0_18px_42px_-22px_rgba(25,40,30,.28)] hover:-translate-y-0.5">
+                <div className={`font-serif text-[36px] sm:text-[44px] leading-none ${it.c==="terra"?"text-terra":it.c==="leaf"?"text-leaf":it.c==="gold"?"text-[#b88a3f]":"text-azul"}`}>{it.n}</div>
                 <div>
                   <div className="font-semibold text-ink text-[16.5px]">{it.t}</div>
                   <p className="mt-1.5 text-[14.5px] leading-relaxed text-ink-soft">{it.d}</p>
@@ -176,22 +176,22 @@ export default function HomePage({ locale = "en" }) {
       </section>
 
       {/* Three collections */}
-      <section id="journeys" className="bg-paper py-20">
+      <section id="journeys" className="bg-paper py-14 sm:py-20">
         <Container>
           <SectionHead eyebrow={copy.journeysEyebrow} title={copy.journeysTitle} sub={copy.journeysSub} center/>
-          <div className="grid md:grid-cols-3 gap-5 mt-10">
+          <div className="grid md:grid-cols-3 gap-5 mt-7 sm:mt-10">
             {CATEGORIES.map((c, i) => {
               const heroImg = i === 0 ? IMG.rioSugar : i === 1 ? "/the-explorer.jpg" : "/paradise-found.jpg";
               const tint = c.color === "terra" ? "224,122,78" : c.color === "leaf" ? "31,74,47" : "45,90,138";
               return (
-                <Link key={c.slug} href={href(`/journeys/${c.slug}`)} className="group relative rounded-2xl overflow-hidden block" style={{aspectRatio: "3/4"}}>
+                <Link key={c.slug} href={href(`/journeys/${c.slug}`)} className="group relative rounded-2xl overflow-hidden block aspect-[4/3] md:aspect-[3/4]">
                   <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-[1.06]"/>
                   {/* Soft brand-color tint, stronger near the bottom but never hiding the image */}
                   <div className="absolute inset-0" style={{background: `linear-gradient(to top, rgba(${tint},.5) 0%, rgba(${tint},.22) 55%, rgba(${tint},.08) 100%)`}}></div>
                   {/* Dark scrim concentrated at the bottom for text legibility */}
                   <div className="absolute inset-0" style={{background: "linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.42) 28%, rgba(0,0,0,.08) 55%, transparent 75%)"}}></div>
-                  <div className="absolute inset-0 p-7 flex flex-col justify-end text-cream-50" style={{textShadow: "0 2px 14px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.55)"}}>
-                    <div className="font-serif text-[32px] leading-tight">{c.name}</div>
+                  <div className="absolute inset-0 p-5 sm:p-7 flex flex-col justify-end text-cream-50" style={{textShadow: "0 2px 14px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.55)"}}>
+                    <div className="font-serif text-[27px] sm:text-[32px] leading-tight">{c.name}</div>
                     <p className="mt-2 text-[14.5px] leading-relaxed text-cream-50 max-w-xs">{c.tagline}</p>
                     <div className="mt-5 inline-flex items-center gap-2 text-[13.5px] font-semibold">{copy.discover} <ArrowRight size={16} className="transition group-hover:translate-x-1"/></div>
                   </div>
@@ -207,30 +207,30 @@ export default function HomePage({ locale = "en" }) {
         <div className="absolute inset-0 opacity-[.08]" style={{backgroundImage: "radial-gradient(circle at 1px 1px, #f8f1df 1px, transparent 0)", backgroundSize: "26px 26px"}}></div>
         <div className="absolute inset-x-0 top-0 h-px bg-cream-50/15"></div>
         <Container className="relative">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-10 items-center py-16 md:py-20">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center py-14 sm:py-16 md:py-20">
             <div className="lg:col-span-5">
               <Badge variant="light" className="!bg-cream-50/15 !text-cream-50 backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold"></span> {copy.quizBadge}
               </Badge>
-              <h2 className="font-serif text-[clamp(38px,5vw,66px)] leading-[1.05] mt-6 text-balance">
+              <h2 className="font-serif text-[32px] sm:text-[clamp(38px,5vw,66px)] leading-[1.1] sm:leading-[1.05] mt-4 sm:mt-6 text-balance">
                 {copy.quizTitle}
               </h2>
-              <p className="mt-6 text-cream-50/84 text-[17px] md:text-[18px] leading-relaxed max-w-xl">
+              <p className="mt-4 sm:mt-6 text-cream-50/84 text-[15px] sm:text-[17px] md:text-[18px] leading-relaxed max-w-xl">
                 {copy.quizBody}
               </p>
 
-              <div className="mt-7 grid grid-cols-3 gap-3 max-w-xl">
+              <div className="mt-6 sm:mt-7 grid grid-cols-3 gap-2 sm:gap-3 max-w-xl">
                 {copy.quizSteps.map((t, index) => [String(index + 1).padStart(2, "0"), t]).map(([n, t]) => (
-                  <div key={n} className="border border-cream-50/15 bg-cream-50/[.06] rounded-xl px-4 py-3">
-                    <div className="font-serif text-[26px] leading-none text-gold">{n}</div>
-                    <div className="mt-1 text-[12.5px] leading-snug text-cream-50/82">{t}</div>
+                  <div key={n} className="border border-cream-50/15 bg-cream-50/[.06] rounded-xl px-3 sm:px-4 py-2.5 sm:py-3">
+                    <div className="font-serif text-[22px] sm:text-[26px] leading-none text-gold">{n}</div>
+                    <div className="mt-1 text-[11px] sm:text-[12.5px] leading-snug text-cream-50/82">{t}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href={href("/quiz-discovery")} size="lg">{copy.takeQuiz} <Sparkles size={16}/></Button>
-                <Button href={href("/tours")} variant="ghostLight" size="lg">{copy.browse}</Button>
+              <div className="mt-6 sm:mt-8 flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-2.5 sm:gap-3">
+                <Button href={href("/quiz-discovery")} size="lg" className="w-full min-[420px]:w-auto">{copy.takeQuiz} <Sparkles size={16}/></Button>
+                <Button href={href("/tours")} variant="ghostLight" size="lg" className="w-full min-[420px]:w-auto">{copy.browse}</Button>
               </div>
             </div>
 
@@ -280,7 +280,7 @@ export default function HomePage({ locale = "en" }) {
       </section>
 
       {/* Featured tours */}
-      <section id="tours" className="py-20">
+      <section id="tours" className="py-14 sm:py-20">
         <Container>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
             <SectionHead eyebrow={copy.featured} title={copy.featuredTitle} sub={copy.featuredSub}/>

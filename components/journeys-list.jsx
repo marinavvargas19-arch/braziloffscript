@@ -38,29 +38,29 @@ export default function JourneysList({ initialCategory, locale = "en" }) {
           <img src="/start-beach.jpg" className="w-full h-full object-cover" alt="Aerial view of a beach in northeastern Brazil"/>
           <div className="absolute inset-0 bg-leaf-d/55"/>
         </div>
-        <Container className="relative py-16 md:py-20 text-cream-50">
+        <Container className="relative py-12 sm:py-16 md:py-20 text-cream-50">
           <div className="text-[11px] tracking-[.22em] uppercase opacity-85 mb-3">{es ? "Nuestros viajes" : "Our Journeys"}</div>
-          <h1 className="font-serif font-medium text-[clamp(32px,4vw,54px)] leading-[1.06] tracking-tight max-w-4xl">
+          <h1 className="font-serif font-medium text-[30px] sm:text-[clamp(32px,4vw,54px)] leading-[1.1] sm:leading-[1.06] tracking-tight max-w-4xl">
             {es ? "Brasil: muchos mundos en un solo país." : "Brazil — many worlds in one country."}
           </h1>
-          <p className="mt-5 max-w-2xl text-cream-50/90 text-[16px] leading-relaxed">
+          <p className="mt-4 sm:mt-5 max-w-2xl text-cream-50/90 text-[15px] sm:text-[16px] leading-relaxed">
             {es ? "Desde paisajes emblemáticos hasta pueblos costeros escondidos, ciudades llenas de vida, naturaleza salvaje y escapadas culturales. Te ayudamos a diseñar un viaje personal, auténtico e inolvidable." : "From iconic landscapes to hidden coastal towns, vibrant cities, wild nature, and cultural escapes. We help you design a journey that feels personal, authentic, and unforgettable."}
           </p>
         </Container>
       </section>
 
       {/* Grid */}
-      <section className="py-12 md:py-20">
+      <section className="py-10 sm:py-12 md:py-20">
         <Container>
           {/* Tabs */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-            <div className="inline-flex p-1 rounded-full bg-paper border border-line flex-wrap">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6 sm:mb-8">
+            <div className="flex w-full sm:w-auto p-1 rounded-2xl sm:rounded-full bg-paper border border-line overflow-x-auto sm:flex-wrap">
               {[{ value: "all", label: es ? "Todos los viajes" : "All journeys" }, ...CATEGORIES.map(c => ({ value: c.slug, label: c.name }))].map(t => (
                 <button
                   key={t.value}
                   onClick={() => setTab(t.value)}
                   className={cn(
-                    "px-4 py-2 rounded-full text-sm font-semibold transition",
+                    "shrink-0 px-3.5 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-semibold transition",
                     tab === t.value ? "bg-leaf text-cream-50" : "text-ink-soft hover:text-leaf-d"
                   )}
                 >
@@ -68,12 +68,12 @@ export default function JourneysList({ initialCategory, locale = "en" }) {
                 </button>
               ))}
             </div>
-            <div className="text-[13px] text-muted">{list.length} {es ? "destinos" : "destinations"}</div>
+            <div className="text-[12px] sm:text-[13px] text-muted">{list.length} {es ? "destinos" : "destinations"}</div>
           </div>
 
           {/* Collection description banner */}
           {tab === "all" ? (
-            <div className="mb-8 rounded-2xl bg-leaf/[.06] border border-leaf/20 p-7 md:p-9">
+            <div className="mb-6 sm:mb-8 rounded-2xl bg-leaf/[.06] border border-leaf/20 p-5 sm:p-7 md:p-9">
               <div className="text-[11px] tracking-[.22em] uppercase font-semibold text-leaf-d mb-2">{es ? "Colección" : "Collection"}</div>
               <h2 className="font-serif text-[clamp(28px,3.4vw,40px)] leading-tight text-ink">{es ? "Todos los viajes" : "All Journeys"}</h2>
               <p className="mt-4 text-ink-soft max-w-3xl text-[16px] leading-relaxed">
@@ -125,7 +125,7 @@ export default function JourneysList({ initialCategory, locale = "en" }) {
                         <Badge variant={catBadgeVariant(c.color)}>{c.name}</Badge>
                       </div>
                     </div>
-                    <div className="p-6 flex flex-col flex-1">
+                    <div className="p-5 sm:p-6 flex flex-col flex-1">
                       <h3 className="font-serif text-[24px] text-ink leading-tight">{d.name}</h3>
                       <div className="text-[12.5px] text-muted mt-1.5">
                         {(DEST_TRIP[d.slug]?.regions || [d.region]).join(" · ")}
@@ -146,7 +146,7 @@ export default function JourneysList({ initialCategory, locale = "en" }) {
       </section>
 
       {/* CTA */}
-      <section className="bg-paper py-16 border-t border-line">
+      <section className="bg-paper py-12 sm:py-16 border-t border-line">
         <Container className="text-center">
           <h2 className="font-serif text-[clamp(28px,3.4vw,42px)] leading-tight text-ink">{es ? "¿No encuentras el Brasil que imaginas?" : <>Don&apos;t see your dream Brazil?</>}</h2>
           <p className="mt-4 max-w-xl mx-auto text-ink-soft text-[17px]">

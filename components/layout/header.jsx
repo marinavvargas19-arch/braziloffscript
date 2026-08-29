@@ -66,9 +66,9 @@ export function Header({ locale = "en" }) {
   return (
     <>
       <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
-      <Container className="flex items-center gap-6 py-3.5">
+      <Container className="flex items-center gap-3 sm:gap-6 py-2 sm:py-3.5">
         <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none -my-2">
-          <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority style={{ height: 76, width: "auto" }} />
+          <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 ml-2">
@@ -90,7 +90,7 @@ export function Header({ locale = "en" }) {
           <Link onClick={() => markLeadSource("header-travel-quiz")} href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
             <Sparkles size={16}/> {copy.quiz}
           </Link>
-          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="!px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
+          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="hidden sm:inline-flex !px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
           <div className="hidden lg:flex items-center border-l border-line/80 pl-3 ml-1">
             <LanguageSwitcher compact />
           </div>
@@ -110,27 +110,27 @@ export function Header({ locale = "en" }) {
 
       {open && (
         <div id="mobile-navigation" className="lg:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
-          <Container className="flex items-center justify-between py-3.5">
+          <Container className="flex items-center justify-between py-2 sm:py-3.5 border-b border-line/60">
             <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none">
-              <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} style={{ height: 64, width: "auto" }} />
+              <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} className="h-[52px] sm:h-[64px] w-auto" />
             </Link>
             <button type="button" onClick={() => setOpen(false)} aria-label={locale === "es" ? "Cerrar menú" : "Close menu"} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
               <X size={20} />
             </button>
           </Container>
-          <Container className="pt-6">
+          <Container className="pt-4 sm:pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
             <div className="flex flex-col gap-1">
               {copy.nav.map((n) => (
-                <Link key={n.key} href={localePath(n.href, locale)} className="py-3.5 border-b border-line/60 font-serif text-[26px] text-ink">
+                <Link key={n.key} href={localePath(n.href, locale)} className="py-2.5 sm:py-3.5 border-b border-line/60 font-serif text-[22px] sm:text-[26px] text-ink">
                   {n.label}
                 </Link>
               ))}
             </div>
-            <div className="mt-8 flex flex-col gap-3">
+            <div className="mt-6 sm:mt-8 flex flex-col gap-2.5 sm:gap-3">
               <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="w-full justify-center">{copy.find} <ArrowRight size={16} /></Button>
               <Button variant="ghost" href={localePath("/contact", locale)} className="w-full justify-center">{copy.contact}</Button>
             </div>
-            <div className="mt-7 pt-5 border-t border-line/60 flex items-center justify-between">
+            <div className="mt-5 sm:mt-7 pt-4 sm:pt-5 border-t border-line/60 flex items-center justify-between">
               <span className="text-[12px] uppercase tracking-[.16em] font-semibold text-ink-soft">
                 {locale === "es" ? "Idioma" : "Language"}
               </span>
