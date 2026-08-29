@@ -53,12 +53,19 @@ export function Header({ locale = "en" }) {
   })();
 
   useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [open]);
   const markLeadSource = (source) => {
     try { sessionStorage.setItem("bos-lead-source", source); } catch {}
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
+    <>
+      <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
       <Container className="flex items-center gap-6 py-3.5">
         <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none -my-2">
           <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority style={{ height: 76, width: "auto" }} />
@@ -88,22 +95,26 @@ export function Header({ locale = "en" }) {
             <LanguageSwitcher compact />
           </div>
           <button
+            type="button"
             onClick={() => setOpen(true)}
             aria-label={copy.menu}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             className="lg:hidden w-10 h-10 rounded-full bg-leaf/8 hover:bg-leaf/15 flex items-center justify-center text-leaf-d"
           >
             <Menu size={20} />
           </button>
         </div>
       </Container>
+      </header>
 
       {open && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-cream">
+        <div id="mobile-navigation" className="lg:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
           <Container className="flex items-center justify-between py-3.5">
             <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none">
               <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} style={{ height: 64, width: "auto" }} />
             </Link>
-            <button onClick={() => setOpen(false)} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
+            <button type="button" onClick={() => setOpen(false)} aria-label={locale === "es" ? "Cerrar menú" : "Close menu"} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
               <X size={20} />
             </button>
           </Container>
@@ -128,6 +139,6 @@ export function Header({ locale = "en" }) {
           </Container>
         </div>
       )}
-    </header>
+    </>
   );
 }
