@@ -30,7 +30,7 @@ export function Footer({ locale = "en" }) {
             {copy.intro}
           </p>
           <div className="flex gap-2 mt-6">
-            <a href="https://instagram.com/braziloffscript" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-cream-50/8 hover:bg-cream-50/20 flex items-center justify-center text-cream-50 transition"><Instagram size={16}/></a>
+            <a href="https://www.instagram.com/offscriptbrazil/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-cream-50/8 hover:bg-cream-50/20 flex items-center justify-center text-cream-50 transition"><Instagram size={16}/></a>
             <a href="#" className="w-10 h-10 rounded-full bg-cream-50/8 hover:bg-cream-50/20 flex items-center justify-center text-cream-50 transition"><Facebook size={16}/></a>
             <a href="#" className="w-10 h-10 rounded-full bg-cream-50/8 hover:bg-cream-50/20 flex items-center justify-center text-cream-50 transition"><Twitter size={16}/></a>
           </div>
