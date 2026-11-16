@@ -40,6 +40,7 @@ export function Footer({ locale = "en" }) {
           <ul className="space-y-2 text-[13.5px] sm:text-[14.5px]">
             <li><Link href={localePath("/journeys", locale)} className="hover:text-cream-50">{copy.journeys}</Link></li>
             <li><Link href={localePath("/tours", locale)} className="hover:text-cream-50">{copy.tours}</Link></li>
+            <li><Link href={localePath("/blog", locale)} className="hover:text-cream-50">Blog</Link></li>
             <li><Link href={localePath("/quiz", locale)} className="hover:text-cream-50">{copy.find}</Link></li>
           </ul>
         </div>
