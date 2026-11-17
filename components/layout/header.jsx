@@ -15,6 +15,7 @@ const COPY = {
       { href: "/", label: "Home", key: "home" },
       { href: "/journeys", label: "Signature Journeys", key: "journeys" },
       { href: "/tours", label: "Explore Destinations", key: "tours" },
+      { href: "/corporate-events", label: "Corporate", key: "corporate" },
       { href: "/about", label: "About Us", key: "about" },
       { href: "/blog", label: "Blog", key: "blog" },
     ],
@@ -29,6 +30,7 @@ const COPY = {
       { href: "/", label: "Inicio", key: "home" },
       { href: "/journeys", label: "Viajes exclusivos", key: "journeys" },
       { href: "/tours", label: "Explorar destinos", key: "tours" },
+      { href: "/corporate-events", label: "Empresas", key: "corporate" },
       { href: "/about", label: "Quiénes somos", key: "about" },
       { href: "/blog", label: "Blog", key: "blog" },
     ],
@@ -49,6 +51,7 @@ export function Header({ locale = "en" }) {
     if (localizedPath === "/") return "home";
     if (localizedPath.startsWith("/journeys") || localizedPath.startsWith("/destinations")) return "journeys";
     if (localizedPath.startsWith("/tours")) return "tours";
+    if (localizedPath.startsWith("/corporate-events")) return "corporate";
     if (localizedPath.startsWith("/about")) return "about";
     if (localizedPath.startsWith("/blog")) return "blog";
     return "";
@@ -73,7 +76,7 @@ export function Header({ locale = "en" }) {
           <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1 ml-2">
+        <nav className="hidden xl:flex items-center gap-1 ml-2">
           {copy.nav.map((n) => (
             <Link
               key={n.key}
@@ -93,7 +96,7 @@ export function Header({ locale = "en" }) {
             <Sparkles size={16}/> {copy.quiz}
           </Link>
           <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="hidden sm:inline-flex !px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
-          <div className="hidden lg:flex items-center border-l border-line/80 pl-3 ml-1">
+          <div className="hidden xl:flex items-center border-l border-line/80 pl-3 ml-1">
             <LanguageSwitcher compact />
           </div>
           <button
@@ -102,7 +105,7 @@ export function Header({ locale = "en" }) {
             aria-label={copy.menu}
             aria-expanded={open}
             aria-controls="mobile-navigation"
-            className="lg:hidden w-10 h-10 rounded-full bg-leaf/8 hover:bg-leaf/15 flex items-center justify-center text-leaf-d"
+            className="xl:hidden w-10 h-10 rounded-full bg-leaf/8 hover:bg-leaf/15 flex items-center justify-center text-leaf-d"
           >
             <Menu size={20} />
           </button>
@@ -111,7 +114,7 @@ export function Header({ locale = "en" }) {
       </header>
 
       {open && (
-        <div id="mobile-navigation" className="lg:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
+        <div id="mobile-navigation" className="xl:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
           <Container className="flex items-center justify-between py-2 sm:py-3.5 border-b border-line/60">
             <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none">
               <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={200} height={64} className="h-[52px] sm:h-[64px] w-auto" />

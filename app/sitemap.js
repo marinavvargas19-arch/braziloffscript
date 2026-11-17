@@ -3,7 +3,7 @@ import { CATEGORIES, DESTINATIONS, TOURS } from '@/lib/data';
 import { localePath } from '@/lib/i18n';
 
 export default function sitemap() {
-  const paths = [ '/', '/about', '/faq', '/contact', '/start', '/quiz', '/quiz-discovery', '/talk-to-human', '/journeys', '/tours',
+  const paths = [ '/', '/about', '/faq', '/contact', '/start', '/quiz', '/quiz-discovery', '/talk-to-human', '/journeys', '/tours', '/corporate-events',
     ...CATEGORIES.map(c => `/journeys/${c.slug}`),
     ...DESTINATIONS.map(d => `/destinations/${d.slug}`),
     ...TOURS.map(t => `/tours/${t.slug}`),
