@@ -1,7 +1,3 @@
-import BlogList from "@/components/blog-list";
-
-export const metadata = { title: "Stories", alternates: { canonical: "/blog", languages: { en: "/blog", "es-ES": "/es/blog" } } };
-
-export default function Page() {
-  return <BlogList />;
-}
+import { BlogHome, blogMetadata } from '@/components/travel-guide';
+export const metadata = blogMetadata('en');
+export default function Page() { return <BlogHome />; }
