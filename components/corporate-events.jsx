@@ -33,7 +33,7 @@ export default function CorporateEvents({ locale = 'en' }) {
     </Container></section>
 
     <section className="py-14 sm:py-20"><Container className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-      <img src="/blog/optimized/caraiva-960.webp" srcSet="/blog/optimized/caraiva-640.webp 640w, /blog/optimized/caraiva-960.webp 960w" sizes="(max-width:767px) 100vw, 560px" width={960} height={640} loading="lazy" alt={es?'Embarcaciones y un banco de arena junto a la desembocadura del río Caraíva, Bahía':'Boats and a sandbar at the mouth of the Caraíva River, Bahia'} className="w-full aspect-[4/3] object-cover rounded-xl"/>
+      <figure><img src="/corporate/blindpay-boat-offsite-960.webp" srcSet="/corporate/blindpay-boat-offsite-640.webp 640w, /corporate/blindpay-boat-offsite-960.webp 960w, /corporate/blindpay-boat-offsite-1600.webp 1600w" sizes="(max-width:767px) 100vw, 560px" width={1600} height={900} loading="lazy" decoding="async" alt={es?'Vista aérea del equipo de Blindpay brindando en el agua durante un paseo en barco de su offsite':'Aerial view of the Blindpay team raising a toast in the water during their offsite boat trip'} className="w-full h-auto rounded-xl"/><figcaption className="mt-3 text-sm text-ink-soft">{es?'Paseo en barco · Offsite de Blindpay':'Boat trip · Blindpay offsite'}</figcaption></figure>
       <div><SectionHead eyebrow={c.experienceEyebrow} title={c.experienceTitle} sub={c.experienceBody}/><a href="#event-inquiry" className="inline-flex gap-3 mt-6 font-semibold text-sm text-leaf-d underline underline-offset-4">{c.cta}<ArrowRight size={16}/></a></div>
     </Container></section>
 
