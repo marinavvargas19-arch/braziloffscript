@@ -71,18 +71,18 @@ export function Header({ locale = "en" }) {
   return (
     <>
       <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
-      <Container className="flex items-center gap-3 sm:gap-6 py-2 sm:py-3.5">
-        <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none -my-2">
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8 flex items-center gap-3 xl:gap-4 2xl:gap-6 py-2 sm:py-3.5">
+        <Link href={localePath("/", locale)} className="flex shrink-0 items-center gap-2.5 leading-none -my-2">
           <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-1 ml-2">
+        <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1">
           {copy.nav.map((n) => (
             <Link
               key={n.key}
               href={localePath(n.href, locale)}
               className={[
-                "px-3.5 py-2 rounded-full text-[14px] font-medium tracking-wide transition",
+                "px-2 2xl:px-3 py-2 rounded-full text-[13px] 2xl:text-[14px] whitespace-nowrap font-medium transition",
                 current === n.key ? "bg-leaf/10 text-leaf-d" : "text-ink-soft hover:bg-leaf/8 hover:text-leaf-d",
               ].join(" ")}
             >
@@ -91,11 +91,11 @@ export function Header({ locale = "en" }) {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
-          <Link onClick={() => markLeadSource("header-travel-quiz")} href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <Link onClick={() => markLeadSource("header-travel-quiz")} href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex whitespace-nowrap items-center gap-1.5 px-2 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
             <Sparkles size={16}/> {copy.quiz}
           </Link>
-          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="hidden sm:inline-flex !px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
+          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="hidden sm:inline-flex whitespace-nowrap !px-4 !py-2.5 !text-[13px]">{copy.start}</Button>
           <div className="hidden xl:flex items-center border-l border-line/80 pl-3 ml-1">
             <LanguageSwitcher compact />
           </div>
@@ -110,7 +110,7 @@ export function Header({ locale = "en" }) {
             <Menu size={20} />
           </button>
         </div>
-      </Container>
+      </div>
       </header>
 
       {open && (
