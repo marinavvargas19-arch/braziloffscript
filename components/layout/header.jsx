@@ -68,7 +68,7 @@ export function Header({ locale = "en" }) {
       <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
       <Container className="flex items-center gap-3 sm:gap-6 py-2 sm:py-3.5">
         <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none -my-2">
-          <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
+          <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 ml-2">
@@ -112,7 +112,7 @@ export function Header({ locale = "en" }) {
         <div id="mobile-navigation" className="lg:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
           <Container className="flex items-center justify-between py-2 sm:py-3.5 border-b border-line/60">
             <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none">
-              <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} className="h-[52px] sm:h-[64px] w-auto" />
+              <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={200} height={64} className="h-[52px] sm:h-[64px] w-auto" />
             </Link>
             <button type="button" onClick={() => setOpen(false)} aria-label={locale === "es" ? "Cerrar menú" : "Close menu"} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
               <X size={20} />
