@@ -34,7 +34,7 @@ export default function BlogPostPage({ params }) {
         <Badge variant="terra">{post.category}</Badge>
         <h1 className="font-serif text-[clamp(34px,5vw,64px)] leading-[1.05] text-ink mt-4 max-w-4xl">{post.title}</h1>
         <div className="mt-5 flex items-center gap-4 text-[14px] text-ink-soft">
-          <Avatar src={IMG.helena} size={42}/>
+          <Avatar src={post.author === "Marina Vargas" ? "/marina-vargas-contact.jpeg" : IMG.helena} alt={post.author} size={42}/>
           <div>
             <div className="font-semibold text-ink">{post.author}</div>
             <div className="text-[12.5px] text-muted">{post.date} · {post.read} read</div>
