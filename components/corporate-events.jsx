@@ -1,9 +1,9 @@
-import { ArrowRight, Building2, Car, MapPin, Compass, Handshake } from 'lucide-react';
+import { ArrowRight, Building2, Car, MapPin, Compass, Handshake, Plane } from 'lucide-react';
 import CorporateInquiry from '@/components/corporate-inquiry';
 import { Container, SectionHead } from '@/components/ui/section';
 import { corporateCopy, CORPORATE_PATH } from '@/lib/corporate-events';
 
-const icons = [Building2,Car,MapPin,Compass,Handshake];
+const icons = [Plane,Building2,Car,MapPin,Compass,Handshake];
 export default function CorporateEvents({ locale = 'en' }) {
   const c = corporateCopy[locale], es = locale === 'es';
   const schema = { '@context':'https://schema.org', '@type':'Service', name:c.heading, serviceType:es?'Planificación de offsites y eventos corporativos':'Corporate event and team offsite planning', url:'https://www.braziloffscript.com'+(es?'/es':'')+CORPORATE_PATH, areaServed:{'@type':'Country',name:'Brazil'}, provider:{'@type':'TravelAgency',name:'Brazil Off Script',url:'https://www.braziloffscript.com'} };
@@ -29,7 +29,7 @@ export default function CorporateEvents({ locale = 'en' }) {
 
     <section id="event-support" className="scroll-mt-32 bg-paper border-y border-line py-14 sm:py-20"><Container>
       <SectionHead eyebrow={c.servicesEyebrow} title={c.servicesTitle} className="max-w-2xl"/>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 mt-10">{c.services.map(([title,body],i)=>{const Icon=icons[i];return <section key={title}><Icon size={24} strokeWidth={1.5} className="text-leaf mb-4" aria-hidden="true"/><h3 className="font-serif text-[28px] mb-2">{title}</h3><p className="text-sm leading-relaxed text-ink-soft max-w-sm">{body}</p></section>})}<div className="flex flex-col justify-center border-l-2 border-terra pl-6"><p className="font-serif text-3xl leading-snug">{c.title}</p><a className="inline-flex gap-3 items-center mt-5 text-sm font-semibold text-leaf-d" href="#event-inquiry">{c.cta}<ArrowRight size={16}/></a></div></div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 mt-10">{c.services.map(([title,body],i)=>{const Icon=icons[i];return <section key={title}><Icon size={24} strokeWidth={1.5} className="text-leaf mb-4" aria-hidden="true"/><h3 className="font-serif text-[28px] mb-2">{title}</h3><p className="text-sm leading-relaxed text-ink-soft max-w-sm">{body}</p></section>})}<div className="sm:col-span-2 lg:col-span-3 flex flex-col justify-center border-l-2 border-terra pl-6"><p className="font-serif text-3xl leading-snug">{c.title}</p><a className="inline-flex gap-3 items-center mt-5 text-sm font-semibold text-leaf-d" href="#event-inquiry">{c.cta}<ArrowRight size={16}/></a></div></div>
     </Container></section>
 
     <section className="py-14 sm:py-20"><Container className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
