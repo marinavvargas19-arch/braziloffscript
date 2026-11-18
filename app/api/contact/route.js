@@ -83,11 +83,16 @@ export async function POST(req) {
     const body = await req.json();
     const { RESEND_API_KEY, CONTACT_TO_EMAIL } = process.env;
     const isQuiz = body.source === "quiz";
-    const recipient = CONTACT_TO_EMAIL || "hello@braziloffscript.com";
+    const isCorporate = body.source === "corporate-events";
+    const recipient = isCorporate
+      ? "marina.vargas@braziloffscript.com"
+      : CONTACT_TO_EMAIL || "hello@braziloffscript.com";
     const fullName = nameFrom(body);
     const subject = isQuiz
       ? `New quiz request — ${fullName}`
-      : `New trip inquiry — ${fullName}`;
+      : isCorporate
+        ? `New corporate event inquiry — ${fullName}`
+        : `New trip inquiry — ${fullName}`;
     const html = isQuiz ? quizHtml(body) : contactHtml(body);
     // The dashboard is the source of truth for every submission. Do not tell the
     // visitor that the request was received when Supabase rejected or skipped it.
