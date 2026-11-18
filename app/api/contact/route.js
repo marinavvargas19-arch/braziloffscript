@@ -81,12 +81,10 @@ function quizHtml(body) {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { RESEND_API_KEY, CONTACT_TO_EMAIL } = process.env;
+    const { RESEND_API_KEY } = process.env;
     const isQuiz = body.source === "quiz";
     const isCorporate = body.source === "corporate-events";
-    const recipient = isCorporate
-      ? "marina.vargas@braziloffscript.com"
-      : CONTACT_TO_EMAIL || "hello@braziloffscript.com";
+    const recipient = "marina.vargas@braziloffscript.com";
     const fullName = nameFrom(body);
     const subject = isQuiz
       ? `New quiz request — ${fullName}`
