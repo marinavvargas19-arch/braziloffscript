@@ -1,24 +1,20 @@
-import { Cormorant_Garamond, Quicksand } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import { TopBar } from "@/components/layout/topbar";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { WhatsAppFab } from "@/components/layout/wa-fab";
 import { SITE } from "@/lib/data";
 
-const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
+const serif = localFont({
+  src: [
+    { path: './fonts/cormorant-garamond-latin.woff2', weight: '400 600', style: 'normal' },
+    { path: './fonts/cormorant-garamond-italic-latin.woff2', weight: '400 600', style: 'italic' },
+  ],
+  variable: '--font-serif',
+  display: 'swap',
 });
-
-const sans = Quicksand({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
+const sans = localFont({
+  src: './fonts/quicksand-latin.woff2',
+  weight: '400 700',
+  variable: '--font-sans',
+  display: 'swap',
 });
 
 export const metadata = {
@@ -37,15 +33,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body>
-        <div className="min-h-screen flex flex-col">
-          <TopBar />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <WhatsAppFab />
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
