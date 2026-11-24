@@ -3,25 +3,25 @@ import { Container, SectionHead } from '@/components/ui/section';
 
 const copy = {
   en: {
-    eyebrow: 'Signature offsites', title: 'Bring your team to Bahia.',
-    intro: 'Three starting points for an offsite shaped around your people. We tailor the programme, accommodation and logistics to your objectives, dates and group.',
-    duration: 'Tailored duration', details: 'Explore the idea', cta: 'Plan an offsite in Bahia',
+    eyebrow: 'Signature offsites', title: 'Bring your team to Brazil',
+    intro: 'Explore a few ideas from Bahia, or let us find the right setting elsewhere in Brazil. We tailor the programme, accommodation and logistics to your objectives, dates and group.',
+    duration: 'Tailored duration', details: 'Explore the idea', cta: 'Plan an offsite in Brazil',
     note: 'Each programme is designed on request. Venues, activities and timing are confirmed as part of your proposal.',
     cards: [
       { destination: 'Trancoso', title: 'Space to think. Time to connect.', description: 'An executive offsite with room for focused conversations, shared meals and time by the sea.', image: '/blog/optimized/trancoso', alt: 'Beach and palm-lined river mouth in Trancoso, Bahia', ideas: ['Focused planning sessions in a setting selected for your team.', 'Time to unwind by the beach between conversations.', 'Shared dinners and local experiences woven into the agenda.'] },
       { destination: 'Caraíva', title: 'A slower rhythm. A closer team.', description: 'A retreat centred on connection, with the river, village and coastline setting the pace.', image: '/blog/optimized/caraiva', alt: 'Aerial view of the river mouth and beach in Caraíva, Bahia', ideas: ['Space for small-group conversations and team reflection.', 'Time by the river and sea, with experiences chosen around your group.', 'Transfers and the river crossing planned as part of the journey.'] },
-      { destination: 'Salvador', title: 'Fresh ideas. Shared discoveries.', description: 'Combine your corporate agenda with the food, culture and coastal setting of Salvador.', image: '/corporate/salvador-offsite', alt: 'Colourful waterfront buildings and boats in Salvador, Bahia', ideas: ['Meeting spaces and accommodation selected around your agenda.', 'Cultural discoveries and shared meals beyond the meeting room.', 'Arrival logistics and local transfers coordinated for your team.'] },
+      { destination: 'Porto Seguro', title: 'Fresh ideas. Shared discoveries.', description: 'Combine your corporate agenda with the food, culture and coastal setting of Porto Seguro.', image: '/corporate/porto-seguro-offsite', alt: 'Praia do Espelho beach and coastal cliffs in the municipality of Porto Seguro, Bahia', ideas: ['Meeting spaces and accommodation selected around your agenda.', 'Cultural discoveries and shared meals beyond the meeting room.', 'Arrival logistics and local transfers coordinated for your team.'] },
     ],
   },
   es: {
-    eyebrow: 'Offsites con identidad', title: 'Reúne a tu equipo en Bahía.',
-    intro: 'Tres puntos de partida para un offsite pensado para tu equipo. Adaptamos el programa, el alojamiento y la logística a tus objetivos, fechas y grupo.',
-    duration: 'Duración a medida', details: 'Descubre la propuesta', cta: 'Planifica un offsite en Bahía',
+    eyebrow: 'Offsites con identidad', title: 'Reúne a tu equipo en Brasil.',
+    intro: 'Explora algunas ideas en Bahía o déjanos encontrar el entorno ideal en otra región de Brasil. Adaptamos el programa, el alojamiento y la logística a tus objetivos, fechas y grupo.',
+    duration: 'Duración a medida', details: 'Descubre la propuesta', cta: 'Planifica un offsite en Brasil',
     note: 'Cada programa se diseña bajo petición. Los espacios, las actividades y los horarios se confirman como parte de la propuesta.',
     cards: [
       { destination: 'Trancoso', title: 'Espacio para pensar. Tiempo para conectar.', description: 'Un offsite ejecutivo con espacio para conversaciones con propósito, comidas compartidas y tiempo junto al mar.', image: '/blog/optimized/trancoso', alt: 'Playa y desembocadura rodeada de palmeras en Trancoso, Bahía', ideas: ['Sesiones de planificación en un entorno elegido para tu equipo.', 'Tiempo para descansar en la playa entre conversaciones.', 'Cenas compartidas y experiencias locales integradas en la agenda.'] },
       { destination: 'Caraíva', title: 'Un ritmo más lento. Un equipo más unido.', description: 'Un retiro centrado en la conexión, con el río, el pueblo y la costa marcando el ritmo.', image: '/blog/optimized/caraiva', alt: 'Vista aérea de la desembocadura y la playa de Caraíva, Bahía', ideas: ['Espacio para conversaciones en grupos pequeños y reflexión en equipo.', 'Tiempo junto al río y al mar, con experiencias adaptadas al grupo.', 'Traslados y cruce del río planificados como parte del viaje.'] },
-      { destination: 'Salvador', title: 'Nuevas ideas. Descubrimientos compartidos.', description: 'Combina tu agenda corporativa con la gastronomía, la cultura y el entorno costero de Salvador.', image: '/corporate/salvador-offsite', alt: 'Edificios de colores y embarcaciones junto al mar en Salvador, Bahía', ideas: ['Espacios de reunión y alojamiento elegidos según tu agenda.', 'Descubrimientos culturales y comidas compartidas fuera de la sala de reuniones.', 'Llegadas y traslados locales coordinados para tu equipo.'] },
+      { destination: 'Porto Seguro', title: 'Nuevas ideas. Descubrimientos compartidos.', description: 'Combina tu agenda corporativa con la gastronomía, la cultura y el entorno costero de Porto Seguro.', image: '/corporate/porto-seguro-offsite', alt: 'Playa de Espelho y acantilados costeros en el municipio de Porto Seguro, Bahía', ideas: ['Espacios de reunión y alojamiento elegidos según tu agenda.', 'Descubrimientos culturales y comidas compartidas fuera de la sala de reuniones.', 'Llegadas y traslados locales coordinados para tu equipo.'] },
     ],
   },
 };
