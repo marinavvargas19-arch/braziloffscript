@@ -1,4 +1,5 @@
 import { ArrowRight, Building2, Car, MapPin, Compass, Handshake, Plane } from 'lucide-react';
+import BahiaOffsites from '@/components/bahia-offsites';
 import CorporateInquiry from '@/components/corporate-inquiry';
 import { Container, SectionHead } from '@/components/ui/section';
 import { corporateCopy, CORPORATE_PATH } from '@/lib/corporate-events';
@@ -26,6 +27,8 @@ export default function CorporateEvents({ locale = 'en' }) {
       <h2 className="font-serif text-3xl mt-12 mb-7">{c.formatsTitle}</h2>
       <div className="grid md:grid-cols-3 gap-6">{c.formats.map(([title,body],i)=><section key={title} className="border-t border-line pt-6"><span className="text-terra-d text-xs font-bold tracking-widest">0{i+1}</span><h3 className="font-serif text-[28px] mt-3 mb-3">{title}</h3><p className="text-sm leading-relaxed text-ink-soft">{body}</p></section>)}</div>
     </Container></section>
+
+    <BahiaOffsites locale={locale} />
 
     <section id="event-process" className="scroll-mt-32 bg-paper border-y border-line py-14 sm:py-20"><Container>
       <SectionHead eyebrow={c.processEyebrow} title={c.processTitle} className="max-w-3xl"/>
