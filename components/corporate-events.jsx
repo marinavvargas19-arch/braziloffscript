@@ -1,10 +1,10 @@
-import { ArrowRight, Building2, Car, MapPin, Compass, Handshake, Plane } from 'lucide-react';
+import { ArrowRight, Building2, Car, Compass, SlidersHorizontal } from 'lucide-react';
 import BahiaOffsites from '@/components/bahia-offsites';
 import CorporateInquiry from '@/components/corporate-inquiry';
 import { Container, SectionHead } from '@/components/ui/section';
 import { corporateCopy, CORPORATE_PATH } from '@/lib/corporate-events';
 
-const icons = [Plane,Building2,Car,MapPin,Compass,Handshake];
+const icons = [Building2,Car,Compass,SlidersHorizontal];
 export default function CorporateEvents({ locale = 'en' }) {
   const c = corporateCopy[locale], es = locale === 'es';
   const schema = { '@context':'https://schema.org', '@type':'Service', name:c.heading, serviceType:es?'Planificación de offsites y eventos corporativos':'Corporate event and team offsite planning', url:'https://www.braziloffscript.com'+(es?'/es':'')+CORPORATE_PATH, areaServed:{'@type':'Country',name:'Brazil'}, provider:{'@type':'TravelAgency',name:'Brazil Off Script',url:'https://www.braziloffscript.com'} };
@@ -41,9 +41,17 @@ export default function CorporateEvents({ locale = 'en' }) {
       <div><SectionHead eyebrow={c.experienceEyebrow} title={c.experienceTitle} sub={c.experienceBody}/><a href="#event-inquiry" className="inline-flex gap-3 mt-6 font-semibold text-sm text-leaf-d underline underline-offset-4">{c.cta}<ArrowRight size={16}/></a></div>
     </Container></section>
 
-    <section id="event-support" className="scroll-mt-32 bg-paper border-y border-line py-14 sm:py-20"><Container>
-      <SectionHead eyebrow={c.servicesEyebrow} title={c.servicesTitle} className="max-w-2xl"/>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 mt-10">{c.services.map(([title,body],i)=>{const Icon=icons[i];return <section key={title}><Icon size={24} strokeWidth={1.5} className="text-leaf mb-4" aria-hidden="true"/><h3 className="font-serif text-[28px] mb-2">{title}</h3><p className="text-sm leading-relaxed text-ink-soft max-w-sm">{body}</p></section>})}<div className="sm:col-span-2 lg:col-span-3 flex flex-col justify-center border-l-2 border-terra pl-6"><p className="font-serif text-3xl leading-snug">{c.title}</p><a className="inline-flex gap-3 items-center mt-5 text-sm font-semibold text-leaf-d" href="#event-inquiry">{c.cta}<ArrowRight size={16}/></a></div></div>
+    <section id="event-support" className="scroll-mt-32 bg-leaf-d text-cream-50 py-14 sm:py-20"><Container>
+      <div className="w-20 h-1 rounded-full bg-terra-l mb-7" aria-hidden="true"/>
+      <p className="text-xs uppercase tracking-[.18em] text-terra-l font-semibold">{c.servicesEyebrow}</p>
+      <h2 className="font-serif text-4xl sm:text-5xl mt-4 max-w-3xl">{c.servicesTitle}</h2>
+      <p className="mt-5 max-w-3xl text-cream-50/80 leading-relaxed">{c.servicesIntro}</p>
+      <ol className="mt-10 sm:mt-14">{c.services.map(([title,body],i)=>{const Icon=icons[i];return <li key={title} className="grid grid-cols-[42px_1fr] sm:grid-cols-[64px_1fr_100px] gap-5 sm:gap-8 items-center py-8 sm:py-10 border-t border-cream-50/20 last:border-b">
+        <span className="font-serif text-4xl sm:text-5xl text-terra-l">0{i+1}</span>
+        <div className="sm:border-l border-cream-50/25 sm:pl-8"><h3 className="font-serif text-[28px] sm:text-4xl leading-tight">{title}</h3><p className="mt-3 max-w-2xl text-sm sm:text-base leading-relaxed text-cream-50/75">{body}</p></div>
+        <div className="hidden sm:flex w-24 h-24 rounded-2xl bg-cream-50/5 items-center justify-center"><Icon size={36} strokeWidth={1.25} className="text-terra-l" aria-hidden="true"/></div>
+      </li>})}</ol>
+      <a className="inline-flex gap-3 items-center mt-8 rounded-full border border-cream-50/50 px-6 py-3 text-sm font-semibold hover:bg-cream-50/10" href="#event-inquiry">{c.cta}<ArrowRight size={16}/></a>
     </Container></section>
 
     <section id="event-inquiry" className="scroll-mt-28 py-14 sm:py-20"><Container className="grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-start">
