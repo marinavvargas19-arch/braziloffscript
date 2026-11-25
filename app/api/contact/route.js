@@ -96,8 +96,9 @@ export async function POST(req) {
     // visitor that the request was received when Supabase rejected or skipped it.
     // The quiz client already keeps the form open and shows an error for non-2xx
     // responses, so the visitor can retry without losing their answers.
+    let leadResult;
     try {
-      const leadResult = await saveLead(body);
+      leadResult = await saveLead(body);
       if (!leadResult.ok) {
         console.error("Lead storage is not configured");
         return Response.json(
@@ -113,23 +114,37 @@ export async function POST(req) {
       );
     }
 
+    const leadId = leadResult.lead?.id;
     if (!RESEND_API_KEY) {
-      console.log("Contact form submission:", body);
-      return Response.json({ ok: true, note: "Logged only (no RESEND_API_KEY)" });
+      console.error("Lead email skipped: RESEND_API_KEY missing", { leadId });
+      return Response.json({ ok: true });
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
-      body: JSON.stringify({
-        from: "Brazil Off Script <site@braziloffscript.com>",
-        to: [recipient],
-        reply_to: body.email,
-        subject,
-        html,
-      }),
-    });
-    if (!res.ok) throw new Error(await res.text());
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "Brazil Off Script <site@braziloffscript.com>",
+          to: [recipient],
+          reply_to: body.email || undefined,
+          subject,
+          html,
+        }),
+        signal: AbortSignal.timeout(10000),
+      });
+      if (res.ok) {
+        const { id: emailId } = await res.json();
+        console.info("Lead email accepted by Resend", { leadId, emailId });
+      } else {
+        console.error("Lead email rejected by Resend", { leadId, status: res.status });
+      }
+    } catch (error) {
+      console.error("Lead email request failed", { leadId, error: error.name });
+    }
     return Response.json({ ok: true });
   } catch (err) {
     console.error(err);
