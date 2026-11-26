@@ -46,7 +46,7 @@ export default async function DestinationPage({ params }) {
           <h1 className="font-serif font-medium text-[clamp(40px,6.4vw,84px)] leading-[1.02] tracking-tight">{d.name}</h1>
           <p className="mt-4 max-w-2xl text-[17.5px] text-cream-50/90">{d.blurb}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button href="/quiz" size="lg">Plan a {d.name.split(" ")[0]} trip <ArrowRight size={16}/></Button>
+            <Button href="/quiz" size="lg">Plan your trip to {d.name.split(" ")[0]} <ArrowRight size={16}/></Button>
             <Button variant="ghostLight" size="lg" href="/contact">Talk to a local expert</Button>
           </div>
         </Container>

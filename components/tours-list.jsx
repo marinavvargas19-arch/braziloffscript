@@ -233,7 +233,7 @@ export default function ToursList({ locale = "en" }) {
           <div className="lg:col-span-9">
             <div className="flex justify-between items-center mb-6">
               <div className="text-[14px] text-muted">
-                {filtered.length} {es ? (filtered.length === 1 ? "viaje encontrado" : "viajes encontrados") : `journey${filtered.length === 1 ? "" : "s"} found`}
+                {filtered.length} {es ? (filtered.length === 1 ? "viaje encontrado" : "viajes encontrados") : (filtered.length === 1 ? "journey found" : "journeys found")}
               </div>
               <div className="relative">
                 <select
