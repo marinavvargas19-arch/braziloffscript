@@ -46,7 +46,7 @@ export default async function DestinationPage({ params }) {
           <h1 className="font-serif font-medium text-[clamp(40px,6.4vw,84px)] leading-[1.02] tracking-tight">{d.name}</h1>
           <p className="mt-4 max-w-2xl text-[17.5px] text-cream-50/90">{d.blurb}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button href="/quiz" size="lg">Plan a {d.name.split(" ")[0]} trip <ArrowRight size={16}/></Button>
+            <Button href="/quiz" size="lg">Plan your trip to {d.name.split(" ")[0]} <ArrowRight size={16}/></Button>
             <Button variant="ghostLight" size="lg" href="/contact">Talk to a local expert</Button>
           </div>
         </Container>
@@ -55,13 +55,13 @@ export default async function DestinationPage({ params }) {
       <section className="bg-paper border-b border-line">
         <Container className="py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            {k:"4–9", v:"recommended days"},
-            {k:"Apr–Oct", v:"best season"},
-            {k:"Tailor-made", v:"every itinerary"},
-            {k:cat.name, v:"collection"},
+            {stat:"4–9", v:"recommended days"},
+            {stat:"Apr–Oct", v:"best season"},
+            {stat:"Tailor-made", v:"every itinerary"},
+            {stat:cat.name, v:"Collection"},
           ].map((s,i)=>(
             <div key={i} className={`${i<3?"md:border-r border-line":""} py-2`}>
-              <div className="font-serif text-[28px] leading-tight text-leaf-d">{s.k}</div>
+              <div className="font-serif text-[28px] leading-tight text-leaf-d">{s.stat}</div>
               <div className="text-[11.5px] tracking-[.14em] uppercase text-muted mt-1.5">{s.v}</div>
             </div>
           ))}

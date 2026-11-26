@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { LANGUAGES, localeFromPath, localePath, unlocalizedPath } from "@/lib/i18n";
 
+const flags = { en: "🇬🇧", es: "🇪🇸", pt: "🇧🇷", fr: "🇫🇷", it: "🇮🇹" };
+
 export function LanguageSwitcher({ compact = false }) {
   const pathname = usePathname() || "/";
   const locale = localeFromPath(pathname);
@@ -12,8 +14,10 @@ export function LanguageSwitcher({ compact = false }) {
 
   return (
     <details key={pathname} className="relative">
-      <summary aria-label={LANGUAGES[locale].label} className="flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-line px-3 py-2 text-sm font-bold text-leaf-d hover:bg-leaf/10 [&::-webkit-details-marker]:hidden">
-        {compact ? locale.toUpperCase() : LANGUAGES[locale].name}<ChevronDown size={14} aria-hidden="true" />
+      <summary aria-label={`${LANGUAGES[locale].label}: ${LANGUAGES[locale].name}`} className="flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-line px-3 py-2 text-sm font-bold text-leaf-d hover:bg-leaf/10 [&::-webkit-details-marker]:hidden">
+        <span aria-hidden="true">{flags[locale]}</span>
+        {compact ? locale.toUpperCase() : LANGUAGES[locale].name}
+        <ChevronDown size={14} aria-hidden="true" />
       </summary>
       <ul className="absolute right-0 z-50 mt-1 min-w-36 rounded-xl border border-line bg-cream p-1.5 shadow-lg">
         {Object.entries(LANGUAGES).map(([code, language]) => {
@@ -21,7 +25,8 @@ export function LanguageSwitcher({ compact = false }) {
           const href = code !== "en" && localeFromPath(target) !== code ? localePath("/", code) : target;
           return (
             <li key={code}>
-              <Link href={href} hrefLang={language.tag} lang={language.tag} aria-current={code === locale ? "true" : undefined} className="block rounded-lg px-3 py-2 text-sm text-leaf-d hover:bg-leaf/10 aria-[current=true]:font-bold">
+              <Link href={href} hrefLang={language.tag} lang={language.tag} aria-current={code === locale ? "true" : undefined} className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm text-leaf-d hover:bg-leaf/10 aria-[current=true]:font-bold">
+                <span aria-hidden="true">{flags[code]}</span>
                 {language.name}
               </Link>
             </li>

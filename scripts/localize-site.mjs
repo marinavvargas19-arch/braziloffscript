@@ -35,7 +35,7 @@ const technicalValues = new Set([
   "E-mail", "Content-Type", "application/json", "US",
   "Escape", "Enter", "ArrowLeft", "ArrowRight", "PDF", "UTC", "Newsletter",
 ]);
-const copyWords = new Set(["days", "day", "nights", "night", "from", "per person", "all-inclusive", "offsite", "offsites"]);
+const copyWords = new Set(["days", "day", "nights", "night", "from", "per person", "all-inclusive", "offsite", "offsites", "pace", "stays", "destinations"]);
 const technicalProperties = new Set([
   "className", "id", "key", "slug", "src", "img", "image", "url", "icon",
   "color", "class", "value", "method", "source", "leadOrigin", "href",
