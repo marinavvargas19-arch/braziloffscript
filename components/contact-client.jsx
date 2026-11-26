@@ -172,8 +172,9 @@ export default function ContactClient({ locale = "en", leadOrigin = "contact-pag
                 </a>
                 <a href={`mailto:${SITE.email}`} className="flex items-center gap-3">
                   <span className="w-9 h-9 rounded-full bg-cream-50/10 flex items-center justify-center"><Mail size={16}/></span>
-                  <span>{SITE.email}</span>
+                  <span className="break-all">{SITE.email}</span>
                 </a>
+                <a href={`mailto:${SITE.supportEmail}`} className="block"><span className="block text-xs uppercase tracking-wide">{es ? "Soporte" : "Support"}</span>{SITE.supportEmail}</a>
                 <div className="flex items-center gap-3 opacity-90">
                   <span className="w-9 h-9 rounded-full bg-cream-50/10 flex items-center justify-center"><Clock size={16}/></span>
                   <span>{es ? "Lun–Vie, 9:00–19:00 (BRT)" : "Mon–Fri, 9am–7pm BRT"}</span>

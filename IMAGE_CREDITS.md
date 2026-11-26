@@ -29,4 +29,4 @@ Attributions are also displayed beneath these photographs in both language versi
 - `blog/lencois-lagoon-swimmers.jpg` — Johan Fredriksson, “Lagoa Azul no Lençóis Maranhenses2”. [Source](https://commons.wikimedia.org/wiki/File:Lagoa_Azul_no_Len%C3%A7%C3%B3is_Maranhenses2.jpg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Resized and converted to WebP; adaptations retain the same license. Visible credit included beneath the photo.
 
 ## Corporate offsites — Cumbuco
-- Adrian Michael, https://commons.wikimedia.org/wiki/File:Cumbuco_beach.jpeg — CC BY-SA 3.0. Resized WebP derivatives and layout crop; derivatives retain the same license.
+- Photo: Adrian Michael, [Cumbuco beach.jpeg](https://commons.wikimedia.org/wiki/File:Cumbuco_beach.jpeg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). WebP derivatives resized; displayed with a layout crop. Derivatives retain CC BY-SA 3.0.

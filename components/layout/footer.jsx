@@ -58,7 +58,8 @@ export function Footer({ locale = "en" }) {
         <div className="col-span-2 md:col-span-4">
           <h5 className="font-serif text-cream-50 text-[22px] mb-3">{copy.touch}</h5>
           <ul className="space-y-2 text-[14.5px]">
-            <li className="flex items-center gap-2"><Mail size={16}/> {SITE.email}</li>
+            <li className="flex items-start gap-2"><Mail size={16} className="shrink-0 mt-1"/><a className="break-all" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+            <li><span className="block text-xs uppercase tracking-wide">{locale === "es" ? "Soporte" : "Support"}</span><a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a></li>
             <li className="flex items-center gap-2"><Phone size={16}/> {SITE.phone}</li>
             <li className="flex items-center gap-2"><MapPin size={16}/> Espírito Santo - Brasil</li>
           </ul>

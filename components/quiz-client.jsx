@@ -189,7 +189,7 @@ export default function QuizClient({ locale = "en" }) {
       try { sessionStorage.removeItem("bos-lead-source"); } catch {}
       setDone(true);
     } catch (err) {
-      setSubmitError(es ? "No hemos podido enviar el formulario. Inténtalo de nuevo o escribe a hello@braziloffscript.com." : "We couldn't send your quiz yet. Please try again or email hello@braziloffscript.com.");
+      setSubmitError(es ? "No hemos podido enviar el formulario. Inténtalo de nuevo o contacta con soporte en hello@braziloffscript.com." : "We couldn't send your quiz yet. Please try again or contact support at hello@braziloffscript.com.");
     } finally {
       setSubmitting(false);
     }
