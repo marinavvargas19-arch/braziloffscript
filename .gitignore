@@ -50,3 +50,9 @@ next-env.d.ts
 /app/pt/start/
 /app/fr/start/
 /app/it/start/
+
+# Claude Code local settings (machine-specific, never commit)
+.claude/settings.local.json
+
+# Social media assets (kept outside the site repository)
+/Reels/
