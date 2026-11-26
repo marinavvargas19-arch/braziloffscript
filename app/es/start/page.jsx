@@ -1,10 +1,11 @@
+import { languageAlternates } from "@/lib/i18n";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, MapPin, Sparkles } from "lucide-react";
 import { IMG, SITE } from "@/lib/data-es";
 
 export const metadata = {
   title: "Empieza tu viaje — Brazil Off Script",
-  alternates: { canonical: "/es/start", languages: { en: "/start", "es-ES": "/es/start" } },
+  alternates: { canonical: "/es/start", languages: languageAlternates("/start") },
 };
 
 export default function StartPage() {

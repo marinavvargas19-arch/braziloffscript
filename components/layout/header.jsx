@@ -7,7 +7,7 @@ import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { localePath } from "@/lib/i18n";
+import { localePath, unlocalizedPath } from "@/lib/i18n";
 
 const COPY = {
   en: {
@@ -15,7 +15,9 @@ const COPY = {
       { href: "/", label: "Home", key: "home" },
       { href: "/journeys", label: "Signature Journeys", key: "journeys" },
       { href: "/tours", label: "Explore Destinations", key: "tours" },
+      { href: "/corporate-events", label: "Corporate", key: "corporate" },
       { href: "/about", label: "About Us", key: "about" },
+      { href: "/blog", label: "Blog", key: "blog" },
     ],
     quiz: "Take the Travel Quiz",
     start: "Start your journey",
@@ -28,7 +30,9 @@ const COPY = {
       { href: "/", label: "Inicio", key: "home" },
       { href: "/journeys", label: "Viajes exclusivos", key: "journeys" },
       { href: "/tours", label: "Explorar destinos", key: "tours" },
+      { href: "/corporate-events", label: "Empresas", key: "corporate" },
       { href: "/about", label: "Quiénes somos", key: "about" },
+      { href: "/blog", label: "Blog", key: "blog" },
     ],
     quiz: "Descubre tu viaje ideal",
     start: "Empieza tu viaje",
@@ -42,11 +46,12 @@ export function Header({ locale = "en" }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() || "/";
   const copy = COPY[locale] || COPY.en;
-  const localizedPath = pathname === "/es" ? "/" : pathname.replace(/^\/es(?=\/)/, "");
+  const localizedPath = unlocalizedPath(pathname);
   const current = (() => {
     if (localizedPath === "/") return "home";
     if (localizedPath.startsWith("/journeys") || localizedPath.startsWith("/destinations")) return "journeys";
     if (localizedPath.startsWith("/tours")) return "tours";
+    if (localizedPath.startsWith("/corporate-events")) return "corporate";
     if (localizedPath.startsWith("/about")) return "about";
     if (localizedPath.startsWith("/blog")) return "blog";
     return "";
@@ -66,18 +71,18 @@ export function Header({ locale = "en" }) {
   return (
     <>
       <header className="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-line/60">
-      <Container className="flex items-center gap-3 sm:gap-6 py-2 sm:py-3.5">
-        <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none -my-2">
-          <Image src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8 flex items-center gap-3 xl:gap-4 2xl:gap-6 py-2 sm:py-3.5">
+        <Link href={localePath("/", locale)} className="flex shrink-0 items-center gap-2.5 leading-none -my-2">
+          <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={240} height={76} priority className="h-[52px] sm:h-[64px] lg:h-[76px] w-auto" />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1 ml-2">
+        <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1">
           {copy.nav.map((n) => (
             <Link
               key={n.key}
               href={localePath(n.href, locale)}
               className={[
-                "px-3.5 py-2 rounded-full text-[14px] font-medium tracking-wide transition",
+                "px-2 2xl:px-3 py-2 rounded-full text-[13px] 2xl:text-[14px] whitespace-nowrap font-medium transition",
                 current === n.key ? "bg-leaf/10 text-leaf-d" : "text-ink-soft hover:bg-leaf/8 hover:text-leaf-d",
               ].join(" ")}
             >
@@ -86,12 +91,12 @@ export function Header({ locale = "en" }) {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
-          <Link onClick={() => markLeadSource("header-travel-quiz")} href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <Link onClick={() => markLeadSource("header-travel-quiz")} href={localePath("/quiz-discovery", locale)} className="hidden md:inline-flex whitespace-nowrap items-center gap-1.5 px-2 py-2 rounded-full text-[13px] font-semibold text-leaf-d hover:bg-leaf/10 transition">
             <Sparkles size={16}/> {copy.quiz}
           </Link>
-          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="hidden sm:inline-flex !px-5 !py-2.5 text-[13.5px]">{copy.start}</Button>
-          <div className="hidden lg:flex items-center border-l border-line/80 pl-3 ml-1">
+          <Button onClick={() => markLeadSource("header-start-journey")} href={localePath("/start", locale)} className="hidden sm:inline-flex whitespace-nowrap !px-4 !py-2.5 !text-[13px]">{copy.start}</Button>
+          <div className="hidden xl:flex items-center border-l border-line/80 pl-3 ml-1">
             <LanguageSwitcher compact />
           </div>
           <button
@@ -100,19 +105,19 @@ export function Header({ locale = "en" }) {
             aria-label={copy.menu}
             aria-expanded={open}
             aria-controls="mobile-navigation"
-            className="lg:hidden w-10 h-10 rounded-full bg-leaf/8 hover:bg-leaf/15 flex items-center justify-center text-leaf-d"
+            className="xl:hidden w-10 h-10 rounded-full bg-leaf/8 hover:bg-leaf/15 flex items-center justify-center text-leaf-d"
           >
             <Menu size={20} />
           </button>
         </div>
-      </Container>
+      </div>
       </header>
 
       {open && (
-        <div id="mobile-navigation" className="lg:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
+        <div id="mobile-navigation" className="xl:hidden fixed inset-0 z-50 bg-cream overflow-y-auto">
           <Container className="flex items-center justify-between py-2 sm:py-3.5 border-b border-line/60">
             <Link href={localePath("/", locale)} className="flex items-center gap-2.5 leading-none">
-              <Image src="/logo.png" alt="Brazil Off Script" width={200} height={64} className="h-[52px] sm:h-[64px] w-auto" />
+              <Image unoptimized src="/logo.png" alt="Brazil Off Script" width={200} height={64} className="h-[52px] sm:h-[64px] w-auto" />
             </Link>
             <button type="button" onClick={() => setOpen(false)} aria-label={locale === "es" ? "Cerrar menú" : "Close menu"} className="w-10 h-10 rounded-full bg-leaf/8 flex items-center justify-center text-leaf-d">
               <X size={20} />

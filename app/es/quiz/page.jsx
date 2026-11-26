@@ -1,8 +1,9 @@
+import { languageAlternates } from "@/lib/i18n";
 import QuizClient from "@/components/quiz-client";
 
 export const metadata = {
   title: "Diseña tu viaje",
-  alternates: { canonical: "/es/quiz", languages: { en: "/quiz", "es-ES": "/es/quiz" } },
+  alternates: { canonical: "/es/quiz", languages: languageAlternates("/quiz") },
 };
 
 export default function Page() {

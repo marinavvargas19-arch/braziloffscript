@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 import JourneysList from "@/components/journeys-list";
 import { CATEGORIES } from "@/lib/data-es";
@@ -12,7 +13,7 @@ export function generateMetadata({ params }) {
     title: category?.name || "Viajes",
     alternates: {
       canonical: `/es/journeys/${params.slug}`,
-      languages: { en: `/journeys/${params.slug}`, "es-ES": `/es/journeys/${params.slug}` },
+      languages: languageAlternates(`/journeys/${params.slug}`),
     },
   };
 }

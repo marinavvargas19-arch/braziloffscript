@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { QuizImagePanel } from "@/components/quiz-visuals";
 import * as EN from "@/lib/data";
+import * as BASE_DATA from "@/lib/data.js";
 import * as ES from "@/lib/data-es";
 import { localePath } from "@/lib/i18n";
 
@@ -30,7 +31,7 @@ function tallyWinner(answers, destinations, questions) {
   };
 }
 
-function matchSignatureJourneys(winnerSlug, regionWords, data) {
+function matchSignatureJourneys(winnerSlug, regionWords, data, scoringData) {
   const { TOURS, DESTINATIONS, DEST_TRIP } = data;
   const words = (regionWords || "").toLowerCase().split(" ").filter(Boolean);
   const bestOfBrazil = TOURS.find(t => t.slug === "best-of-brazil-10-days");
@@ -52,7 +53,10 @@ function matchSignatureJourneys(winnerSlug, regionWords, data) {
   return candidates
     .map(destination => {
       const journey = destination;
-      const text = (journey.title + " " + journey.regions.join(" ") + " " + journey.blurb).toLowerCase();
+      const reference = scoringData.TOURS.find(tour => tour.slug === journey.slug)
+        || scoringData.DESTINATIONS.find(item => item.slug === journey.slug);
+      const regions = scoringData.DEST_TRIP[journey.slug]?.regions || reference?.regions || [reference?.region];
+      const text = [reference?.title || reference?.name, ...regions, reference?.blurb].join(" ").toLowerCase();
       const score = (journey.slug === winnerSlug ? 100 : 0) + words.reduce((acc, w) => acc + (text.includes(w) ? 1 : 0), 0);
       return { ...journey, _s: score };
     })
@@ -107,7 +111,7 @@ export default function QuizDiscoveryClient({ locale = "en" }) {
   if (done) {
     const d = DISCO_DESTINATIONS[result.winner];
     const runner = result.runnerUp ? DISCO_DESTINATIONS[result.runnerUp] : null;
-    const tours = matchSignatureJourneys(result.winner, d.regionWords, data);
+    const tours = matchSignatureJourneys(result.winner, d.regionWords, data, es ? data : BASE_DATA);
     const matchSummary = runner
       ? (es ? `Resultado principal: ${d.name}. También encaja contigo: ${runner.name}.` : `Primary match: ${d.name}. Strong fit: ${runner.name}.`)
       : (es ? `Resultado principal: ${d.name}.` : `Primary match: ${d.name}.`);

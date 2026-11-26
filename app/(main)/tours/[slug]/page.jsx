@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/section";
 import * as EN from "@/lib/data";
 import * as ES from "@/lib/data-es";
-import { localePath } from "@/lib/i18n";
+import { languageAlternates, localePath } from "@/lib/i18n";
 import TourPageContent from "@/components/tour-page-content";
 
 // Resolve a slug → unified tour object from TOURS or DESTINATIONS
@@ -110,7 +110,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const t = resolveTour(slug, EN, "en");
-  return { title: t ? `${t.title} — Brazil Off Script` : "Journey", alternates: { canonical: `/tours/${slug}`, languages: { en: `/tours/${slug}`, "es-ES": `/es/tours/${slug}` } } };
+  return { title: t ? `${t.title} — Brazil Off Script` : "Journey", alternates: { canonical: `/tours/${slug}`, languages: languageAlternates(`/tours/${slug}`) } };
 }
 
 export async function TourRoutePage({ params, locale = "en" }) {

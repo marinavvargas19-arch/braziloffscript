@@ -8,7 +8,8 @@ import { Avatar } from "@/components/ui/avatar";
 import { NewsletterBand } from "@/components/layout/newsletter";
 import * as EN from "@/lib/data";
 import * as ES from "@/lib/data-es";
-import { localePath } from "@/lib/i18n";
+import { HOME_LOCALES } from "@/lib/home-locales";
+import { homeLanguages, localePath } from "@/lib/i18n";
 
 const COPY = {
   en: {
@@ -58,12 +59,12 @@ const COPY = {
 };
 
 export const metadata = {
-  alternates: { canonical: "/", languages: { en: "/", "es-ES": "/es" } },
+  alternates: { canonical: "/", languages: homeLanguages },
 };
 
-export default function HomePage({ locale = "en" }) {
+export default function HomePage({ locale = "en", Newsletter = NewsletterBand }) {
   const { IMG, CATEGORIES, TOURS, REVIEWS, DESTINATIONS, DEST_TRIP } = locale === "es" ? ES : EN;
-  const copy = COPY[locale] || COPY.en;
+  const copy = COPY[locale] || HOME_LOCALES[locale] || COPY.en;
   const href = path => localePath(path, locale);
   const pantanal = DESTINATIONS.find(destination => destination.slug === "pantanal");
   const featuredTours = [
@@ -191,8 +192,8 @@ export default function HomePage({ locale = "en" }) {
                   {/* Dark scrim concentrated at the bottom for text legibility */}
                   <div className="absolute inset-0" style={{background: "linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.42) 28%, rgba(0,0,0,.08) 55%, transparent 75%)"}}></div>
                   <div className="absolute inset-0 p-5 sm:p-7 flex flex-col justify-end text-cream-50" style={{textShadow: "0 2px 14px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.55)"}}>
-                    <div className="font-serif text-[27px] sm:text-[32px] leading-tight">{c.name}</div>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-cream-50 max-w-xs">{c.tagline}</p>
+                    <div className="font-serif text-[27px] sm:text-[32px] leading-tight">{copy.categories?.[i][0] || c.name}</div>
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-cream-50 max-w-xs">{copy.categories?.[i][1] || c.tagline}</p>
                     <div className="mt-5 inline-flex items-center gap-2 text-[13.5px] font-semibold">{copy.discover} <ArrowRight size={16} className="transition group-hover:translate-x-1"/></div>
                   </div>
                 </Link>
@@ -247,13 +248,13 @@ export default function HomePage({ locale = "en" }) {
                     { src:"https://upload.wikimedia.org/wikipedia/commons/8/8a/Fervedouro_Parque_Jalap%C3%A3o_02.jpg", label:"Jalapão", alt:"Jalapão fervedouro spring", cls:"sm:col-start-3 sm:row-start-3" },
                     { src:"/pantanal.jpg", label:"Pantanal", alt:"Pantanal landscape", cls:"sm:col-start-4 sm:row-start-3" },
                     { src:"https://upload.wikimedia.org/wikipedia/commons/7/75/Dunas_e_lagoas_dos_Len%C3%A7ois_Maranhenses_%28cropped%29.jpg", label:"Lençóis Maranhenses", alt:"Lençóis Maranhenses dunes and lagoons", cls:"col-span-2 sm:col-start-1 sm:row-start-4" },
-                  ].map((img) => (
+                  ].map((img, index) => (
                     <div key={img.src} className={`group relative overflow-hidden rounded-2xl shadow-[0_22px_50px_-32px_rgba(0,0,0,.75)] ${img.cls}`}>
-                      <img src={img.src} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" alt={img.alt}/>
+                      <img src={img.src} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]" alt={copy.places ? "" : img.alt}/>
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/82 via-ink/20 to-transparent"></div>
                       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-ink/78 to-transparent"></div>
                       <div className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] rounded-full bg-ink/92 px-3 py-1.5 text-[11.5px] font-bold leading-none text-cream-50 shadow-[0_14px_28px_-14px_rgba(0,0,0,.95)] ring-1 ring-cream-50/25 backdrop-blur-md [text-shadow:0_1px_2px_rgba(0,0,0,.85)]">
-                        {img.label}
+                        {copy.places?.[index] || img.label}
                       </div>
                     </div>
                   ))}
@@ -287,7 +288,7 @@ export default function HomePage({ locale = "en" }) {
             <Button variant="ghost" href={href("/tours")}>{copy.exploreDestinations} <ArrowRight size={16}/></Button>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {featuredTours.map(t => {
+            {featuredTours.map((t, index) => {
               const isWomensJourney = t.slug === "women-who-explore";
               return (
                 <Link key={t.slug} href={href(`/tours/${t.slug}`)} className="group h-full">
@@ -300,9 +301,9 @@ export default function HomePage({ locale = "en" }) {
                       </div>
                     </div>
                     <div className="p-6 flex flex-col flex-1">
-                      <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{CATEGORIES.find(c=>c.slug===t.category).name}</div>
-                      <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{t.title}</h3>
-                      <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{t.blurb}</p>
+                      <div className="text-[11.5px] tracking-[.16em] uppercase text-terra font-semibold">{copy.categories?.[CATEGORIES.findIndex(c => c.slug === t.category)]?.[0] || CATEGORIES.find(c=>c.slug===t.category).name}</div>
+                      <h3 className="font-serif text-[24px] mt-1.5 text-ink leading-tight">{copy.tours?.[index][0] || t.title}</h3>
+                      <p className="mt-2 text-[14.5px] text-ink-soft leading-relaxed">{copy.tours?.[index][1] || t.blurb}</p>
                       <div className="mt-auto pt-5 flex items-center justify-end">
                         <span className="inline-flex items-center gap-1.5 text-terra font-semibold text-[14px] group-hover:gap-2.5 transition-all">{copy.discover} <ArrowRight size={16}/></span>
                       </div>
@@ -346,7 +347,7 @@ export default function HomePage({ locale = "en" }) {
       </section>
       ===== END ARCHIVED ===== */}
 
-      <NewsletterBand locale={locale}/>
+      <Newsletter locale={locale}/>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n";
 import { TourRoutePage, resolveTour } from "@/app/(main)/tours/[slug]/page";
 import * as ES from "@/lib/data-es";
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }) {
     title: tour ? `${tour.title} — Brazil Off Script` : "Viaje",
     alternates: {
       canonical: `/es/tours/${slug}`,
-      languages: { en: `/tours/${slug}`, "es-ES": `/es/tours/${slug}` },
+      languages: languageAlternates(`/tours/${slug}`),
     },
   };
 }

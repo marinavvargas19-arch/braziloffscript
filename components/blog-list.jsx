@@ -41,7 +41,7 @@ export default function BlogList({ locale = "en" }) {
               <h2 className="font-serif text-[clamp(28px,3.4vw,40px)] mt-2 leading-tight text-ink group-hover:text-leaf-d transition">{featured.title}</h2>
               <p className="mt-3 text-ink-soft text-[16.5px] leading-relaxed">{featured.excerpt}</p>
               <div className="mt-5 flex items-center gap-3">
-                <Avatar src={IMG.helena} size={36}/>
+                <Avatar src={featured.author === "Marina Vargas" ? "/marina-vargas-contact.jpeg" : IMG.helena} alt={featured.author} size={36}/>
                 <div className="text-[13px] text-ink-soft">{es ? "Por" : "By"} <strong>{featured.author}</strong></div>
               </div>
             </div>
