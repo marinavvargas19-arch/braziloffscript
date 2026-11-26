@@ -202,7 +202,7 @@ export default function ContactClient({ locale = "en", leadOrigin = "contact-pag
               <h4 className="font-serif text-[20px] text-ink mb-3">{es ? "Estamos en Brasil" : "We're in Brazil"}</h4>
               <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-leaf/30 to-leaf-d/40 flex items-center justify-center text-leaf-d text-[12px] uppercase tracking-wide"><MapPin size={28}/></div>
               <ul className="mt-4 space-y-1.5 text-[13.5px] text-ink-soft">
-                <li>Espírito Santo - Brasil</li>
+                <li>{es ? "Espírito Santo, Brasil" : "Espírito Santo, Brazil"}</li>
               </ul>
             </div>
           </aside>

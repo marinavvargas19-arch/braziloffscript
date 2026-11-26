@@ -110,7 +110,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const t = resolveTour(slug, EN, "en");
-  return { title: t ? `${t.title} — Brazil Off Script` : "Journey", alternates: { canonical: `/tours/${slug}`, languages: languageAlternates(`/tours/${slug}`) } };
+  return { title: t ? t.title : "Journey", description: t?.blurb, alternates: { canonical: `/tours/${slug}`, languages: languageAlternates(`/tours/${slug}`) } };
 }
 
 export async function TourRoutePage({ params, locale = "en" }) {

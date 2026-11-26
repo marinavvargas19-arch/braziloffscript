@@ -9,7 +9,7 @@ const COPY = {
     intro: "Tailor-made journeys planned by local experts in Brazil. Slow travel, real stays, real people — the country, off the obvious path.",
     explore: "Explore", journeys: "Our Journeys", tours: "All Tours", find: "Find my journey",
     company: "Company", about: "About us", how: "How it works", faq: "FAQ", contact: "Contact",
-    touch: "Get in touch", conversation: "Start a conversation", copyright: "Tailor-made journeys.", care: "Made with care in Espírito Santo - Brasil.",
+    touch: "Get in touch", conversation: "Start a conversation", copyright: "Tailor-made journeys.", care: "Made with care in Espírito Santo, Brazil.",
   },
   es: {
     intro: "Viajes a medida diseñados por expertos locales en Brasil. Viajes sin prisas, alojamientos auténticos y personas reales: el país más allá de las rutas habituales.",
@@ -61,7 +61,7 @@ export function Footer({ locale = "en" }) {
             <li className="flex items-start gap-2"><Mail size={16} className="shrink-0 mt-1"/><a className="break-all" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
             <li><span className="block text-xs uppercase tracking-wide">{locale === "es" ? "Soporte" : "Support"}</span><a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a></li>
             <li className="flex items-center gap-2"><Phone size={16}/> {SITE.phone}</li>
-            <li className="flex items-center gap-2"><MapPin size={16}/> Espírito Santo - Brasil</li>
+            <li className="flex items-center gap-2"><MapPin size={16}/> {locale === "es" ? "Espírito Santo, Brasil" : "Espírito Santo, Brazil"}</li>
           </ul>
           <Button variant="ghostLight" size="sm" href={localePath("/contact", locale)} className="mt-5">{copy.conversation} <ArrowRight size={16}/></Button>
         </div>

@@ -12,7 +12,8 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const tour = resolveTour(slug, ES, "es");
   return {
-    title: tour ? `${tour.title} — Brazil Off Script` : "Viaje",
+    title: tour ? tour.title : "Viaje",
+    description: tour?.blurb,
     alternates: {
       canonical: `/es/tours/${slug}`,
       languages: languageAlternates(`/tours/${slug}`),
