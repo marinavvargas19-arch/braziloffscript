@@ -13,7 +13,7 @@ export default function sitemap() {
     url: BLOG_ORIGIN + localePath(path, locale),
     alternates: { languages: languageAlternates(BLOG_ORIGIN + path) },
   })));
-  const blog = ['', ...articles.map(a => a.slug)].flatMap(slug => ['en','es'].map(locale => ({
+  const blog = ['', ...articles.map(a => a.slug)].flatMap(slug => SUPPORTED_LOCALES.map(locale => ({
     url: BLOG_ORIGIN + blogPath(slug, locale),
     lastModified: articles.find(a => a.slug === slug)?.modified || articles[0].modified,
     alternates: { languages: blogAlternates(slug, locale).languages },
