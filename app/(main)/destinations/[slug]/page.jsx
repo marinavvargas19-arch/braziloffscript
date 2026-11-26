@@ -55,13 +55,13 @@ export default async function DestinationPage({ params }) {
       <section className="bg-paper border-b border-line">
         <Container className="py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            {k:"4–9", v:"recommended days"},
-            {k:"Apr–Oct", v:"best season"},
-            {k:"Tailor-made", v:"every itinerary"},
-            {k:cat.name, v:"collection"},
+            {stat:"4–9", v:"recommended days"},
+            {stat:"Apr–Oct", v:"best season"},
+            {stat:"Tailor-made", v:"every itinerary"},
+            {stat:cat.name, v:"Collection"},
           ].map((s,i)=>(
             <div key={i} className={`${i<3?"md:border-r border-line":""} py-2`}>
-              <div className="font-serif text-[28px] leading-tight text-leaf-d">{s.k}</div>
+              <div className="font-serif text-[28px] leading-tight text-leaf-d">{s.stat}</div>
               <div className="text-[11.5px] tracking-[.14em] uppercase text-muted mt-1.5">{s.v}</div>
             </div>
           ))}
