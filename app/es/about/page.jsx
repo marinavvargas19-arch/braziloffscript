@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n";
 import { Container, SectionHead } from "@/components/ui/section";
 import { NewsletterBand } from "@/components/layout/newsletter";
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,7 @@ import { Sparkles, Users, Compass, Heart, Shield, Phone, ArrowRight } from "luci
 
 export const metadata = {
   title: "Sobre nosotros — Brazil Off Script",
-  alternates: { canonical: "/es/about", languages: { en: "/about", "es-ES": "/es/about" } },
+  alternates: { canonical: "/es/about", languages: languageAlternates("/about") },
 };
 
 const STEPS = [

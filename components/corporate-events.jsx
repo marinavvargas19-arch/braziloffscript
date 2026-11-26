@@ -1,3 +1,4 @@
+import { localePath } from "@/lib/i18n";
 import { ArrowRight, Building2, Car, Compass, SlidersHorizontal } from 'lucide-react';
 import BahiaOffsites from '@/components/bahia-offsites';
 import CorporateInquiry from '@/components/corporate-inquiry';
@@ -6,8 +7,8 @@ import { corporateCopy, CORPORATE_PATH } from '@/lib/corporate-events';
 
 const icons = [Building2,Car,Compass,SlidersHorizontal];
 export default function CorporateEvents({ locale = 'en' }) {
-  const c = corporateCopy[locale], es = locale === 'es';
-  const schema = { '@context':'https://schema.org', '@type':'Service', name:c.heading, serviceType:es?'Planificación de offsites y eventos corporativos':'Corporate event and team offsite planning', url:'https://www.braziloffscript.com'+(es?'/es':'')+CORPORATE_PATH, areaServed:{'@type':'Country',name:'Brazil'}, provider:{'@type':'TravelAgency',name:'Brazil Off Script',url:'https://www.braziloffscript.com'} };
+  const c = corporateCopy[locale] || corporateCopy.en, es = locale === 'es';
+  const schema = { '@context':'https://schema.org', '@type':'Service', name:c.heading, serviceType:es?'Planificación de offsites y eventos corporativos':'Corporate event and team offsite planning', url:'https://www.braziloffscript.com'+localePath(CORPORATE_PATH, locale), areaServed:{'@type':'Country',name:'Brazil'}, provider:{'@type':'TravelAgency',name:'Brazil Off Script',url:'https://www.braziloffscript.com'} };
   return <div lang={locale}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,'\\u003c')}} />
     <section className="bg-leaf-d text-cream-50">

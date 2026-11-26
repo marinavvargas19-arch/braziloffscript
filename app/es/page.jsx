@@ -1,3 +1,4 @@
+import { homeLanguages } from "@/lib/i18n";
 import HomePage from "@/app/(main)/page";
 
 export default function SpanishHomePage() {
@@ -9,6 +10,6 @@ export const metadata = {
   description: "Descubre Brasil con viajes privados y a medida, diseñados por expertos locales.",
   alternates: {
     canonical: "/es",
-    languages: { en: "/", "es-ES": "/es" },
+    languages: homeLanguages,
   },
 };

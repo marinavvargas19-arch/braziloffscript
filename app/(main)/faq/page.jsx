@@ -1,10 +1,11 @@
+import { languageAlternates } from "@/lib/i18n";
 import { Mail, Phone } from "lucide-react";
 import { Container } from "@/components/ui/section";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { FAQS, SITE } from "@/lib/data";
 
-export const metadata = { title: "FAQ", alternates: { canonical: "/faq", languages: { en: "/faq", "es-ES": "/es/faq" } } };
+export const metadata = { title: "FAQ", alternates: { canonical: "/faq", languages: languageAlternates("/faq") } };
 
 export default function FaqPage() {
   return (

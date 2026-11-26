@@ -7,7 +7,7 @@ import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { localePath } from "@/lib/i18n";
+import { localePath, unlocalizedPath } from "@/lib/i18n";
 
 const COPY = {
   en: {
@@ -46,7 +46,7 @@ export function Header({ locale = "en" }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() || "/";
   const copy = COPY[locale] || COPY.en;
-  const localizedPath = pathname === "/es" ? "/" : pathname.replace(/^\/es(?=\/)/, "");
+  const localizedPath = unlocalizedPath(pathname);
   const current = (() => {
     if (localizedPath === "/") return "home";
     if (localizedPath.startsWith("/journeys") || localizedPath.startsWith("/destinations")) return "journeys";

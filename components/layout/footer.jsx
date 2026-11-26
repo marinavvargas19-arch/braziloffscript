@@ -21,11 +21,12 @@ const COPY = {
 
 export function Footer({ locale = "en" }) {
   const copy = COPY[locale] || COPY.en;
+  const [brandFirstWord, ...brandRest] = SITE.name.split(" ");
   return (
     <footer className="bg-leaf-d text-[#cfc8a8] pt-10 sm:pt-12 pb-7 px-[18px] sm:px-5">
       <div className="max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-12 gap-x-5 gap-y-8 md:gap-8">
         <div className="col-span-2 md:col-span-4">
-          <div className="font-serif text-cream-50 text-[31px] sm:text-[36px] leading-[0.95]">Brazil<br/>Off Script</div>
+          <div className="font-serif text-cream-50 text-[31px] sm:text-[36px] leading-[0.95]">{brandFirstWord}<br/>{brandRest.join(" ")}</div>
           <p className="mt-4 sm:mt-5 max-w-sm text-[14px] sm:text-[14.5px] leading-relaxed opacity-90">
             {copy.intro}
           </p>
@@ -66,7 +67,7 @@ export function Footer({ locale = "en" }) {
         </div>
       </div>
       <div className="max-w-[1240px] mx-auto mt-8 pt-6 border-t border-cream-50/12 flex flex-wrap gap-3 justify-between text-[12.5px] opacity-70">
-        <span>© {new Date().getFullYear()} Brazil Off Script — {copy.copyright}</span>
+        <span>© {new Date().getFullYear()} {SITE.name} — {copy.copyright}</span>
         <span>{copy.care}</span>
       </div>
     </footer>

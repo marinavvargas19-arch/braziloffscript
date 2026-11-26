@@ -2,27 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { alternateLocalePath, localeFromPath } from "@/lib/i18n";
+import { ChevronDown } from "lucide-react";
+import { LANGUAGES, localeFromPath, localePath, unlocalizedPath } from "@/lib/i18n";
 
 export function LanguageSwitcher({ compact = false }) {
   const pathname = usePathname() || "/";
   const locale = localeFromPath(pathname);
-  const target = alternateLocalePath(pathname);
-  const nextLocale = locale === "es" ? "EN" : "ES";
-  const nextFlag = locale === "es" ? "🇬🇧" : "🇪🇸";
+  const path = unlocalizedPath(pathname);
 
   return (
-    <Link
-      href={target}
-      hrefLang={locale === "es" ? "en" : "es-ES"}
-      aria-label={locale === "es" ? "View this page in English" : "Ver esta página en español"}
-      className="group inline-flex items-center justify-center gap-1.5"
-    >
-      <span aria-hidden="true" className="text-[14px] leading-none tracking-normal transition-transform group-hover:scale-110">{nextFlag}</span>
-      <span className={compact
-        ? "inline-flex items-center justify-center rounded-full border border-line px-3 py-2 text-[12px] font-bold tracking-[.12em] text-leaf-d group-hover:bg-leaf/10 transition"
-        : "inline-flex items-center justify-center rounded-full border border-line px-3.5 py-2 text-[12px] font-bold tracking-[.12em] text-leaf-d group-hover:bg-leaf/10 transition"
-      }>{nextLocale}</span>
-    </Link>
+    <details key={pathname} className="relative">
+      <summary aria-label={LANGUAGES[locale].label} className="flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-line px-3 py-2 text-sm font-bold text-leaf-d hover:bg-leaf/10 [&::-webkit-details-marker]:hidden">
+        {compact ? locale.toUpperCase() : LANGUAGES[locale].name}<ChevronDown size={14} aria-hidden="true" />
+      </summary>
+      <ul className="absolute right-0 z-50 mt-1 min-w-36 rounded-xl border border-line bg-cream p-1.5 shadow-lg">
+        {Object.entries(LANGUAGES).map(([code, language]) => {
+          const target = localePath(path, code);
+          const href = code !== "en" && localeFromPath(target) !== code ? localePath("/", code) : target;
+          return (
+            <li key={code}>
+              <Link href={href} hrefLang={language.tag} lang={language.tag} aria-current={code === locale ? "true" : undefined} className="block rounded-lg px-3 py-2 text-sm text-leaf-d hover:bg-leaf/10 aria-[current=true]:font-bold">
+                {language.name}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </details>
   );
 }

@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }) {
   const destination = DESTINATIONS.find(item => item.slug === slug);
   return {
     title: destination?.name || "Destino",
-    alternates: { canonical: `/es/destinations/${slug}`, languages: { en: `/destinations/${slug}`, "es-ES": `/es/destinations/${slug}` } },
+    alternates: { canonical: `/es/destinations/${slug}`, languages: languageAlternates(`/destinations/${slug}`) },
   };
 }
 

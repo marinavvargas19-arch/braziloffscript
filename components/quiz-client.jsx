@@ -8,10 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Field, inputCls } from "@/components/ui/field";
 import { QuizImagePanel, QuizResultGallery } from "@/components/quiz-visuals";
 import * as EN from "@/lib/data";
+import * as BASE_DATA from "@/lib/data.js";
 import * as ES from "@/lib/data-es";
 import { localePath } from "@/lib/i18n";
 
 function cn(...classes) { return classes.filter(Boolean).join(" "); }
+
+const ENGLISH_JOURNEYS = new Map(quizResultJourneys(BASE_DATA).map(journey => [journey.slug, journey]));
 
 const CONTACT_METHOD_LABELS = {
   email: "E-mail",
@@ -200,7 +203,8 @@ export default function QuizClient({ locale = "en" }) {
     const styleWords  = { culture:"culture history", food:"food wine", nature:"wildlife nature", beach:"beach island", adventure:"adventure off-road hiking", slow:"slow", city:"city", family:"family" };
     return resultJourneys.map(t => {
       let score = 0;
-      const text = (t.title + " " + t.regions.join(" ") + " " + t.tags.join(" ") + " " + t.blurb).toLowerCase();
+      const journey = es ? t : ENGLISH_JOURNEYS.get(t.slug) || t;
+      const text = (journey.title + " " + journey.regions.join(" ") + " " + journey.tags.join(" ") + " " + journey.blurb).toLowerCase();
       regions.forEach(r  => { if (regionWords[r]  && regionWords[r].split(" ").some(w  => text.includes(w)))  score += 3; });
       styles.forEach(st  => { if (styleWords[st]  && styleWords[st].split(" ").some(w  => text.includes(w)))  score += 1; });
       if (discoveryProfile?.regionWords?.split(" ").some(w => w && text.includes(w.toLowerCase()))) score += 2;
@@ -210,7 +214,7 @@ export default function QuizClient({ locale = "en" }) {
       if (dur === "long"  && t.days >= 12)           score += 1;
       return { ...t, _score: score };
     }).sort((a, b) => b._score - a._score).slice(0, 3);
-  }, [answers, done, discoveryProfile, resultJourneys]);
+  }, [answers, done, discoveryProfile, resultJourneys, es]);
 
   /* ── SUCCESS SCREEN ─────────────────────────────────────────── */
   if (done) {

@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
@@ -12,13 +13,15 @@ export function generateStaticParams() {
   return DESTINATIONS.map((d) => ({ slug: d.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const d = DESTINATIONS.find((x) => x.slug === params.slug);
-  return { title: d ? d.name : "Destination", alternates: { canonical: `/destinations/${params.slug}`, languages: { en: `/destinations/${params.slug}`, "es-ES": `/es/destinations/${params.slug}` } } };
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const d = DESTINATIONS.find((x) => x.slug === slug);
+  return { title: d ? d.name : "Destination", alternates: { canonical: `/destinations/${slug}`, languages: languageAlternates(`/destinations/${slug}`) } };
 }
 
-export default function DestinationPage({ params }) {
-  const d = DESTINATIONS.find(x=>x.slug===params.slug);
+export default async function DestinationPage({ params }) {
+  const { slug } = await params;
+  const d = DESTINATIONS.find(x=>x.slug===slug);
   if (!d) return notFound();
   const cat = CATEGORIES.find(c=>c.slug===d.category);
   const highlights = DESTINATION_HIGHLIGHTS[d.slug] || [];
