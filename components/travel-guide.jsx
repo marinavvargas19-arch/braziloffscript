@@ -89,6 +89,7 @@ function Block({ block, locale }) {
   if (block.startsWith('::photo ')) return <Photo id={block.slice(8)} locale={locale} />;
   if (block.startsWith('::gallery ')) return <div className={styles.gallery}>{block.slice(10).split(' ').map(id => <Photo key={id} id={id} locale={locale} compact />)}</div>;
   if (block.startsWith('::tour ')) return <p><Link className="text-leaf-d underline underline-offset-4 font-semibold text-sm" href={localePath(block.slice(7), locale)}>{blogCopy[locale].tour} →</Link></p>;
+  if (block.startsWith('::quiz ')) return <Link className={styles.cta} href={localePath('/quiz-discovery', locale)}>{block.slice(7)} <span className="ml-5" aria-hidden="true">→</span></Link>;
   if (block.startsWith('::cta ')) return <Link className={styles.cta} href={localePath('/quiz', locale)}>{block.slice(6)} <span className="ml-5" aria-hidden="true">→</span></Link>;
   if (block.startsWith('### ')) return <h3><Inline text={block.slice(4)} /></h3>;
   if (block.startsWith('- ')) return <ul>{block.split('\n').map((line, i) => <li key={i}><Inline text={line.slice(2)} /></li>)}</ul>;

@@ -31,6 +31,10 @@ Non serve vedere tutto in un solo viaggio.
 
 La migliore avventura in Brasile è quella che sembra fatta per te.
 
+Non sai ancora qual è il tuo Brasile? Fai il nostro quiz di 60 secondi: rispondi a poche domande veloci sul tuo modo di viaggiare e scopri quale parte del Brasile fa più per te.
+
+::quiz Fai il quiz di 60 secondi
+
 ## 2. Qual è il periodo migliore per visitare il Brasile?
 
 Uno degli errori più comuni dei viaggiatori stranieri è pensare che in Brasile il clima sia uguale ovunque.

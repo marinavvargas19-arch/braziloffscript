@@ -31,6 +31,10 @@ No necesitas conocerlos todos en un solo viaje.
 
 La mejor aventura brasileña es la que encaja contigo.
 
+¿Todavía no sabes cuál de estos es tu Brasil? Haz nuestro test de 60 segundos: responde unas preguntas rápidas sobre tu forma de viajar y descubre qué rincón de Brasil encaja mejor contigo.
+
+::quiz Hacer el test de 60 segundos
+
 ## 2. ¿Cuál es la mejor época para viajar a Brasil?
 
 Uno de los errores más habituales entre los viajeros internacionales es suponer que Brasil tiene el mismo clima en todas partes.

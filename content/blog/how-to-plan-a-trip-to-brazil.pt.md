@@ -31,6 +31,10 @@ Você não precisa conhecer tudo numa só viagem.
 
 A melhor aventura no Brasil é aquela que combina com você.
 
+Ainda não sabe qual desses é o seu Brasil? Faça o nosso quiz de 60 segundos: responda algumas perguntas rápidas sobre o seu jeito de viajar e descubra qual parte do Brasil combina mais com você.
+
+::quiz Fazer o quiz de 60 segundos
+
 ## 2. Qual é a melhor época para visitar o Brasil?
 
 Um dos erros mais comuns de quem vem de fora é achar que o clima é o mesmo em todo o Brasil.

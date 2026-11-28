@@ -7,7 +7,7 @@ The implementation in PR #3 (`restore-blog-travel-guide`) was reviewed before th
 1. Add a record to `articles` in `lib/blog.js`, including both locale metadata, a stable slug, real publication/modification dates and the cover key.
 2. Add `content/blog/<slug>.en.md` and `<slug>.es.md`. The first blocks are H1, italic subtitle and `::photo <cover-key>`.
 3. Use H2 for sections and H3 for subsections. The first five H2s populate this guide's contents navigation. The shared index automatically lists registered articles.
-4. Supported blocks: paragraphs, `**strong**`, `*emphasis*`, bullet lists, `> callouts`, `::photo <key>`, `::gallery <key> <key>`, `::tour /tours/<slug>`, and `::cta <button text>`. CTA goes directly to the localized custom-trip questionnaire.
+4. Supported blocks: paragraphs, `**strong**`, `*emphasis*`, bullet lists, `> callouts`, `::photo <key>`, `::gallery <key> <key>`, `::tour /tours/<slug>`, `::cta <button text>` and `::quiz <button text>`. CTA goes directly to the localized custom-trip questionnaire; quiz goes to the localized 60-second discovery quiz (`/quiz-discovery`).
 5. Add verified photo metadata and credits to `lib/blog-photos.js`. Run `node scripts/optimize-blog-images.mjs` to create responsive WebP files. Preserve original source files and license records. New article-specific Open Graph artwork should be added to the shared metadata renderer when publishing another article.
 6. Build with `npm run build`. Check both locales, original text, headings, image alt text, contents anchors, mobile menu, internal tour links, CTA, canonical, hreflang, Open Graph, BlogPosting and sitemap. No admin or API URLs belong in the sitemap.
 

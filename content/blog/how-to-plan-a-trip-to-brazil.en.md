@@ -31,6 +31,10 @@ You don't need to experience them all in a single trip.
 
 The best Brazilian adventure is the one that feels right for you.
 
+Not sure yet which of these is your Brazil? Take our 60-second quiz: answer a few quick questions about how you like to travel and find out which part of Brazil suits you best.
+
+::quiz Take the 60-second quiz
+
 ## 2. When is the best time to visit Brazil?
 
 One of the most common mistakes international travelers make is assuming that Brazil has the same weather everywhere.

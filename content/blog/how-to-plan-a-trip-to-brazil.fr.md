@@ -31,6 +31,10 @@ Inutile de tout voir en un seul voyage.
 
 La plus belle aventure au Brésil est celle qui vous ressemble.
 
+Vous ne savez pas encore lequel est votre Brésil ? Faites notre quiz de 60 secondes : répondez à quelques questions rapides sur votre façon de voyager et découvrez la région du Brésil qui vous correspond le mieux.
+
+::quiz Faire le quiz de 60 secondes
+
 ## 2. Quelle est la meilleure période pour visiter le Brésil ?
 
 L'une des erreurs les plus fréquentes des voyageurs étrangers est de croire que le climat est le même partout au Brésil.
