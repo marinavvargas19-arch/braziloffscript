@@ -89,21 +89,58 @@ Every `git push` to `main` auto-deploys. That's the whole workflow.
 
 ## 4. Wiring up the contact form
 
-By default, the contact form POSTs to `/api/contact` and just logs to the server console. To actually receive emails:
+The contact form POSTs to `/api/contact` and saves submissions in Supabase. To receive email notifications:
 
 1. Sign up at [resend.com](https://resend.com) (free tier: 100 emails/day)
 2. Verify the domain `braziloffscript.com` in Resend
 3. Get an API key
 4. In Vercel → **Settings → Environment Variables**, add:
    - `RESEND_API_KEY` = your key
-   - `CONTACT_TO_EMAIL` = `ola@braziloffscript.com`
+   - `LEAD_NOTIFICATION_TO` = `marina.vargas@braziloffscript.com` (optional; this address is already the default)
 5. Redeploy
 
-Logic lives in `app/api/contact/route.js` — edit there to change subject lines or routing.
+After a lead is saved, the server requests an email through Resend. If the request fails, the lead is still available in the dashboard and the server logs the notification failure. Use the Resend dashboard to check delivery after submitting a test lead.
 
 ---
 
-## 5. Editing common things
+## 5. Lead dashboard
+
+The site can also save every contact or quiz submission into Supabase and show it in a private dashboard at `/admin/leads`.
+
+In Vercel → **Settings → Environment Variables**, add:
+
+- `ADMIN_PASSWORD` = password for `/admin/login`
+- `ADMIN_SESSION_SECRET` = any long random string
+- `SUPABASE_URL` = your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY` = Supabase service role key, server-side only
+- `SUPABASE_LEADS_TABLE` = `leads` (optional; this is the default)
+
+Create this table in Supabase SQL editor:
+
+```sql
+create table public.leads (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  source text,
+  name text,
+  email text,
+  phone text,
+  contact_method text,
+  note text,
+  profile_match text,
+  profile_runner_up text,
+  profile_answers jsonb not null default '[]'::jsonb,
+  quiz_answers jsonb not null default '[]'::jsonb,
+  matched_tours jsonb not null default '[]'::jsonb,
+  payload jsonb not null default '{}'::jsonb
+);
+```
+
+Do not expose the service role key in the browser. It is only used by server routes and server-rendered admin pages.
+
+---
+
+## 6. Editing common things
 
 | Want to change… | Edit this file |
 |---|---|
@@ -119,7 +156,20 @@ Logic lives in `app/api/contact/route.js` — edit there to change subject lines
 
 ---
 
-## 6. Replacing placeholder photos
+## 7. Traffic analytics
+
+The site includes Vercel Web Analytics. After deploying, open the project in Vercel and enable it under **Analytics → Enable Web Analytics**.
+
+The Analytics dashboard provides:
+
+- total visitors and page views;
+- views grouped by page/route;
+- referrers, countries, devices, and browsers;
+- date-range filters for comparing periods.
+
+Tracking is loaded globally from `app/layout.jsx`, so it automatically covers English and Spanish pages, including dynamic destination, tour, journey, and blog routes. No analytics environment variable is required.
+
+## 8. Replacing placeholder photos
 
 Most photos are placeholder Unsplash URLs in `lib/data.js`. When you have real photos:
 
@@ -129,7 +179,7 @@ Most photos are placeholder Unsplash URLs in `lib/data.js`. When you have real p
 
 ---
 
-## 7. Common questions
+## 9. Common questions
 
 **Q: How do I add a new page (e.g. `/sustainability`)?**
 Create `app/sustainability/page.jsx` and export a default React component. That URL now exists.
@@ -138,7 +188,7 @@ Create `app/sustainability/page.jsx` and export a default React component. That 
 Open the page file and paste new JSX. Use the existing `<Container>` and styling tokens to stay consistent.
 
 **Q: Where do I add tracking (Google Analytics, Meta Pixel)?**
-Inject the script in `app/layout.jsx` inside `<head>` or via `next/script`. There are guides at vercel.com/docs.
+Vercel Web Analytics is already installed in `app/layout.jsx`. Add other providers there via their official Next.js integration or `next/script`, taking care not to duplicate page-view tracking.
 
 **Q: I broke something.**
 Roll back in Vercel → Deployments → click an older one → "Promote to Production". Zero downtime.

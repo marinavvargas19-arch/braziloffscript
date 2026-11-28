@@ -35,3 +35,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Localized route modules generated from the source pages and translation catalogs
+/lib/localized/
+/app/pt/(localized)/
+/app/fr/(localized)/
+/app/it/(localized)/
+/app/pt/quiz/
+/app/fr/quiz/
+/app/it/quiz/
+/app/pt/quiz-discovery/
+/app/fr/quiz-discovery/
+/app/it/quiz-discovery/
+/app/pt/start/
+/app/fr/start/
+/app/it/start/
+
+# Claude Code local settings (machine-specific, never commit)
+.claude/settings.local.json
+
+# Social media assets (kept outside the site repository)
+/Reels/
