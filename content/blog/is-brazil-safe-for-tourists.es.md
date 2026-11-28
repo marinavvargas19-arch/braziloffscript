@@ -10,7 +10,13 @@ Dato útil para lectores de la región: según Embratur, Argentina fue el primer
 
 ## ¿Qué dicen los avisos oficiales?
 
-Estados Unidos clasifica a Brasil en el nivel 2, "mayor precaución" (25/05/2026), y solo desaconseja por completo la franja de 160 km de las fronteras terrestres (excepto los parques nacionales de Iguaçu y del Pantanal) y las ciudades satélite de Brasilia de noche. Canadá pide "un alto grado de precaución" (26/10/2026) y el Reino Unido actualizó su guía el 17/11/2026. Casi todas las alertas se refieren a zonas urbanas y de noche.
+Estados Unidos clasifica a Brasil en el nivel 2, en una escala de 1 a 4, lo que significa "mayor precaución". Recomienda no ir a tres tipos de lugares:
+
+- zonas a menos de 160 km de las fronteras con otros países de Sudamérica. Los parques nacionales de Iguaçu y del Pantanal quedan fuera de esta restricción y se pueden visitar con normalidad;
+- favelas, incluso con guía;
+- algunas ciudades satélite de Brasilia (Ceilândia, Santa Maria, São Sebastião y Paranoá), de noche.
+
+Canadá pide "un alto grado de precaución" y el Reino Unido actualizó su guía el 17/11/2026. Casi todas las alertas se refieren a las grandes ciudades, sobre todo de noche.
 
 ## ¿Cuáles son los riesgos reales?
 

@@ -10,11 +10,15 @@ Voilà la réponse courte. La réponse complète dépend de l'endroit où vous a
 
 ## Que disent les avis officiels aux voyageurs ?
 
-Le Département d'État américain classe le Brésil au niveau 2, « faire preuve d'une prudence accrue » (mise à jour du 25 mai 2026). Il déconseille formellement deux zones : la bande de 160 km le long des frontières terrestres, à l'exception explicite des parcs nationaux d'Iguaçu et du Pantanal, et les villes satellites de Brasília la nuit.
+Le Département d'État américain classe le Brésil au niveau 2, sur une échelle de 1 à 4, ce qui signifie « faire preuve d'une prudence accrue ». Il déconseille trois types de lieux :
 
-Le Canada demande de faire preuve d'« un degré élevé de prudence » (mise à jour du 26 octobre 2026). Le Royaume-Uni a actualisé sa page sur le Brésil le 17 novembre 2026, avec des conseils pratiques sur les vols, le vol de téléphones et les boissons droguées.
+- les zones situées à moins de 160 km des frontières avec les autres pays d'Amérique du Sud. Les parcs nationaux d'Iguaçu et du Pantanal ne sont pas concernés et se visitent normalement ;
+- les favelas, même avec une visite guidée ;
+- certaines villes satellites de Brasília (Ceilândia, Santa Maria, São Sebastião et Paranoá), la nuit.
 
-Lisez ces pages avant de partir. Vous verrez qu'elles ont un point commun : presque toutes les alertes concernent les grandes villes, la nuit, ou des endroits que la plupart des visiteurs ne fréquentent jamais.
+Le Canada demande de faire preuve d'« un degré élevé de prudence », et le Royaume-Uni a actualisé sa page sur le Brésil le 17 novembre 2026, avec des conseils pratiques sur les vols, le vol de téléphones et les boissons droguées.
+
+Lisez ces pages avant de partir. Vous verrez qu'elles ont un point commun : presque toutes les alertes concernent les grandes villes, surtout la nuit.
 
 ## Le Brésil attire-t-il plus ou moins de touristes ?
 

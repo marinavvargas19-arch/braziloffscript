@@ -10,11 +10,15 @@ Questa è la risposta breve. Quella completa dipende da dove vai, a che ora esci
 
 ## Cosa dicono gli avvisi ufficiali?
 
-Il Dipartimento di Stato americano classifica il Brasile al livello 2, «maggiore cautela» (aggiornamento del 25 maggio 2026). Sconsiglia del tutto due aree: la fascia di 160 km lungo i confini terrestri, con esclusione espressa dei parchi nazionali dell'Iguaçu e del Pantanal, e le città satellite di Brasília di notte.
+Il Dipartimento di Stato americano classifica il Brasile al livello 2, su una scala da 1 a 4, che significa «maggiore cautela». Sconsiglia tre tipi di luoghi:
 
-Il Canada chiede di esercitare «un alto grado di cautela» (aggiornamento del 26 ottobre 2026). Il Regno Unito ha aggiornato la sua pagina sul Brasile il 17 novembre 2026, con consigli pratici su rapine, furti di cellulari e bevande drogate.
+- le zone entro 160 km dai confini con gli altri paesi del Sud America. I parchi nazionali dell'Iguaçu e del Pantanal sono esclusi e si possono visitare normalmente;
+- le favelas, anche con un tour guidato;
+- alcune città satellite di Brasília (Ceilândia, Santa Maria, São Sebastião e Paranoá), di notte.
 
-Leggi queste pagine prima di partire. Noterai che hanno un punto in comune: quasi tutti gli avvisi riguardano le grandi città, la notte o luoghi che la maggior parte dei visitatori non vede mai.
+Il Canada chiede di esercitare «un alto grado di cautela», e il Regno Unito ha aggiornato la sua pagina sul Brasile il 17 novembre 2026, con consigli pratici su rapine, furti di cellulari e bevande drogate.
+
+Leggi queste pagine prima di partire. Noterai che hanno un punto in comune: quasi tutti gli avvisi riguardano le grandi città, soprattutto di notte.
 
 ## Il Brasile attira più o meno turisti?
 

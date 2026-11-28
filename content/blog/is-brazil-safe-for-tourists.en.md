@@ -10,11 +10,15 @@ That's the short answer. The longer one depends on where you go, what time you g
 
 ## What do the official travel advisories say?
 
-The US State Department rates Brazil Level 2, "Exercise increased caution" (updated May 25, 2026). It marks two areas as "Do not travel": the zone within 160 km of Brazil's land borders, with Iguazu Falls National Park and Pantanal National Park expressly excluded, and Brasília's satellite cities at night.
+The US State Department rates Brazil Level 2 on a scale of 1 to 4, which means "Exercise increased caution." It advises against going to three kinds of places:
 
-Canada asks travelers to "exercise a high degree of caution" (updated October 26, 2026). The UK Foreign Office updated its Brazil page on November 17, 2026, with practical warnings about robbery, phone theft and drink spiking.
+- areas within 160 km (100 miles) of Brazil's land borders with other South American countries. Iguazu Falls National Park and Pantanal National Park are excluded, so you can visit them normally;
+- favelas, even on a guided tour;
+- some of Brasília's satellite cities (Ceilândia, Santa Maria, São Sebastião and Paranoá), at night.
 
-Read those pages before you fly. Notice what they have in common: almost every warning is about large urban areas, at night, or in places most visitors never see.
+Canada asks travelers to "exercise a high degree of caution." The UK Foreign Office updated its Brazil page on November 17, 2026, with practical warnings about robbery, phone theft and drink spiking.
+
+Read those pages before you fly. Notice what they have in common: almost every warning is about large cities, especially at night.
 
 ## Is Brazil getting more or less popular with tourists?
 

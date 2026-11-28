@@ -8,7 +8,13 @@ Sim, o Brasil é seguro para turistas que viajam com a mesma atenção que teria
 
 ## O que dizem os avisos oficiais?
 
-O Departamento de Estado dos EUA classifica o Brasil no nível 2, "aumente a cautela" (atualizado em 25 de maio de 2026). Ele só desaconselha totalmente duas áreas: a faixa de 160 km das fronteiras terrestres, com exceção dos parques nacionais do Iguaçu e do Pantanal, e as cidades-satélite de Brasília à noite. O Canadá pede "alto grau de cautela" (26/10/2026) e o Reino Unido atualizou suas orientações em 17/11/2026. Quase todos os alertas falam de áreas urbanas, à noite.
+O governo americano classifica o Brasil no nível 2, numa escala de 1 a 4, o que quer dizer "tenha mais cautela". Ele recomenda não ir a três tipos de lugar:
+
+- regiões a até 160 km das fronteiras com outros países da América do Sul. Os parques nacionais do Iguaçu e do Pantanal ficam fora dessa restrição e podem ser visitados normalmente;
+- favelas, mesmo com guia;
+- algumas cidades-satélite de Brasília (Ceilândia, Santa Maria, São Sebastião e Paranoá), à noite.
+
+O Canadá pede "alto grau de cautela", e o Reino Unido atualizou suas orientações em 17/11/2026. Quase todos os alertas falam de cidades grandes, principalmente à noite.
 
 ## Quais são os riscos reais?
 
