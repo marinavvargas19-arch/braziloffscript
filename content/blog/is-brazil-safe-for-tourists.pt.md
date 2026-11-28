@@ -22,11 +22,27 @@ O Departamento de Estado dos EUA classifica o Brasil no nível 2, "aumente a cau
 
 **Para se locomover, Uber ou táxi licenciado.** Uber e 99 são muito usados, baratos e confiáveis nas cidades brasileiras. Táxis licenciados são igualmente seguros: pegue no ponto oficial do aeroporto ou chame por aplicativo. Recuse motoristas que oferecem corrida na rua e confira se a placa bate com a do app.
 
-**Clonagem de cartão.** Saque dentro de bancos ou shoppings, de dia.
+**Cartão e maquininha.** Saque dinheiro em caixas eletrônicos dentro de bancos ou shoppings, de dia, e cubra o teclado ao digitar a senha. Na praia e nos pequenos comércios, dê preferência ao dinheiro: leve notas trocadas para a água de coco, o mate, o milho e o aluguel de cadeira e guarda-sol. Se for pagar com cartão, confira o valor no visor antes de aproximar ou digitar a senha, e não deixe o cartão sair da sua vista. No Rio, a polícia já prendeu vendedores na orla que cobravam valores absurdos de turistas estrangeiros na maquininha.
 
 ## O Rio de Janeiro é perigoso?
 
-O Rio pede planejamento, não medo. Fique na Zona Sul (Copacabana, Ipanema, Leblon, Botafogo), aproveite a praia de dia e não caminhe pela areia à noite. EUA e Reino Unido desaconselham visitas a favelas, mesmo com guia, e na Brazil Off Script seguimos essa orientação. Se algo acontecer, a DEAT (Delegacia Especial de Apoio ao Turismo) é a delegacia preparada para atender turistas.
+O Rio pede planejamento, não medo. A maioria dos visitantes fica na Zona Sul, em Copacabana, Ipanema, Leblon e Botafogo, bairros com bons hotéis, restaurantes e movimento na rua até tarde. Aproveite a praia de dia. À noite, a orla continua cheia de gente, mas a areia fica vazia e é melhor não caminhar por ela. Para distâncias maiores depois que escurece, vá de Uber ou táxi.
+
+O cuidado com o celular vale sobretudo nos lugares mais cheios: o calçadão, o Arpoador no pôr do sol, a Lapa à noite e o entorno do Maracanã em dia de jogo.
+
+### Vale visitar uma favela?
+
+**Visite comunidades somente com guia local, nunca por conta própria.** Seguindo essa regra, vale muito a pena. Os governos dos EUA e do Reino Unido desaconselham a visita, mesmo com guia, e é bom você saber disso antes de decidir. Para nós, que somos daqui, conhecer uma comunidade com um guia que mora nela é uma das experiências mais marcantes do Rio. É ali que você entende de verdade como a cidade vive.
+
+A nossa indicação é o Santa Marta, em Botafogo. Os passeios são feitos por guias nascidos na comunidade. Você sobe de bondinho até o alto do morro, onde está uma das vistas mais bonitas do Rio, e passa pelo espaço Michael Jackson e por projetos sociais dos moradores.
+
+Durante o passeio:
+
+- Vá de dia e fique sempre com o guia e o grupo.
+- Pergunte ao guia antes de fotografar pessoas.
+- Se o guia disser que naquele dia não é bom subir, respeite.
+
+Se algo acontecer na cidade, procure a DEAT (Delegacia Especial de Apoio ao Turismo), que é preparada para atender turistas.
 
 ## Onde o Brasil é mais tranquilo?
 

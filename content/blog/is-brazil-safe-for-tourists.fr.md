@@ -32,15 +32,27 @@ Plus. Selon les chiffres d'Embratur, le Brésil a dépassé pour la première fo
 
 **Pour vous déplacer, Uber ou taxi officiel.** Uber et l'application locale 99 sont très utilisées, abordables et fiables dans les villes brésiliennes. Les taxis officiels sont tout aussi sûrs : prenez-les aux comptoirs officiels des aéroports ou commandez-les par application. Refusez les chauffeurs qui vous abordent pour vous proposer une course et vérifiez que la plaque correspond à celle affichée dans l'application.
 
-**Le clonage de carte aux distributeurs.** Retirez de l'argent à l'intérieur des banques ou des centres commerciaux, en journée.
+**Cartes et terminaux de paiement.** Retirez de l'argent aux distributeurs situés à l'intérieur des banques ou des centres commerciaux, en journée, et cachez le clavier en tapant votre code. Sur la plage et chez les petits commerçants, privilégiez les espèces : prévoyez des petites coupures pour l'eau de coco, le maté, le maïs grillé et la location de chaises et de parasols. Si vous payez par carte, vérifiez le montant affiché avant de valider, et ne quittez jamais votre carte des yeux. À Rio, la police a déjà arrêté des vendeurs de plage qui facturaient des montants absurdes à des touristes étrangers sur leur terminal.
 
 ## Rio de Janeiro est-elle sûre pour les touristes ?
 
-C'est souvent à Rio que commencent les questions de sécurité, et un peu de préparation suffit. Logez dans les quartiers de la Zona Sul que fréquentent la plupart des visiteurs, comme Copacabana, Ipanema, Leblon et Botafogo. Profitez des plages en journée, mais ne vous y promenez pas une fois la nuit tombée, comme le conseille le Royaume-Uni.
+C'est souvent à Rio que commencent les questions de sécurité, et un peu de préparation suffit. La plupart des visiteurs logent dans la Zona Sul, à Copacabana, Ipanema, Leblon et Botafogo, des quartiers avec de bons hôtels, des restaurants et du monde dans la rue jusque tard. Profitez des plages en journée. Le soir, le front de mer reste animé, mais le sable se vide : mieux vaut ne pas s'y promener la nuit. Pour les trajets plus longs après la tombée de la nuit, prenez un Uber ou un taxi officiel.
 
-À propos des favelas : les États-Unis et le Royaume-Uni déconseillent de les visiter, même avec une visite guidée. Chez Brazil Off Script, nous suivons cette recommandation et n'incluons pas de visites de favelas dans nos itinéraires. Il y a bien d'autres façons de découvrir la culture vivante de Rio, d'une soirée dans une salle de samba traditionnelle à la foire artisanale du dimanche sur la Praça General Osório, à Ipanema.
+Faites particulièrement attention à votre téléphone dans les endroits les plus fréquentés : la promenade, l'Arpoador au coucher du soleil, Lapa le soir et les abords du Maracanã les jours de match.
 
-En cas de problème, Rio dispose d'un commissariat dédié aux touristes, la DEAT (Delegacia Especial de Apoio ao Turismo), habitué à aider les étrangers à porter plainte.
+### Faut-il visiter une favela ?
+
+**Ne visitez une favela (ou « communauté », comme disent les Cariocas) qu'avec un guide local, jamais seul.** En respectant cette règle, l'expérience en vaut vraiment la peine. Les États-Unis et le Royaume-Uni déconseillent ces visites, même guidées, et il est bon de le savoir avant de décider. Pour nous, qui vivons ici, découvrir une communauté avec un guide qui y habite est l'une des expériences les plus marquantes de Rio. C'est là qu'on comprend vraiment comment vit la ville.
+
+Notre conseil : Santa Marta, à Botafogo. Les visites sont menées par des guides nés dans la communauté. Vous montez en funiculaire jusqu'en haut de la colline, d'où l'on a l'une des plus belles vues de Rio, et passez par l'espace Michael Jackson et par des projets sociaux des habitants.
+
+Pendant la visite :
+
+- Allez-y en journée et restez toujours avec le guide et le groupe.
+- Demandez au guide avant de photographier des personnes.
+- Si le guide dit que ce n'est pas un bon jour pour monter, écoutez-le.
+
+En cas de problème en ville, Rio dispose d'un commissariat dédié aux touristes, la DEAT (Delegacia Especial de Apoio ao Turismo), habitué à aider les étrangers à porter plainte.
 
 ## Quels sont les endroits les plus sûrs du Brésil ?
 
@@ -70,7 +82,7 @@ Si vous préférez ne pas partir complètement seule, il existe un juste milieu 
 
 ## Questions fréquentes
 
-**Peut-on voyager au Brésil en ce moment ?** Oui, pour la plupart des voyageurs. Les États-Unis classent le Brésil au niveau 2, et le Royaume-Uni et le Canada appellent à la prudence, surtout face à la délinquance urbaine. Évitez les zones frontalières et les favelas, et appliquez les précautions habituelles en ville.
+**Peut-on voyager au Brésil en ce moment ?** Oui, pour la plupart des voyageurs. Les États-Unis classent le Brésil au niveau 2, et le Royaume-Uni et le Canada appellent à la prudence, surtout face à la délinquance urbaine. Évitez les zones frontalières, ne visitez les favelas qu'avec un guide local et appliquez les précautions habituelles en ville.
 
 **Rio est-elle sûre la nuit ?** Les rues animées de Copacabana, Ipanema et Leblon sont vivantes le soir, mais prenez un Uber ou un taxi officiel plutôt que de marcher sur de longues distances, et évitez la plage après la tombée de la nuit.
 

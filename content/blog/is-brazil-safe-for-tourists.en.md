@@ -32,15 +32,27 @@ More. Brazil passed nine million international arrivals in 2025 for the first ti
 
 **Getting around: use Uber or licensed taxis.** Uber and the local app 99 are widely used, affordable and reliable in Brazilian cities. Licensed taxis are just as safe: take them from the official booths at airports or call one through an app. Turn down drivers who approach you offering a ride, and check that the plate matches the one in the app.
 
-**Card cloning at ATMs.** Withdraw cash inside banks or shopping malls, during the day.
+**Cards and card machines.** Withdraw cash from ATMs inside banks or shopping malls, during the day, and cover the keypad when you type your PIN. On the beach and at small local businesses, pay in cash whenever you can: carry small notes for coconut water, mate, corn on the cob and chair and umbrella rentals. If you do pay by card, check the amount on the screen before you tap or enter your PIN, and never let your card out of your sight. In Rio, police have arrested beach vendors who charged foreign tourists absurd amounts on card machines.
 
 ## Is Rio de Janeiro safe for tourists?
 
-Rio is where most safety questions start, and it rewards a little planning. Stay in the South Zone neighborhoods that most visitors use, such as Copacabana, Ipanema, Leblon and Botafogo. Enjoy the beaches by day, but don't walk on them after dark, as the UK advises.
+Rio is where most safety questions start, and it rewards a little planning. Most visitors stay in the South Zone, in Copacabana, Ipanema, Leblon and Botafogo, neighborhoods with good hotels, restaurants and people on the streets until late. Enjoy the beaches by day. At night the beachfront promenade stays busy, but the sand empties out, so don't walk on it after dark. For longer distances at night, take an Uber or a licensed taxi.
 
-About favelas: the US and UK both advise against visiting them, even on guided tours. At Brazil Off Script, we follow that advice and don't include favela tours in our itineraries. There is plenty of living Rio culture to see elsewhere, from a night at a traditional samba venue to the Sunday craft fair at Praça General Osório in Ipanema.
+Be especially careful with your phone in the busiest spots: the promenade, Arpoador at sunset, Lapa at night and the area around Maracanã on match days.
 
-If something does happen, Rio has a tourist police station, the DEAT (Delegacia Especial de Apoio ao Turismo), used to helping foreigners file reports.
+### Should you visit a favela?
+
+**Only visit a favela (or "community," as locals say) with a local guide, never on your own.** Follow that rule and it's well worth it. The US and UK advisories recommend against visiting favelas, even on a guided tour, and you should know that before you decide. As locals, we think walking through a community with a guide who lives there is one of the most memorable things you can do in Rio. It's where you really understand how the city lives.
+
+Our pick is Santa Marta, in Botafogo. Tours are led by guides who were born in the community. You ride the funicular to the top of the hill, where you get one of the best views in Rio, and visit the Michael Jackson spot and residents' social projects along the way.
+
+On the tour:
+
+- Go during the day and stay with your guide and group.
+- Ask your guide before photographing people.
+- If your guide says it's not a good day to go up, listen.
+
+If something does happen anywhere in the city, Rio has a tourist police station, the DEAT (Delegacia Especial de Apoio ao Turismo), used to helping foreigners file reports.
 
 ## Which places in Brazil are safest for tourists?
 
@@ -70,7 +82,7 @@ If you'd rather not go completely alone, there's a middle ground: travel with a 
 
 ## FAQ
 
-**Is Brazil safe to visit right now?** Yes, for most travelers. The US rates Brazil Level 2 and the UK and Canada advise caution, mainly about urban crime. Avoid border areas and favelas, and follow basic city precautions.
+**Is Brazil safe to visit right now?** Yes, for most travelers. The US rates Brazil Level 2 and the UK and Canada advise caution, mainly about urban crime. Avoid border areas, visit favelas only with a local guide, and follow basic city precautions.
 
 **Is Rio de Janeiro safe at night?** Busy streets in Copacabana, Ipanema and Leblon are lively at night, but take an Uber or a licensed taxi instead of walking long distances and stay off the beach after dark.
 

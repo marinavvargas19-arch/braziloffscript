@@ -24,13 +24,29 @@ Estados Unidos clasifica a Brasil en el nivel 2, "mayor precaución" (25/05/2026
 
 **Para moverte, Uber o taxi con licencia.** Uber y la app local 99 son muy usadas, económicas y confiables en las ciudades brasileñas. Los taxis con licencia son igual de seguros: tómalos en la parada oficial del aeropuerto o pídelos por app. Rechaza a conductores que te ofrecen viaje en la calle y verifica que la patente coincida con la de la app.
 
-**Clonación de tarjetas.** Retira efectivo dentro de bancos o centros comerciales, de día.
+**Tarjetas y datáfonos.** Retira efectivo en cajeros dentro de bancos o centros comerciales, de día, y cubre el teclado al marcar el PIN. En la playa y en los pequeños comercios, prioriza el efectivo: lleva billetes chicos para el agua de coco, el mate, el choclo y el alquiler de sillas y sombrillas. Si pagas con tarjeta, revisa el monto en la pantalla antes de acercarla o marcar el PIN, y no la pierdas de vista. En Río, la policía ya detuvo a vendedores de playa que cobraban montos absurdos a turistas extranjeros con el datáfono.
 
 Y un consejo que vale para cualquier ciudad: no camines sin rumbo por zonas que no conoces. Antes de salir, averigua qué barrios piden más cuidado y, si tienes dudas, pregunta en el hotel o a tu guía. En la calle, observa el movimiento como hacen los locales: si nadie va hacia un lado, no vayas hacia ese lado. Las calles concurridas e iluminadas son tu mejor guía.
 
 ## ¿Es peligroso Río de Janeiro?
 
-Río pide planificación, no miedo. Alójate en la Zona Sur (Copacabana, Ipanema, Leblon, Botafogo), disfruta la playa de día y no camines por la arena de noche. EE. UU. y el Reino Unido desaconsejan visitar favelas, incluso con guía, y en Brazil Off Script seguimos ese criterio. Si algo pasa, la DEAT es la comisaría especializada en atender a turistas.
+Río pide planificación, no miedo. La mayoría de los visitantes se aloja en la Zona Sur, en Copacabana, Ipanema, Leblon y Botafogo, barrios con buenos hoteles, restaurantes y gente en la calle hasta tarde. Disfruta la playa de día. De noche, el paseo marítimo sigue lleno de gente, pero la arena se vacía y es mejor no caminar por ella. Para distancias largas después del anochecer, usa Uber o un taxi con licencia.
+
+El cuidado con el celular vale sobre todo en los lugares más concurridos: el paseo marítimo, el Arpoador al atardecer, Lapa de noche y los alrededores del Maracaná en día de partido.
+
+### ¿Vale la pena visitar una favela?
+
+**Visita las comunidades solo con un guía local, nunca por tu cuenta.** Siguiendo esa regla, vale mucho la pena. Los gobiernos de EE. UU. y del Reino Unido desaconsejan la visita, incluso con guía, y conviene que lo sepas antes de decidir. Para nosotros, que somos de aquí, conocer una comunidad con un guía que vive en ella es una de las experiencias más memorables de Río. Es ahí donde entiendes de verdad cómo vive la ciudad.
+
+Nuestra recomendación es Santa Marta, en Botafogo. Los recorridos los hacen guías nacidos en la comunidad. Subes en funicular hasta lo alto del morro, donde está una de las mejores vistas de Río, y pasas por el espacio Michael Jackson y por proyectos sociales de los vecinos.
+
+Durante el recorrido:
+
+- Ve de día y quédate siempre con el guía y el grupo.
+- Pregunta al guía antes de fotografiar a personas.
+- Si el guía dice que ese día no conviene subir, respétalo.
+
+Si algo pasa en la ciudad, la DEAT es la comisaría especializada en atender a turistas.
 
 ## ¿Dónde es más tranquilo Brasil?
 

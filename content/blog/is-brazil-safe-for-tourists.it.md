@@ -32,15 +32,27 @@ Di più. Secondo i dati di Embratur, nel 2025 il Brasile ha superato per la prim
 
 **Per spostarti, Uber o taxi autorizzato.** Uber e l'app locale 99 sono molto diffuse, economiche e affidabili nelle città brasiliane. I taxi autorizzati sono altrettanto sicuri: prendili ai banchi ufficiali degli aeroporti o chiamali tramite app. Rifiuta gli autisti che ti avvicinano offrendo un passaggio e controlla che la targa corrisponda a quella indicata nell'app.
 
-**La clonazione della carta agli sportelli.** Preleva contanti all'interno di banche o centri commerciali, di giorno.
+**Carte e POS.** Preleva contanti agli sportelli all'interno di banche o centri commerciali, di giorno, e copri la tastiera quando digiti il PIN. In spiaggia e nei piccoli negozi, preferisci i contanti: porta banconote di piccolo taglio per l'acqua di cocco, il mate, la pannocchia e il noleggio di sedie e ombrelloni. Se paghi con la carta, controlla l'importo sul display prima di avvicinarla o digitare il PIN e non perderla mai di vista. A Rio la polizia ha già arrestato venditori in spiaggia che addebitavano cifre assurde ai turisti stranieri con il POS.
 
 ## Rio de Janeiro è sicura per i turisti?
 
-Rio è da dove partono quasi tutte le domande sulla sicurezza, e basta un po' di organizzazione. Alloggia nei quartieri della Zona Sul scelti dalla maggior parte dei visitatori, come Copacabana, Ipanema, Leblon e Botafogo. Goditi le spiagge di giorno, ma non passeggiarci dopo il tramonto, come consiglia il Regno Unito.
+Rio è da dove partono quasi tutte le domande sulla sicurezza, e basta un po' di organizzazione. La maggior parte dei visitatori alloggia nella Zona Sul, a Copacabana, Ipanema, Leblon e Botafogo, quartieri con buoni hotel, ristoranti e gente per strada fino a tardi. Goditi le spiagge di giorno. La sera il lungomare resta animato, ma la sabbia si svuota ed è meglio non camminarci. Per le distanze più lunghe dopo il tramonto, prendi Uber o un taxi autorizzato.
 
-Sulle favelas: Stati Uniti e Regno Unito sconsigliano di visitarle, anche con un tour guidato. In Brazil Off Script seguiamo questa indicazione e non includiamo tour nelle favelas nei nostri itinerari. Ci sono tanti altri modi per vivere la cultura di Rio, da una serata in un locale di samba tradizionale alla fiera dell'artigianato della domenica in Praça General Osório, a Ipanema.
+Fai particolare attenzione al telefono nei punti più affollati: il lungomare, l'Arpoador al tramonto, Lapa la sera e i dintorni del Maracanã nei giorni di partita.
 
-Se succede qualcosa, a Rio c'è un commissariato dedicato ai turisti, la DEAT (Delegacia Especial de Apoio ao Turismo), abituato ad aiutare gli stranieri a sporgere denuncia.
+### Vale la pena visitare una favela?
+
+**Visita le favelas (o «comunità», come dicono i cariocas) solo con una guida locale, mai da solo.** Seguendo questa regola, ne vale davvero la pena. Stati Uniti e Regno Unito sconsigliano queste visite, anche guidate, ed è bene saperlo prima di decidere. Per noi, che viviamo qui, conoscere una comunità con una guida che ci abita è una delle esperienze più belle di Rio. È lì che capisci davvero come vive la città.
+
+Il nostro consiglio è Santa Marta, a Botafogo. I tour sono guidati da persone nate nella comunità. Sali con la funicolare fino in cima alla collina, dove c'è uno dei panorami più belli di Rio, e passi per lo spazio dedicato a Michael Jackson e per i progetti sociali degli abitanti.
+
+Durante il tour:
+
+- Vai di giorno e resta sempre con la guida e il gruppo.
+- Chiedi alla guida prima di fotografare le persone.
+- Se la guida dice che quel giorno non è il caso di salire, ascoltala.
+
+Se succede qualcosa in città, a Rio c'è un commissariato dedicato ai turisti, la DEAT (Delegacia Especial de Apoio ao Turismo), abituato ad aiutare gli stranieri a sporgere denuncia.
 
 ## Quali sono i luoghi più sicuri del Brasile?
 
@@ -70,7 +82,7 @@ Se preferisci non partire del tutto da sola, c'è una via di mezzo: viaggiare in
 
 ## Domande frequenti
 
-**È sicuro viaggiare in Brasile adesso?** Sì, per la maggior parte dei viaggiatori. Gli Stati Uniti classificano il Brasile al livello 2, mentre Regno Unito e Canada invitano alla prudenza, soprattutto per la criminalità urbana. Evita le zone di confine e le favelas e segui le normali precauzioni da grande città.
+**È sicuro viaggiare in Brasile adesso?** Sì, per la maggior parte dei viaggiatori. Gli Stati Uniti classificano il Brasile al livello 2, mentre Regno Unito e Canada invitano alla prudenza, soprattutto per la criminalità urbana. Evita le zone di confine, visita le favelas solo con una guida locale e segui le normali precauzioni da grande città.
 
 **Rio è sicura di notte?** Le strade affollate di Copacabana, Ipanema e Leblon sono vivaci la sera, ma per le distanze lunghe prendi Uber o un taxi autorizzato invece di camminare, ed evita la spiaggia dopo il tramonto.
 
